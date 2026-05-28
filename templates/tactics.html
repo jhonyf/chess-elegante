@@ -1,0 +1,655 @@
+{% extends "base.html" %}
+
+{% block title %}Chess Tactics - Chess Elegante{% endblock %}
+
+{% set active_page = 'learn' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <!-- Header -->
+    <div class="learn-header">
+        <h1>Chess Tactics</h1>
+        <p class="subtitle">Seeing the Board</p>
+        <p class="intro">
+            Tactics are the heartbeat of chess—the sharp, concrete sequences that win material,
+            deliver checkmate, or force decisive advantages. While strategy sets the stage, tactics
+            deliver the knockout blow. Most players improve fastest by sharpening their tactical vision,
+            training their eye to spot the patterns that transform equal positions into winning ones.
+            Here you'll learn to recognize these patterns, calculate accurately, and execute the
+            combinations that decide games at every level.
+        </p>
+    </div>
+
+    <!-- ==================== SECTION A: TACTICAL MOTIFS ==================== -->
+    <section id="motifs" class="learn-section">
+        <div class="section-header">
+            <h2>A. Tactical Motifs</h2>
+            <p class="section-subtitle">The Building Blocks</p>
+        </div>
+        <p class="section-intro">
+            Tactical motifs are the fundamental patterns that appear in every chess game, from amateur
+            blitz to world championship matches. These are the building blocks of all combinations—
+            the recurring themes that strong players recognize in a fraction of a second. Master these
+            core patterns and you'll spot winning opportunities that your opponents overlook. Each motif
+            has characteristic signatures; train yourself to recognize them instantly in any position.
+        </p>
+
+        <!-- Fork -->
+        <article class="lesson-card" data-searchable="fork double attack knight fork family fork royal fork">
+            <div class="lesson-content">
+                <h3 class="lesson-title">The Fork</h3>
+                <div class="lesson-text">
+                    <p>
+                        A fork is when one piece attacks two or more enemy pieces simultaneously. The opponent
+                        can only save one piece, leaving you to capture the other. Knights are the supreme
+                        forking pieces because they attack in eight directions at once, leap over obstacles,
+                        and their attacks cannot be blocked by interposing pieces.
+                    </p>
+                    <p>
+                        The most devastating fork is the "family fork" or "royal fork"—when a knight attacks
+                        both the king and queen simultaneously. The king must move to escape check, and the queen
+                        falls helplessly. When hunting for forks, look for undefended pieces positioned on the
+                        same color squares (for bishop forks) or within a knight's distinctive L-shaped jump of each other.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> After every opponent move, ask yourself: "Can I fork two
+                        pieces?" Look especially for checks that simultaneously attack another piece—since the king
+                        must move, you're guaranteed to capture something valuable on the next move.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="fork">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-fork">
+                <div class="board-container">
+                    <div id="board-fork" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-fork">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="fork">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="fork">◀</button>
+                        <button class="control-btn" data-action="next" data-board="fork">▶</button>
+                        <button class="control-btn" data-action="last" data-board="fork">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-fork">
+                    White plays Nf7+, forking the king on e8 and the queen on d8. Black must deal with
+                    the check by moving the king, and then White captures the queen with Nxd8. This is
+                    the classic royal fork—the most powerful tactical blow in chess.
+                </div>
+            </div>
+        </article>
+
+        <!-- Pin -->
+        <article class="lesson-card" data-searchable="pin absolute pin relative pin pinned piece immobilize">
+            <div class="lesson-content">
+                <h3 class="lesson-title">The Pin</h3>
+                <div class="lesson-text">
+                    <p>
+                        A pin occurs when a piece cannot move without exposing a more valuable piece behind it
+                        to capture. There are two types: absolute pins (the piece literally cannot legally move
+                        because it would expose the king to check—this is enforced by the rules) and relative pins
+                        (the piece can legally move but doing so would sacrifice material, usually a queen or rook).
+                    </p>
+                    <p>
+                        Bishops and rooks are the natural pinning pieces, operating along diagonals, ranks, and files.
+                        The pinned piece becomes a stationary target—since it can't flee, you can pile on additional
+                        attackers with impunity. A common winning technique is to attack a pinned defender repeatedly,
+                        overwhelming it until you can capture it profitably.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> When you pin a piece, immediately look for ways to add pressure.
+                        The pinned piece is like a prisoner—it can't escape and can barely defend itself. Pile on more
+                        attackers than defenders and watch your opponent's position collapse.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="pin">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-pin">
+                <div class="board-container">
+                    <div id="board-pin" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-pin">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="pin">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="pin">◀</button>
+                        <button class="control-btn" data-action="next" data-board="pin">▶</button>
+                        <button class="control-btn" data-action="last" data-board="pin">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-pin">
+                    White plays Bg5, pinning the knight on f6 to the queen on d8. The knight cannot move
+                    without losing the queen. Now White can attack the knight again with moves like Nd5
+                    or h3 followed by g4, and the knight cannot escape.
+                </div>
+            </div>
+        </article>
+
+        <!-- Skewer -->
+        <article class="lesson-card" data-searchable="skewer reverse pin x-ray attack through attack">
+            <div class="lesson-content">
+                <h3 class="lesson-title">The Skewer</h3>
+                <div class="lesson-text">
+                    <p>
+                        A skewer is like a pin in reverse—you attack a valuable piece, forcing it to move,
+                        and then capture a piece behind it. Unlike a pin where the front piece is less valuable,
+                        in a skewer the front piece is more valuable and must move to safety.
+                    </p>
+                    <p>
+                        The most common skewer involves checking the king, forcing it to move, and then
+                        capturing a piece (often the queen or rook) that was behind it. Bishops and rooks
+                        create skewers along their lines of attack.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Skewers often start with a check. If you can give check
+                        and there's a valuable piece behind the king on the same diagonal or file, you have
+                        a skewer. The king must move, and the piece falls.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="skewer">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-skewer">
+                <div class="board-container">
+                    <div id="board-skewer" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-skewer">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="skewer">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="skewer">◀</button>
+                        <button class="control-btn" data-action="next" data-board="skewer">▶</button>
+                        <button class="control-btn" data-action="last" data-board="skewer">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-skewer">
+                    White plays Bb5+, checking the king on e8. The king must move (say, Kf8), and then
+                    White plays Bxd8, capturing the queen. The check forced Black's hand—the more valuable
+                    piece had to move, exposing the less valuable one.
+                </div>
+            </div>
+        </article>
+
+        <!-- Discovered Attack -->
+        <article class="lesson-card" data-searchable="discovered attack discovery discovered check double check battery">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Discovered Attack</h3>
+                <div class="lesson-text">
+                    <p>
+                        A discovered attack occurs when you move one piece, unveiling an attack from a piece
+                        behind it. The moving piece can create threats of its own while the piece behind it
+                        attacks something else. Your opponent must deal with two threats at once.
+                    </p>
+                    <p>
+                        The most powerful form is the discovered check—when the unveiled piece gives check.
+                        The opponent must deal with the check, allowing the moving piece to capture material
+                        freely. Even more devastating is a double check, where both the moving piece and the
+                        unveiled piece give check. The king must move; no other response is legal.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Look for pieces lined up on the same file, rank, or diagonal
+                        with an enemy piece between them. If you can move the front piece with a threat, the
+                        back piece creates a discovered attack.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="discovered-attack">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-discovered-attack">
+                <div class="board-container">
+                    <div id="board-discovered-attack" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-discovered-attack">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="discovered-attack">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="discovered-attack">◀</button>
+                        <button class="control-btn" data-action="next" data-board="discovered-attack">▶</button>
+                        <button class="control-btn" data-action="last" data-board="discovered-attack">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-discovered-attack">
+                    The White knight on e5 blocks the bishop's attack on the Black queen. White plays
+                    Nxf7+, moving the knight with check while simultaneously unveiling the bishop's attack
+                    on the queen. Black must respond to the check, and then White captures the queen.
+                </div>
+            </div>
+        </article>
+
+        <!-- Double Attack -->
+        <article class="lesson-card" data-searchable="double attack two threats dual threat queen attack">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Double Attack</h3>
+                <div class="lesson-text">
+                    <p>
+                        A double attack is when one piece attacks two targets simultaneously. Unlike a fork,
+                        which specifically refers to attacking two pieces, a double attack can include threats
+                        of checkmate, capturing hanging pieces, or other tactical blows alongside material gain.
+                    </p>
+                    <p>
+                        The queen is the supreme double-attacking piece because of her mobility. She can
+                        attack along ranks, files, and diagonals, creating threats in multiple directions.
+                        Even a simple queen move can simultaneously threaten mate on one side of the board
+                        while attacking an undefended piece on the other.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Before every move, ask: "Does this create two threats?"
+                        The best double attacks combine a checkmate threat with material gain—your opponent
+                        must stop mate, allowing you to win material.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="double-attack">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-double-attack">
+                <div class="board-container">
+                    <div id="board-double-attack" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-double-attack">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="double-attack">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="double-attack">◀</button>
+                        <button class="control-btn" data-action="next" data-board="double-attack">▶</button>
+                        <button class="control-btn" data-action="last" data-board="double-attack">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-double-attack">
+                    White plays Qh5, simultaneously threatening Qxf7# checkmate and attacking the undefended
+                    rook on a5. Black cannot defend both threats. If Black stops mate with ...g6, White plays
+                    Qxa5, winning the rook.
+                </div>
+            </div>
+        </article>
+
+        <!-- Removing the Defender -->
+        <article class="lesson-card" data-searchable="removing defender elimination capture defender overload">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Removing the Defender</h3>
+                <div class="lesson-text">
+                    <p>
+                        Sometimes a piece you want to capture is defended. The solution: eliminate the defender
+                        first. By capturing, luring away, or deflecting the defending piece, you make your
+                        target vulnerable. This is a multi-step tactical sequence.
+                    </p>
+                    <p>
+                        Look for defenders that are overworked—pieces trying to defend multiple things at once.
+                        If a knight defends both a rook and a bishop, capture the knight! Even if it's protected,
+                        you win material because you'll capture one of the undefended pieces next move.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> When you spot a juicy target that's defended, don't give
+                        up. Ask: "What's defending it?" Then find a way to eliminate, deflect, or overwhelm
+                        that defender. Often a forcing exchange solves the problem.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="removing-defender">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-removing-defender">
+                <div class="board-container">
+                    <div id="board-removing-defender" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-removing-defender">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="removing-defender">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="removing-defender">◀</button>
+                        <button class="control-btn" data-action="next" data-board="removing-defender">▶</button>
+                        <button class="control-btn" data-action="last" data-board="removing-defender">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-removing-defender">
+                    Black's queen on d8 is protected by the knight on f6. White plays Bxf6, removing the
+                    defender. After ...gxf6 (or the queen retreats), White plays Qxd8, winning the queen
+                    because the defender is gone.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION B: TACTICAL THEMES ==================== -->
+    <section id="themes" class="learn-section">
+        <div class="section-header">
+            <h2>B. Tactical Themes</h2>
+            <p class="section-subtitle">Advanced Patterns</p>
+        </div>
+        <p class="section-intro">
+            Tactical themes are sophisticated combinations that weave together multiple basic motifs
+            in specific recurring situations. These patterns appear in master games century after century,
+            and strong players catalog them mentally for instant recognition. Study these themes deeply
+            and you'll discover winning tactics that less experienced players miss entirely—often deciding
+            games in a single brilliant stroke.
+        </p>
+
+        <!-- Greek Gift -->
+        <article class="lesson-card" data-searchable="greek gift sacrifice bxh7 classical bishop sacrifice mating attack">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Greek Gift Sacrifice</h3>
+                <div class="lesson-text">
+                    <p>
+                        The Greek Gift is one of the most famous and beautiful tactical themes in chess history.
+                        White sacrifices a bishop on h7 (Bxh7+!), forcing the black king to capture and exposing
+                        it to a coordinated attack. The follow-up Ng5+ drives the king further into the open,
+                        where the queen delivers the decisive blow—often checkmate or winning Black's queen.
+                    </p>
+                    <p>
+                        This sacrifice works when Black has castled kingside with a standard pawn structure,
+                        the h7 pawn is defended only by the king, and White has a knight ready to leap to g5
+                        (giving check) plus a queen that can swing rapidly to the kingside via h5, d3, or g4.
+                        The exposed king on h7 or g6 becomes the focal point of a devastating attack.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> The Greek Gift succeeds when Black's king has no safe escape
+                        squares and White's pieces can coordinate quickly for the kill. Look for this opportunity
+                        when your knight stands on f3 or d2 (ready to jump to g5 with check) and your queen has
+                        a clear path to h5 or d3.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="greek-gift">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-greek-gift">
+                <div class="board-container">
+                    <div id="board-greek-gift" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-greek-gift">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="greek-gift">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="greek-gift">◀</button>
+                        <button class="control-btn" data-action="next" data-board="greek-gift">▶</button>
+                        <button class="control-btn" data-action="last" data-board="greek-gift">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-greek-gift">
+                    White plays Bxh7+ Kxh7, Ng5+ Kg8 (or Kg6), Qh5 and Black's position collapses.
+                    The king is exposed, White's pieces swarm around it, and there's no defense. This
+                    is the classical Greek Gift pattern that has won countless games.
+                </div>
+            </div>
+        </article>
+
+        <!-- Back Rank Mate -->
+        <article class="lesson-card" data-searchable="back rank mate back row mate rook mate checkmate eighth rank">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Back Rank Mate</h3>
+                <div class="lesson-text">
+                    <p>
+                        When a king is trapped on its back rank by its own pawns, a rook or queen can deliver
+                        checkmate along the rank. This is one of the most common tactical themes, especially
+                        in endgames. The king's escape squares are blocked by friendly pawns that can't move.
+                    </p>
+                    <p>
+                        The threat of back rank mate creates tactical opportunities. Even if you can't deliver
+                        mate immediately, the threat forces your opponent to keep a piece on the back rank for
+                        defense. This defensive piece becomes overloaded and vulnerable to other tactics.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Always give your king "luft" (breathing room) by pushing
+                        h3 or g3. This prevents back rank mates. Conversely, if your opponent hasn't created
+                        luft, constantly look for ways to invade their back rank with rooks or queen.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="back-rank">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-back-rank">
+                <div class="board-container">
+                    <div id="board-back-rank" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-back-rank">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="back-rank">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="back-rank">◀</button>
+                        <button class="control-btn" data-action="next" data-board="back-rank">▶</button>
+                        <button class="control-btn" data-action="last" data-board="back-rank">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-back-rank">
+                    Black's king is trapped on the eighth rank by pawns on f7, g7, h7. White plays Rd8+
+                    and it's checkmate—the king has no escape squares, no piece can interpose, and the
+                    rook can't be captured. This is the quintessential back rank mate.
+                </div>
+            </div>
+        </article>
+
+        <!-- Deflection -->
+        <article class="lesson-card" data-searchable="deflection decoy luring piece away distraction sacrifice">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Deflection</h3>
+                <div class="lesson-text">
+                    <p>
+                        Deflection is forcing an enemy piece away from an important square or task. You sacrifice
+                        material or create a forcing threat that compels your opponent's piece to abandon its
+                        defensive duty. Once deflected, the piece can no longer defend what it was protecting.
+                    </p>
+                    <p>
+                        Common deflections involve sacrificing a piece to force a defender away. For example,
+                        if a rook defends both the back rank and a knight, you might sacrifice your queen on
+                        the back rank. After the rook captures, it's no longer defending the knight.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Look for defenders doing multiple jobs. If a piece defends
+                        against both checkmate and material loss, you can often deflect it with a forcing move.
+                        The defender can only handle one threat at a time.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="deflection">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-deflection">
+                <div class="board-container">
+                    <div id="board-deflection" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-deflection">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="deflection">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="deflection">◀</button>
+                        <button class="control-btn" data-action="next" data-board="deflection">▶</button>
+                        <button class="control-btn" data-action="last" data-board="deflection">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-deflection">
+                    The Black rook on d8 defends both the back rank and the queen on d7. White plays
+                    Rxd8+, forcing the rook to recapture (Rxd8). Now the queen is undefended, and
+                    White plays Qxd7, winning it. The rook was deflected from its defensive duty.
+                </div>
+            </div>
+        </article>
+
+        <!-- Zwischenzug -->
+        <article class="lesson-card" data-searchable="zwischenzug intermediate move in-between intermezzo">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Zwischenzug (In-Between Move)</h3>
+                <div class="lesson-text">
+                    <p>
+                        A zwischenzug is an unexpected intermediate move inserted before making the "obvious"
+                        recapture or response. Instead of immediately recapturing a piece, you play a forcing
+                        move (usually a check or attack on a more valuable piece) that improves your position
+                        before completing the exchange.
+                    </p>
+                    <p>
+                        The beauty of a zwischenzug is that it disrupts your opponent's calculations. They
+                        expected a certain sequence, but your intermediate move changes everything. Often,
+                        by the time you make the recapture, you've gained material or a better position.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Before making an automatic recapture, pause. Ask: "Is
+                        there a check, capture, or attack I can insert first?" This one second of thought
+                        can turn equal exchanges into winning positions.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="zwischenzug">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-zwischenzug">
+                <div class="board-container">
+                    <div id="board-zwischenzug" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-zwischenzug">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="zwischenzug">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="zwischenzug">◀</button>
+                        <button class="control-btn" data-action="next" data-board="zwischenzug">▶</button>
+                        <button class="control-btn" data-action="last" data-board="zwischenzug">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-zwischenzug">
+                    After Black takes White's knight with ...Nxe4, White doesn't immediately recapture.
+                    Instead, White plays Qh5+ (check!). Black must respond to the check, then White
+                    recaptures the knight with better piece placement. The intermediate check improved
+                    White's position before completing the exchange.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION C: COMMON PATTERNS ==================== -->
+    <section id="patterns" class="learn-section">
+        <div class="section-header">
+            <h2>C. Common Patterns</h2>
+            <p class="section-subtitle">Recognition & Application</p>
+        </div>
+        <p class="section-intro">
+            Pattern recognition separates strong players from average ones. These recurring positions
+            appear constantly in practical play across all time controls and rating levels. Study them
+            until recognition becomes instantaneous—a visceral reaction rather than conscious analysis.
+            When you internalize these patterns, you'll spot tactical opportunities in the blink of an eye
+            while your opponents are still trying to figure out what's happening.
+        </p>
+
+        <!-- Knight Outpost -->
+        <article class="lesson-card" data-searchable="knight outpost strong square blockade advanced knight">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Knight on the Sixth Rank</h3>
+                <div class="lesson-text">
+                    <p>
+                        A knight on the sixth rank (third rank for Black), supported by a pawn and unable
+                        to be driven away by enemy pawns, is an enormous asset. From this "outpost," the
+                        knight controls key squares, restricts enemy pieces, and often creates tactical
+                        opportunities based on forks.
+                    </p>
+                    <p>
+                        The knight's ability to control both light and dark squares from an outpost makes
+                        it particularly powerful. It can support pawn advances, attack weak points, and
+                        create threats that are difficult to counter. Establishing a knight outpost is
+                        often worth a pawn sacrifice.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Create "holes" (weak squares) in your opponent's position
+                        that can't be controlled by pawns. Then place a knight on that hole. The knight
+                        becomes a permanent thorn, dominating the position.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="outpost">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-outpost">
+                <div class="board-container">
+                    <div id="board-outpost" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-outpost">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="outpost">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="outpost">◀</button>
+                        <button class="control-btn" data-action="next" data-board="outpost">▶</button>
+                        <button class="control-btn" data-action="last" data-board="outpost">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-outpost">
+                    White's knight on d6 is a monster. Supported by the e5 pawn and impossible to dislodge
+                    (Black's pawns can't attack it), the knight controls key central squares, blocks Black's
+                    d-pawn, and creates constant tactical threats. This is the ideal outpost.
+                </div>
+            </div>
+        </article>
+
+        <!-- Weak Back Rank -->
+        <article class="lesson-card" data-searchable="weak back rank king safety escape squares luft">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Weak Back Rank Pattern</h3>
+                <div class="lesson-text">
+                    <p>
+                        When your king is trapped on the back rank by its own pawns, you're vulnerable to
+                        back rank mates and tactics involving rook invasions. This pattern appears constantly
+                        in games between players who haven't learned to create escape squares.
+                    </p>
+                    <p>
+                        The solution is simple but often forgotten: push h3 (or h6 for Black) to give your
+                        king an escape square. This "luft" (German for "air") prevents back rank disasters.
+                        Even if you never use the escape square, having it available eliminates an entire
+                        category of tactics against you.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Make this a habit: after castling, push h3 within the
+                        next few moves unless you have a concrete reason not to. This one move prevents
+                        hundreds of potential tactical disasters.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="weak-back-rank">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-weak-back-rank">
+                <div class="board-container">
+                    <div id="board-weak-back-rank" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-weak-back-rank">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="weak-back-rank">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="weak-back-rank">◀</button>
+                        <button class="control-btn" data-action="next" data-board="weak-back-rank">▶</button>
+                        <button class="control-btn" data-action="last" data-board="weak-back-rank">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-weak-back-rank">
+                    White's king has an escape square on h2 (after playing h3 earlier). Black's king
+                    is trapped by its pawns on f7, g7, h7. This difference is decisive—White can safely
+                    trade rooks, while Black must keep a rook on the back rank for defense.
+                </div>
+            </div>
+        </article>
+    </section>
+
+</div>
+{% endblock %}

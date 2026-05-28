@@ -1,0 +1,490 @@
+# Curated Classical Games
+# Each game has a static UUID for SEO and stable URLs
+# Games are organized by opening type
+
+games:
+  # Italian Game (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000001"
+    opening: "Italian Game"
+    white: "Fischer, Robert J."
+    black: "Spassky, Boris V."
+    event: "World Championship"
+    site: "Reykjavik ISL"
+    date: "1972.08.31"
+    result: "1-0"
+    eco: "C92"
+    white_elo: 2785
+    black_elo: 2660
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 exd4 7. O-O d6 8. cxd4 Bb6 9. Nc3 Na5 10. Bg5 f6 11. Bf4 Ne7 12. d5 O-O 13. Nd4 Bd7 14. Qh5 c5 15. dxc6 Nxc6 16. Nxc6 bxc6 17. Rad1 Qe8 18. Qxe8 Raxe8 19. Bd5+ cxd5 20. Nxd5 Bc5 21. Nxf6+ gxf6 22. Bxd6 Bxd6 23. Rxd6 Re6 24. Rxe6 Bxe6 25. Rb1 Nc4 26. Rb7 Rf7 27. Rb8+ Kg7 28. f3 h5 29. Kf2 h4 30. h3 Nd2 31. Ke3 Nc4+ 32. Kd4 Nd6 33. Rg8+ Kh7 34. Rd8 Nxe4 35. fxe4 Kg6 36. Ke5 Bc4 37. a4 a5 38. Rd6 Kg5 39. Rd4 Bb3 40. Rd5+ Kg6 41. Rxa5 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000002"
+    opening: "Italian Game"
+    white: "Bronstein, David"
+    black: "Kotov, Alexander"
+    event: "USSR Championship"
+    site: "Moscow URS"
+    date: "1955.??.??"
+    result: "1-0"
+    eco: "C50"
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. O-O Nf6 5. d3 d6 6. c3 O-O 7. Bg5 h6 8. Bh4 g5 9. Bg3 Bg4 10. h3 Bxf3 11. Qxf3 Nd7 12. Nd2 a6 13. Kh2 Kh7 14. Rae1 f6 15. d4 exd4 16. cxd4 Bb6 17. e5 fxe5 18. dxe5 dxe5 19. Rxe5 Ndxe5 20. Bxe5 Qd7 21. Bd5 Rae8 22. Nc4 Bc5 23. Re1 Nd4 24. Qd3 c6 25. Bf3 Nxf3+ 26. Qxf3 Rxe5 27. Nxe5 Qe6 28. Qc3 Rf5 29. Ng4 Qd5 30. Qxc5 Qxc5 31. Nxh6 Kxh6 32. Rxc5 Rxc5 33. h4 gxh4 34. Kh3 Kh5 35. Kxh4 b5 36. g4+ Kg6 37. Kg3 Rc3+ 38. f3 c5 39. Kf4 c4 40. Ke4 Rc2 41. b3 cxb3 42. axb3 Rxb2 43. Kd5 Rxb3 44. Kc5 a5 45. Kb4 Rb1+ 46. Kxa5 Rb2 47. Kxb5 Rxb5+ 48. Kxb5 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000003"
+    opening: "Italian Game"
+    white: "Steinitz, William"
+    black: "Von Bardeleben, Curt"
+    event: "Hastings"
+    site: "Hastings ENG"
+    date: "1895.09.02"
+    result: "1-0"
+    eco: "C54"
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. c3 Nf6 5. d4 exd4 6. cxd4 Bb4+ 7. Nc3 d5 8. exd5 Nxd5 9. O-O Be6 10. Bg5 Be7 11. Bxd5 Bxd5 12. Nxd5 Qxd5 13. Bxe7 Nxe7 14. Re1 f6 15. Qe2 Qd7 16. Rac1 c6 17. d5 cxd5 18. Nd4 Kf7 19. Ne6 Rhc8 20. Qg4 g6 21. Ng5+ Ke8 22. Rxe7+ Kf8 23. Rf7+ Kg8 24. Rg7+ Kh8 25. Rxh7+ 1-0
+
+  # Ruy Lopez (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000004"
+    opening: "Ruy Lopez"
+    white: "Karpov, Anatoly"
+    black: "Kasparov, Garry"
+    event: "World Championship"
+    site: "Moscow URS"
+    date: "1984.11.03"
+    result: "1-0"
+    eco: "C92"
+    white_elo: 2700
+    black_elo: 2700
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O 9. h3 Nd7 10. d4 Bf6 11. a4 Bb7 12. Na3 exd4 13. cxd4 Nb6 14. axb5 axb5 15. Rxa8 Qxa8 16. Nxb5 Nxd4 17. Nbxd4 Bxd4 18. Nxd4 Qxe4 19. Qd2 Qd5 20. Nc2 Re8 21. Rxe8+ Qxe8 22. Be3 Nd5 23. Bd4 Qe1+ 24. Qxe1 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000005"
+    opening: "Ruy Lopez"
+    white: "Smyslov, Vassily"
+    black: "Reshevsky, Samuel"
+    event: "Zürich"
+    site: "Zürich SUI"
+    date: "1953.??.??"
+    result: "1/2-1/2"
+    eco: "C78"
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O b5 6. Bb3 Be7 7. d4 d6 8. c3 Bg4 9. Be3 O-O 10. Nbd2 Na5 11. Bc2 Nc4 12. Nxc4 bxc4 13. d5 c6 14. Nd2 cxd5 15. exd5 Nd7 16. Nxc4 Nc5 17. f3 Bd7 18. Qd2 f5 19. b4 Na4 20. Bxa4 Bxa4 21. Rac1 Qd7 22. Rb1 Rab8 23. Rb2 Bb5 24. Na5 Rfc8 25. Rfb1 Bd8 26. Nc4 Bb6 27. Bxb6 Rxb6 28. Qe3 Qc7 29. a4 Bd7 30. Qd2 Rcb8 31. Kf2 Kf7 32. Ke3 Ke7 33. Kd3 Kd8 34. Kc2 Kc8 35. Kb3 Kb7 36. Ka3 Ka7 37. Qe3 Kb7 38. Rd2 Qc8 39. Rbd1 Bf5 40. Qf2 Rc6 41. Ne3 Be4 42. Rb1 Bd3 43. Rb2 Be4 44. Rbd2 Rc4 45. Qe3 Rbc6 46. Rb1 Bd3 47. Rb3 Be4 48. Rbd3 Bd3 49. Rxd3 Qc7 50. Qd2 Qc8 51. Nc4 Rxc4 52. bxc4 Rxc4 53. Qb2+ Kc7 54. Qb5 Qd7 55. Qxd7+ Kxd7 56. Rb3 Rc8 57. Kb4 Kc7 58. a5 Kb7 59. h4 Ka6 60. g4 g6 61. Rb6+ Ka7 62. Rxd6 Rxc3 63. Rxe5 fxg4 64. fxg4 Rc4+ 65. Kb5 Rxg4 66. Re7+ Kb8 67. Rxh7 Rxh4 68. Rg7 Rh6 69. Kc5 Kc8 70. d6 Kd8 71. Kb6 Ke8 72. Kc7 1/2-1/2
+
+  - uuid: "a0000000-0000-4000-8000-000000000006"
+    opening: "Ruy Lopez"
+    white: "Capablanca, Jose Raul"
+    black: "Chajes, Oscar"
+    event: "New York"
+    site: "New York, NY USA"
+    date: "1918.??.??"
+    result: "1-0"
+    eco: "C68"
+    pgn: |
+      1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6 5. d4 exd4 6. Qxd4 Qxd4 7. Nxd4 Bd6 8. Nc3 Ne7 9. O-O O-O 10. f4 Re8 11. Nb3 f6 12. f5 b6 13. Bf4 Bb7 14. Bxd6 cxd6 15. Nd4 Rad8 16. Ne6 Rd7 17. Rad1 Nc8 18. Rf2 b5 19. Rfd2 Rde7 20. b4 Bc8 21. a4 bxa4 22. Nxa4 Nb6 23. Nb2 Bd7 24. Nc5 Bc8 25. Nc4 Nd7 26. Ncxd6 Rf8 27. Nxc8 Rfxc8 28. Rxd7 Rxd7 29. Rxd7 h6 30. Nd6 Rf8 31. Kf2 Kh7 32. Kf3 a5 33. bxa5 Ra8 34. Kf4 Kg8 35. Kg4 Kf8 36. Kh5 Ra6 37. Rc7 Rxa5 38. Rxc6 Rxf5+ 39. exf5 1-0
+
+  # Sicilian Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000007"
+    opening: "Sicilian Defense"
+    white: "Kasparov, Garry"
+    black: "Anand, Viswanathan"
+    event: "Tilburg Interpolis"
+    site: "Tilburg NED"
+    date: "1991.??.??"
+    result: "1/2-1/2"
+    eco: "B81"
+    white_elo: 2770
+    black_elo: 2650
+    pgn: |
+      1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 d6 6. g4 h6 7. h4 Nc6 8. Rg1 h5 9. gxh5 Nxh5 10. Bg5 Nf6 11. Qd2 a6 12. O-O-O Bd7 13. Nxc6 Bxc6 14. f4 Qb6 15. Bh3 Qa5 16. Kb1 Be7 17. Be3 Qc7 18. f5 e5 19. Bf2 O-O-O 20. Be3 Kb8 21. Qe2 Ka8 22. Bg2 Rc8 23. Rgf1 Qd7 24. Bf2 Rc7 25. Be3 Rhc8 26. Bd2 Qc6 27. Qf3 Bd8 28. Be3 Bc7 29. h5 Qb6 30. Bf2 Qb4 31. a3 Qb6 32. Bd2 Rd7 33. Rde1 Rdc7 34. Re3 Kb8 35. Rfe1 Qc5 36. R3e2 Qb6 37. Re3 Qc5 1/2-1/2
+
+  - uuid: "a0000000-0000-4000-8000-000000000008"
+    opening: "Sicilian Defense"
+    white: "Tal, Mikhail"
+    black: "Smyslov, Vassily"
+    event: "Bled-Zagreb-Belgrade"
+    site: "Belgrade, Zagreb & Bled YUG"
+    date: "1959.09.26"
+    result: "1-0"
+    eco: "B10"
+    white_elo: 2650
+    black_elo: 2620
+    pgn: |
+      1. e4 c5 2. Nf3 d6 3. d4 cxd4 4. Nxd4 Nf6 5. Nc3 a6 6. Bg5 e6 7. f4 Be7 8. Qf3 Qc7 9. O-O-O Nbd7 10. Bd3 b5 11. Rhe1 Bb7 12. Nd5 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000009"
+    opening: "Sicilian Defense"
+    white: "Fischer, Robert J."
+    black: "Larsen, Bent"
+    event: "Portoroz Interzonal"
+    site: "Portoroz YUG"
+    date: "1958.??.??"
+    result: "1-0"
+    eco: "B42"
+    white_elo: 2545
+    black_elo: 2620
+    pgn: |
+      1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. Bd3 Nc6 6. Nxc6 bxc6 7. O-O d5 8. c4 Nf6 9. cxd5 cxd5 10. exd5 exd5 11. Nc3 Be7 12. Qa4+ Qd7 13. Re1 Qxa4 14. Nxa4 Be6 15. Be3 O-O 16. Bc5 Rfe8 17. Bxe7 Rxe7 18. b4 Kf8 19. Nc5 Bc8 20. f3 Rea7 21. Re5 Bd7 22. Nxd7+ Rxd7 23. Rc1 Rd6 24. Rc7 Rd7 25. Rxd7 Nxd7 26. Rxd5 Re8 27. Kf2 Re7 28. Bf5 Nf6 29. Rd8+ Re8 30. Rxe8+ Nxe8 31. Ke3 g6 32. Bh3 Ke7 33. Kd4 Kd6 34. Bg4 f5 35. Bf3 h6 36. h4 Nf6 37. Bh1 Nh5 38. g3 Nf6 39. Bf3 Nh5 40. Bxh5 gxh5 41. Ke3 Ke5 42. f4+ Kf6 43. Kf3 Kg6 44. a4 Kf6 45. a5 Kg6 46. Kg2 Kf6 47. Kh3 Kg6 48. Kh2 Kf6 49. Kg1 Kg6 50. Kf2 Kf6 51. Ke3 Kg6 52. Kd4 Kf6 53. Kc5 Ke6 54. Kb6 Kd5 55. Kxa6 Kc4 56. Kb6 Kxb4 57. a6 Kc4 58. a7 Kb5 59. a8=Q 1-0
+
+  # French Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-00000000000a"
+    opening: "French Defense"
+    white: "Botvinnik, Mikhail"
+    black: "Capablanca, Jose Raul"
+    event: "AVRO"
+    site: "Netherlands NED"
+    date: "1938.11.22"
+    result: "1-0"
+    eco: "C11"
+    white_elo: 2670
+    black_elo: 2725
+    pgn: |
+      1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. Bg5 dxe4 5. Nxe4 Be7 6. Bxf6 gxf6 7. Nf3 f5 8. Nc3 a6 9. g3 b5 10. Bg2 Bb7 11. O-O Nd7 12. Re1 Nf6 13. Qe2 Qd7 14. Rad1 O-O-O 15. Nh4 Rhg8 16. Rd3 Bd6 17. Qh5 Rg7 18. Nf3 Rdg8 19. a4 b4 20. Ne2 a5 21. c3 Ba6 22. Rdd1 bxc3 23. bxc3 Bxe2 24. Rxe2 Qc6 25. Qf5 Kb7 26. h4 Nd5 27. Rc2 Qb6 28. h5 Qb1+ 29. Kh2 Qb6 30. Qd3 h6 31. Rb1 Qc6 32. Rcb2 Bc7 33. Rb5 Bd6 34. Qc4 Qd7 35. Nd2 Nc7 36. Nc4 Nxb5 37. axb5 Qc8 38. Nxd6+ Qxd6 39. Qc6+ Ka7 40. Ra1 Qd5 41. Qc7+ Ka8 42. Bf1 Rh7 43. Bc4 Qd6 44. Qxd6 cxd6 45. Rxa5+ Kb7 46. Ra7+ Kb6 47. Rxf7 Rxf7 48. Bxf7 Rg7 49. Bc4 Rg4 50. Bd3 Kxb5 51. Bxf5 exf5 52. Kg2 Rxd4 53. cxd4 Kc4 54. Kf3 Kxd4 55. g4 fxg4+ 56. Kxg4 Ke5 57. Kg3 d5 58. f4+ Kd4 59. Kf3 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000000b"
+    opening: "French Defense"
+    white: "Tal, Mikhail"
+    black: "Botvinnik, Mikhail"
+    event: "World Championship"
+    site: "Moscow URS"
+    date: "1960.??.??"
+    result: "1-0"
+    eco: "C15"
+    white_elo: 2680
+    black_elo: 2705
+    pgn: |
+      1. e4 e6 2. d4 d5 3. Nc3 Bb4 4. a3 Bxc3+ 5. bxc3 dxe4 6. Qg4 Nf6 7. Qxg7 Rg8 8. Qh6 Nbd7 9. Ne2 b6 10. Ng3 Bb7 11. Be2 Qe7 12. O-O O-O-O 13. a4 Nf8 14. Qh4 Ng6 15. Qh3 Rg7 16. Bg5 Rdg8 17. Nh5 Nxh5 18. Bxh5 Rxg5 19. Qxg5 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000000c"
+    opening: "French Defense"
+    white: "Keres, Paul"
+    black: "Petrosian, Tigran"
+    event: "Candidates Tournament"
+    site: "Curacao CUW"
+    date: "1962.??.??"
+    result: "1-0"
+    eco: "C11"
+    pgn: |
+      1. e4 e6 2. d4 d5 3. Nc3 Nf6 4. Bg5 dxe4 5. Nxe4 Be7 6. Bxf6 Bxf6 7. Nf3 O-O 8. Qd2 Nd7 9. O-O-O Be7 10. Bd3 b6 11. Qf4 Bb7 12. Rhe1 c5 13. Kb1 Rc8 14. Nd6 Bxd6 15. Qxd6 Qe7 16. Qf4 cxd4 17. Nxd4 Nc5 18. Bb5 a6 19. Ba4 b5 20. Bb3 Nxb3 21. axb3 Rc5 22. Qg3 Rg5 23. Qe3 Bc8 24. f4 Rg6 25. h4 h6 26. h5 Rg4 27. Qe5 Qc5 28. Qe3 Qc7 29. g3 Bd7 30. Rd2 Rc8 31. Red1 Qb6 32. Qe5 Rc5 33. Qe3 a5 34. Rd3 a4 35. bxa4 bxa4 36. Nb5 Bxb5 37. Rd8+ Kh7 38. Qe2 Qc6 39. Qxa4 1-0
+
+  # Queen's Gambit (3 games)
+  - uuid: "a0000000-0000-4000-8000-00000000000d"
+    opening: "Queen's Gambit"
+    white: "Alekhine, Alexander"
+    black: "Euwe, Max"
+    event: "World Championship"
+    site: "Netherlands NED"
+    date: "1937.??.??"
+    result: "1-0"
+    eco: "D51"
+    white_elo: 2700
+    black_elo: 2650
+    pgn: |
+      1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 Nbd7 5. e3 c6 6. Nf3 Qa5 7. Nd2 Bb4 8. Qc2 dxc4 9. Bxf6 Nxf6 10. Nxc4 Qc7 11. a3 Be7 12. Be2 O-O 13. O-O Bd7 14. b4 b6 15. Bf3 Rac8 16. Rac1 Rfd8 17. Rfd1 Be8 18. g3 Nd5 19. Nb2 Qb8 20. Nd3 Bg5 21. Rb1 Qb7 22. Ne5 Nxc3 23. Qxc3 Bd5 24. Bxd5 cxd5 25. Qa1 f6 26. Nc6 Rxc6 27. Qxa7 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000000e"
+    opening: "Queen's Gambit"
+    white: "Capablanca, Jose Raul"
+    black: "Tartakower, Savielly"
+    event: "New York"
+    site: "New York, NY USA"
+    date: "1924.03.23"
+    result: "1-0"
+    eco: "D36"
+    white_elo: 2720
+    black_elo: 2630
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. Nc3 d5 4. Bg5 Nbd7 5. e3 Be7 6. Nf3 O-O 7. Rc1 c6 8. Bd3 dxc4 9. Bxc4 Nd5 10. Bxe7 Qxe7 11. O-O Nxc3 12. Rxc3 e5 13. Qc2 exd4 14. Nxd4 Ne5 15. Bb3 Bg4 16. f4 Ng6 17. h3 Bh5 18. Rd1 Rad8 19. Kh1 Rd7 20. Nf5 Qe6 21. Rcd3 Rfd8 22. Rxd7 Rxd7 23. Rxd7 Qxd7 24. Qd3 Qxd3 25. Bxd3 Be2 26. Bxe2 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000000f"
+    opening: "Queen's Gambit"
+    white: "Pillsbury, Harry Nelson"
+    black: "Tarrasch, Siegbert"
+    event: "Hastings"
+    site: "Hastings ENG"
+    date: "1895.??.??"
+    result: "1-0"
+    eco: "D10"
+    pgn: |
+      1. d4 d5 2. c4 e6 3. Nc3 Nf6 4. Bg5 c5 5. Nf3 cxd4 6. Nxd4 e5 7. Ndb5 a6 8. Qa4 1-0
+
+  # King's Indian Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000010"
+    opening: "King's Indian Defense"
+    white: "Kasparov, Garry"
+    black: "Topalov, Veselin"
+    event: "Wijk aan Zee"
+    site: "Wijk aan Zee NED"
+    date: "1999.01.20"
+    result: "1-0"
+    eco: "E97"
+    white_elo: 2812
+    black_elo: 2700
+    pgn: |
+      1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Ne1 Nd7 10. Nd3 f5 11. Bd2 Nf6 12. f3 f4 13. c5 g5 14. Rc1 Ng6 15. cxd6 cxd6 16. Nb5 Rf7 17. Rxc8 Qxc8 18. Qb3 a6 19. Nc3 Kh8 20. Rc1 Qf8 21. Qa4 Nh5 22. Nb5 Rd8 23. Bc4 Re7 24. Nxa6 Rf7 25. Rc2 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000011"
+    opening: "King's Indian Defense"
+    white: "Fischer, Robert J."
+    black: "Panno, Oscar"
+    event: "Buenos Aires"
+    site: "Buenos Aires ARG"
+    date: "1970.??.??"
+    result: "1-0"
+    eco: "E92"
+    pgn: |
+      1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. dxe5 dxe5 8. Qxd8 Rxd8 9. Bg5 Re8 10. Nd5 Nxd5 11. cxd5 c6 12. Bc4 cxd5 13. Bxd5 Nc6 14. O-O Be6 15. Bxc6 bxc6 16. Rfd1 h6 17. Be3 a5 18. Rac1 Ra6 19. Nd2 Rb8 20. b3 Kf8 21. Nc4 Bxc4 22. Rxc4 Rb5 23. f3 Ke7 24. Rdc1 Rc5 25. Kf2 Rxc4 26. Rxc4 Ra8 27. Ke2 Kd7 28. Kd3 Rb8 29. h4 Rb5 30. g4 Ra5 31. Rc5 Rxc5 32. Bxc5 Bf8 33. Bxf8 Ke6 34. Bc5 f6 35. Kc4 Kd7 36. Kb5 Kc7 37. Ka6 Kb8 38. Kb6 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000012"
+    opening: "King's Indian Defense"
+    white: "Bronstein, David"
+    black: "Geller, Efim"
+    event: "Zurich Candidates"
+    site: "Zurich SUI"
+    date: "1953.??.??"
+    result: "1-0"
+    eco: "E97"
+    pgn: |
+      1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 8. d5 Ne7 9. Ne1 Nd7 10. Be3 f5 11. f3 f4 12. Bf2 g5 13. Nd3 Ng6 14. c5 Nf6 15. Rc1 Rf7 16. Kh1 h5 17. cxd6 cxd6 18. Nb5 g4 19. Bb6 Qe8 20. Rc7 1-0
+
+  # London System (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000013"
+    opening: "London System"
+    white: "Kamsky, Gata"
+    black: "Short, Nigel"
+    event: "Tilburg"
+    site: "Tilburg NED"
+    date: "1991.??.??"
+    result: "1-0"
+    eco: "A46"
+    pgn: |
+      1. d4 Nf6 2. Nf3 e6 3. Bf4 c5 4. c3 Nc6 5. e3 Be7 6. Nbd2 O-O 7. h3 d5 8. Bd3 b6 9. O-O Bb7 10. Ne5 Rc8 11. Qf3 Nd7 12. Nxc6 Bxc6 13. Qh5 g6 14. Qh6 Bf6 15. e4 Qe7 16. Rae1 e5 17. dxe5 Bxe5 18. Bxe5 Qxe5 19. exd5 Bb7 20. c4 Rce8 21. f4 Qd4+ 22. Kh1 Rxe1 23. Rxe1 Re8 24. Rxe8+ 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000014"
+    opening: "London System"
+    white: "Carlsen, Magnus"
+    black: "Jobava, Baadur"
+    event: "World Blitz Championship"
+    site: "Dubai UAE"
+    date: "2014.06.19"
+    result: "1-0"
+    eco: "A40"
+    pgn: |
+      1. d4 e6 2. Nf3 c5 3. c3 Nf6 4. Bf4 Nc6 5. e3 d5 6. Nbd2 Bd6 7. Bg3 O-O 8. Bd3 Qe7 9. Ne5 Nd7 10. Nxd7 Bxd7 11. Bxd6 Qxd6 12. O-O e5 13. dxe5 Nxe5 14. Bb5 a6 15. Bxd7 Qxd7 16. Nf3 Nc4 17. b3 Nb6 18. Nd4 Rfe8 19. Qd3 g6 20. f4 Rad8 21. Rf2 Qc7 22. Raf1 Nd7 23. Qf3 Nf6 24. h3 Rd7 25. Kh2 Red8 26. Nb5 Qb8 27. Nd6 Re7 28. Qd3 Qc7 29. Nxb7 Qxb7 30. Qxd5 Qxd5 31. Rxd5 Rxd5 32. Bxd5 Nxd5 33. Rd1 Nf6 34. Rd6 a5 35. Rc6 Nd5 36. Rxc5 Nxc3 37. Rxa5 Nxa2 38. Ra8+ Kg7 39. Ra7 Rxe7 40. Rxe7 Nc1 41. b4 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000015"
+    opening: "London System"
+    white: "Petrosian, Tigran"
+    black: "Spassky, Boris V."
+    event: "World Championship"
+    site: "Moscow URS"
+    date: "1969.??.??"
+    result: "1/2-1/2"
+    eco: "A46"
+    pgn: |
+      1. d4 Nf6 2. Nf3 e6 3. Bg5 c5 4. e3 b6 5. Nbd2 Bb7 6. Bd3 Be7 7. O-O cxd4 8. exd4 d6 9. c3 Nbd7 10. Qe2 Qc7 11. Rfe1 O-O 12. Rac1 Rfe8 13. Bb1 Nf8 14. Qe3 Ng6 15. Bxf6 Bxf6 16. Ne4 Be7 17. Qg3 Qxg3 18. Nxg3 Red8 19. Re3 Rac8 20. Rce1 Kf8 21. Nd2 f6 22. f4 Nf8 23. Nde4 Nd7 24. Kf2 Rc7 25. Nd2 Rdc8 26. Ngf1 Bf8 27. Nd3 Ke7 28. Nf3 g6 29. g3 Bg7 30. Kg2 Nf8 31. Nfe5 Nd7 32. Nxd7 Kxd7 33. Kf3 Kc6 34. Ke4 d5+ 35. Kd3 a6 36. Nc5 Bxc5 37. dxc5 bxc5 38. Rxe6+ Kb5 39. b3 Re7 40. Rxe7 Bxe7 41. Bd3+ Kb6 42. Re2 Bf8 43. Ke3 h5 44. h4 Rc7 45. c4 d4+ 46. Kf3 Bd6 47. Rd2 Bc5 48. Re2 Kc6 49. Ke4 Bd6 50. Kf3 Bc5 51. Ke4 1/2-1/2
+
+  # Caro-Kann Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000016"
+    opening: "Caro-Kann Defense"
+    white: "Karpov, Anatoly"
+    black: "Andersson, Ulf"
+    event: "Tilburg"
+    site: "Tilburg NED"
+    date: "1981.??.??"
+    result: "1-0"
+    eco: "B17"
+    white_elo: 2690
+    black_elo: 2620
+    pgn: |
+      1. e4 c6 2. d4 d5 3. Nd2 dxe4 4. Nxe4 Nd7 5. Bc4 Ngf6 6. Nxf6+ Nxf6 7. Nf3 Bf5 8. Qe2 e6 9. Bg5 Bg4 10. O-O-O Qa5 11. Kb1 O-O-O 12. Ne5 Be7 13. Nxg4 Nxg4 14. Bxe7 Qxe7 15. h3 Nf6 16. Rhe1 Rd7 17. Qf3 Rhd8 18. Re5 Nd5 19. g4 Qd6 20. Rxd5 exd5 21. Qxd5 Qxd5 22. Rxd5 Rxd5 23. Bxd5 Rxd5 24. c4 Rd7 25. Kc2 Kd8 26. Kc3 Ke7 27. b4 g6 28. a4 Kd6 29. c5+ Kd5 30. Kb3 h5 31. gxh5 gxh5 32. a5 h4 33. Ka4 Rh7 34. Kb3 Rh5 35. a6 bxa6 36. Ka4 Rg5 37. Kxa6 Rg3 38. Ka7 Rxh3 39. Kxa7 h3 40. b5 cxb5 41. c6 Kxd4 42. c7 Rc3 43. Kb6 h2 44. c8=Q Rxc8 45. Kxc8 h1=Q+ 46. Kb7 Qh7+ 47. Kb6 Qg6+ 48. Ka5 Kc5 49. f4 Qg1 50. f5 Qa1+ 51. Kb8 Qh8+ 52. Kb7 Qxf5 53. Ka6 b4 54. Ka7 b3 55. Ka6 b2 56. Ka5 b1=Q 57. Ka6 Qbb6# 0-1
+
+  - uuid: "a0000000-0000-4000-8000-000000000017"
+    opening: "Caro-Kann Defense"
+    white: "Anand, Viswanathan"
+    black: "Karpov, Anatoly"
+    event: "Linares"
+    site: "Linares ESP"
+    date: "1991.??.??"
+    result: "1-0"
+    eco: "B18"
+    white_elo: 2650
+    black_elo: 2725
+    pgn: |
+      1. e4 c6 2. d4 d5 3. Nd2 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7 7. h4 h6 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 e6 11. Bf4 Ngf6 12. O-O-O Be7 13. Kb1 O-O 14. Ne4 Qa5 15. Nxf6+ Nxf6 16. Ne5 Rad8 17. Qe2 c5 18. Ng6 fxg6 19. Qxe6+ Kh8 20. hxg6 Ng8 21. Qh3 cxd4 22. Be5 Rf5 23. Bxd4 Rxd4 24. Rxd4 Rf1+ 25. Rxf1 Qxf1+ 26. Kc2 Qxf2+ 27. Kb3 Nf6 28. Qxh6+ gxh6 29. g7+ Kg8 30. Rd8+ 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000018"
+    opening: "Caro-Kann Defense"
+    white: "Botvinnik, Mikhail"
+    black: "Flohr, Salo"
+    event: "Moscow"
+    site: "Moscow URS"
+    date: "1936.??.??"
+    result: "1-0"
+    eco: "B18"
+    pgn: |
+      1. e4 c6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Bf5 5. Ng3 Bg6 6. Nf3 Nd7 7. h4 h6 8. h5 Bh7 9. Bd3 Bxd3 10. Qxd3 Qc7 11. Bd2 e6 12. O-O-O Ngf6 13. Ne4 O-O-O 14. Nxf6 Nxf6 15. Ne5 Bd6 16. Qe2 Bxe5 17. dxe5 Nd5 18. Qg4 Kb8 19. Bc3 Qc8 20. Rd4 Qc7 21. Rhd1 Rhf8 22. Kb1 1-0
+
+  # English Opening (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000019"
+    opening: "English Opening"
+    white: "Botvinnik, Mikhail"
+    black: "Vidmar, Milan Sr."
+    event: "Nottingham"
+    site: "Nottingham ENG"
+    date: "1936.08.22"
+    result: "1-0"
+    eco: "A25"
+    white_elo: 2680
+    black_elo: 2560
+    pgn: |
+      1. c4 e5 2. Nc3 Nc6 3. g3 g6 4. Bg2 Bg7 5. e3 d6 6. Nge2 Be6 7. d3 Qd7 8. Nd5 Nd8 9. Bd2 c6 10. Ndc3 Ne7 11. Qc2 O-O 12. O-O Bh3 13. Bh1 f5 14. f3 Nf7 15. Rf2 Rad8 16. Raf1 g5 17. g4 fxg4 18. fxg4 Bxg4 19. Nd5 cxd5 20. cxd5 Bh5 21. Nc3 Ng6 22. Be1 Nf4 23. exf4 gxf4 24. Rxf4 Rxf4 25. Rxf4 Rf8 26. Rxf7 Rxf7 27. Qb3 Qf5 28. Qxb7 Qf1+ 29. Bg1 Bg4 30. Qxa7 h5 31. Qa8+ Rf8 32. Qxf8+ Kxf8 33. h3 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000001a"
+    opening: "English Opening"
+    white: "Karpov, Anatoly"
+    black: "Kasparov, Garry"
+    event: "Moscow"
+    site: "Moscow URS"
+    date: "1984.??.??"
+    result: "1-0"
+    eco: "A29"
+    white_elo: 2700
+    black_elo: 2700
+    pgn: |
+      1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3 d5 5. cxd5 Nxd5 6. Bg2 Nb6 7. O-O Be7 8. a3 O-O 9. b4 Be6 10. Rb1 f6 11. d3 Qd7 12. Be3 Rae8 13. Qc1 Bd8 14. Rd1 Qf7 15. Nd2 Bd7 16. Nce4 Nd5 17. Bd4 exd4 18. Nc5 Bc8 19. Nde4 b6 20. Nd7 Bxd7 21. Qxc6 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000001b"
+    opening: "English Opening"
+    white: "Petrosian, Tigran"
+    black: "Botvinnik, Mikhail"
+    event: "World Championship"
+    site: "Moscow URS"
+    date: "1963.??.??"
+    result: "1/2-1/2"
+    eco: "A22"
+    pgn: |
+      1. c4 e5 2. Nc3 Nf6 3. g3 d5 4. cxd5 Nxd5 5. Bg2 Be6 6. Nf3 Nc6 7. O-O Nb6 8. d3 Be7 9. a3 a5 10. Be3 O-O 11. Na4 Nxa4 12. Qxa4 Bd5 13. Rfc1 Re8 14. Rc2 Bf8 15. Rac1 Nb8 16. Rxc7 Bc6 17. R1xc6 bxc6 18. Rxc6 h6 19. Qc2 Nd7 20. Rc7 Qb8 21. Qxb8 Raxb8 22. Rc2 Nb6 23. Bxb6 Rxb6 24. Rc8 Bd6 25. Nxe5 Bxe5 26. Rxe8+ Kh7 27. Re7 Rf6 28. f4 Bd4+ 29. Kh1 Kg6 30. Bd5 Rf5 31. e4 Re5 32. Rxe5 Bxe5 33. Kg2 Kf6 34. Kf3 g5 35. g4 gxf4 36. Kxf4 Bd6+ 37. Kf3 Kg5 38. h3 h5 39. gxh5 Kxh5 40. e5 Bb8 41. Ke4 Kg5 42. Kf3 Kf5 43. Bc4 Ke6 44. Ke4 f6 45. exf6 Kxf6 46. Bd5 Bc7 47. Bc4 Bd6 48. Bd5 Bc7 49. Bc4 1/2-1/2
+
+  # Scandinavian Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-00000000001c"
+    opening: "Scandinavian Defense"
+    white: "Short, Nigel"
+    black: "Timman, Jan"
+    event: "Tilburg"
+    site: "Tilburg NED"
+    date: "1991.??.??"
+    result: "1-0"
+    eco: "B01"
+    pgn: |
+      1. e4 d5 2. exd5 Nf6 3. d4 Nxd5 4. c4 Nb6 5. Nf3 g6 6. Nc3 Bg7 7. Be2 O-O 8. O-O Nc6 9. Be3 Bg4 10. c5 Nd5 11. Nxd5 Qxd5 12. h3 Bxf3 13. Bxf3 Qd7 14. Qa4 Rfd8 15. Rfd1 Qe6 16. Rac1 Rd7 17. Bg4 Qd5 18. Bf4 Rad8 19. Be3 Qxa2 20. Qxa2 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000001d"
+    opening: "Scandinavian Defense"
+    white: "Tiviakov, Sergei"
+    black: "Morozevich, Alexander"
+    event: "Russian Championship"
+    site: "Elista RUS"
+    date: "1995.??.??"
+    result: "1-0"
+    eco: "B01"
+    pgn: |
+      1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 Bf5 6. Bd2 c6 7. Bc4 e6 8. Nd5 Qd8 9. Nxf6+ gxf6 10. Qe2 Nd7 11. O-O-O Nb6 12. Bb3 Bd6 13. Ne1 Qe7 14. Kb1 O-O-O 15. f3 Kb8 16. Bc3 Nd5 17. Bxd5 exd5 18. Qd3 Rhg8 19. g3 f5 20. Qf1 Qf6 21. Ng2 h5 22. Rhe1 h4 23. Nxh4 Qh6 24. Nxf5 Qxh2 25. Nxd6 Qh5 26. Re3 Rde8 27. Rde1 Rxe3 28. Rxe3 Bh3 29. Qe2 Qg6 30. Nf5 Bf1 31. Qe1 Bh3 32. Ne7 Qg4 33. fxg4 1-0
+
+  - uuid: "a0000000-0000-4000-8000-00000000001e"
+    opening: "Scandinavian Defense"
+    white: "Carlsen, Magnus"
+    black: "Ernst, Sipke"
+    event: "Wijk aan Zee"
+    site: "Wijk aan Zee NED"
+    date: "2004.??.??"
+    result: "1-0"
+    eco: "B01"
+    white_elo: 2484
+    black_elo: 2474
+    pgn: |
+      1. e4 d5 2. exd5 Qxd5 3. Nc3 Qa5 4. d4 Nf6 5. Nf3 Bf5 6. Ne5 c6 7. Bc4 e6 8. g4 Bg6 9. h4 Nbd7 10. Nxd7 Nxd7 11. h5 Be4 12. f3 Bg2 13. Rh2 Bxf3 14. Qxf3 Ne5 15. Qe2 Nxc4 16. Qxc4 Bd6 17. Rh3 O-O 18. Bf4 Rad8 19. Rd1 Rfe8 20. Bxd6 Rxd6 21. Rf1 Qb6 22. Qe2 Qxb2 23. Qc4 Qa1+ 24. Kf2 Qf6+ 25. Kg2 Qg5 26. Rhf3 Rf6 27. Rxf6 Qxf6 28. Qxc6 Qxd4 29. Qxb7 Qxh5 30. Qxa7 Re7 31. Qa8+ Re8 32. Qd5 Qe2+ 33. Rf2 Qe1 34. Qd7 h6 35. a4 Kh7 36. a5 Qe4+ 37. Kh2 Qe5+ 38. Kg2 Qe4+ 39. Kh2 Qe5+ 40. g3 Qa1 41. Qxe8 1-0
+
+  # Nimzo-Indian Defense (3 games)
+  - uuid: "a0000000-0000-4000-8000-00000000001f"
+    opening: "Nimzo-Indian Defense"
+    white: "Fischer, Robert J."
+    black: "Spassky, Boris V."
+    event: "World Championship"
+    site: "Reykjavik ISL"
+    date: "1972.07.23"
+    result: "1-0"
+    eco: "E32"
+    white_elo: 2785
+    black_elo: 2660
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qc2 O-O 5. a3 Bxc3+ 6. Qxc3 b6 7. Bg5 Bb7 8. f3 h6 9. Bh4 d5 10. e3 Nbd7 11. cxd5 Nxd5 12. Bxd8 Nxc3 13. Bh4 Nxe2 14. Bxe2 Bxf3 15. Bf3 Nc5 16. Ne2 Rfd8 17. O-O Rd7 18. Rad1 Rad8 19. Be1 f6 20. b4 Nd3 21. Bc3 e5 22. Nb3 exd4 23. Nxd4 c5 24. bxc5 bxc5 25. Nb3 Rxd1 26. Rxd1 Rxd1+ 27. Bxd1 Kf7 28. Kf2 Ke6 29. Ke2 g5 30. Bc2 Nb2 31. g3 Kd5 32. Bf5 c4 33. Nd2 Kc5 34. h4 gxh4 35. gxh4 Nd1 36. h5 Nxc3+ 37. Kd1 Ne4 38. Bxe4 Kb4 39. Kc2 Kxa3 40. Nxc4+ Kb4 41. Nd6 a5 42. Bc6 Kc5 43. Kb3 Kb6 44. Kb2 Kc7 45. Ka3 Kb6 46. Kb3 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000020"
+    opening: "Nimzo-Indian Defense"
+    white: "Karpov, Anatoly"
+    black: "Kasparov, Garry"
+    event: "World Championship"
+    site: "Moscow URS"
+    date: "1985.??.??"
+    result: "1-0"
+    eco: "E25"
+    white_elo: 2700
+    black_elo: 2700
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. e3 b6 5. Nge2 Ba6 6. Ng3 Bxc3+ 7. bxc3 d5 8. Qf3 O-O 9. e4 dxc4 10. e5 Nfd7 11. Qg4 Qe7 12. Bh6 g6 13. h4 c5 14. h5 cxd4 15. Qf4 Bb7 16. hxg6 hxg6 17. Qh4 Nc6 18. Qh1 dxc3 19. Bc1 Nxe5 20. Qh8+ Kxh8 21. Rxh8+ Kg7 22. Rh1 Ng4 23. Bxc4 c2 24. Rc1 Rac8 25. Ne4 Bxe4 26. Rxc2 Rxc4 27. Rxc4 Nf2 28. Rc7 Nd1 29. Rxe7 Nxe7 30. Rxd1 Bf5 31. Rd7 Kf6 32. Rxa7 Rc8 33. Bb2+ Kg5 34. Re7 Nc6 35. Rd7 Bd3 36. a4 e5 37. Bc1+ Kf5 38. g4+ Kxg4 39. Be3 Bf1 40. Rd1 Bd3 41. Bxb6 Nd4 42. Bxd4 exd4 43. a5 Rc2 44. a6 Ra2 45. Rxd3 Rxa6 46. Rxd4+ Kf5 47. Rd5+ Ke4 48. Rg5 Kf4 49. Rg1 Ra2 50. Kg2 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000021"
+    opening: "Nimzo-Indian Defense"
+    white: "Botvinnik, Mikhail"
+    black: "Capablanca, Jose Raul"
+    event: "AVRO"
+    site: "Netherlands NED"
+    date: "1938.11.27"
+    result: "1-0"
+    eco: "E34"
+    white_elo: 2670
+    black_elo: 2725
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. Nc3 Bb4 4. Qc2 d5 5. cxd5 exd5 6. Bg5 h6 7. Bh4 c5 8. dxc5 g5 9. Bg3 Ne4 10. e3 Qa5 11. Bxb8 Rxb8 12. Nge2 Bxc3+ 13. Nxc3 Nxc3 14. Qxc3 Qxc3+ 15. bxc3 Be6 16. c6 bxc6 17. Be2 Ke7 18. O-O Rhd8 19. Rfd1 Rd6 20. Kf1 Rbd8 21. Ke1 f6 22. f3 Kf7 23. Kf2 Kg6 24. Rd2 R6d7 25. Rad1 Kf7 26. e4 dxe4 27. fxe4 Rxd2+ 28. Rxd2 Rxd2+ 29. Kxd2 1-0
+
+  # Catalan Opening (3 games)
+  - uuid: "a0000000-0000-4000-8000-000000000022"
+    opening: "Catalan Opening"
+    white: "Kramnik, Vladimir"
+    black: "Kasparov, Garry"
+    event: "BGN World Championship"
+    site: "London ENG"
+    date: "2000.11.02"
+    result: "1-0"
+    eco: "E05"
+    white_elo: 2770
+    black_elo: 2849
+    pgn: |
+      1. Nf3 Nf6 2. c4 e6 3. g3 d5 4. d4 Be7 5. Bg2 O-O 6. O-O dxc4 7. Qc2 a6 8. Qxc4 b5 9. Qc2 Bb7 10. Bd2 Ra7 11. Rc1 Be4 12. Qb3 Nc6 13. Nc3 Bb7 14. d5 exd5 15. Nxd5 Nxd5 16. Bxd5 Qd7 17. Bxc6 Bxc6 18. Rxc6 Qxd2 19. Nxd2 Bxa3 20. Rc2 Bxb2 21. Rxb2 Ra8 22. Nc4 Rfc8 23. Nxb6 Rc6 24. Nd7 Rb8 25. Rxb5 Rxb5 26. Qxb5 Rc1+ 27. Kg2 a5 28. Qb8+ 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000023"
+    opening: "Catalan Opening"
+    white: "Ding, Liren"
+    black: "Nepomniachtchi, Ian"
+    event: "World Championship"
+    site: "Astana KAZ"
+    date: "2023.04.09"
+    result: "1-0"
+    eco: "E04"
+    white_elo: 2788
+    black_elo: 2795
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. g3 d5 4. Bg2 dxc4 5. Nf3 Bd7 6. Ne5 Bc6 7. Nxc6 Nxc6 8. O-O Qd7 9. e3 Bd6 10. Qe2 O-O 11. Nd2 Rfd8 12. Nxc4 Be7 13. b3 Qe8 14. Bb2 Rxd4 15. exd4 Nxd4 16. Qe3 Nf5 17. Qe2 Rd8 18. Rad1 Rxd1 19. Rxd1 Qd8 20. Rxd8+ Bxd8 21. Bxf6 Bxf6 22. Qd3 Nd6 23. Nxd6 cxd6 24. Qxd6 Bxb2 25. Qxb8+ 1-0
+
+  - uuid: "a0000000-0000-4000-8000-000000000024"
+    opening: "Catalan Opening"
+    white: "Karpov, Anatoly"
+    black: "Kortchnoi, Viktor"
+    event: "World Championship"
+    site: "Merano ITA"
+    date: "1981.??.??"
+    result: "1-0"
+    eco: "E04"
+    white_elo: 2695
+    black_elo: 2695
+    pgn: |
+      1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. g3 dxc4 5. Bg2 a6 6. Ne5 c5 7. Na3 cxd4 8. Naxc4 Bc5 9. O-O O-O 10. Bd2 Nc6 11. Rc1 Qe7 12. Nxc6 bxc6 13. b4 Bb6 14. b5 axb5 15. Nxb6 Ra6 16. Nxc8 Rxc8 17. Rxc6 Rxc6 18. Bxc6 Qb4 19. Qc1 Nd5 20. Bg2 Qb2 21. Qxb2 Nxb2 22. Bh6 g6 23. Rb1 Nc4 24. Rxb5 Rc7 25. e3 dxe3 26. fxe3 f5 27. Kf2 Kf7 28. Rb8 h5 29. h4 Ke7 30. Rb4 Nd6 31. a4 Kd7 32. a5 Kc6 33. Bf1 Ra7 34. Bd3 Nc8 35. Rb1 Kd5 36. Rc1 Ke5 37. Rc5+ Kd6 38. Rc1 Ra8 39. a6 Kd5 40. Bd2 Na7 41. e4+ Ke5 42. exf5 exf5 43. Re1+ Kd5 44. Bxf5 gxf5 45. Rd1+ Kc4 46. Ke2 Nc6 47. Rc1+ Kd5 48. Kd3 Rxa6 49. Rc5+ Kd6 50. Rxf5 Ra3+ 51. Bc3 Ra2 52. Rh5 Rg2 53. Rxh5 Rxg3+ 54. Kc4 Rh3 55. Rh6+ Ke5 56. Rh5+ Kd6 57. Bd4 Rxh4 58. Kd3 Rh3+ 59. Ke4 Rh4+ 60. Kf5 Rh3 61. Kg4 Rc3 62. Rh6+ Kd5 63. Kf4 Rc4 64. Ke3 1-0

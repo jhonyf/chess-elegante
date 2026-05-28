@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% block title %}About - CHESS ELEGANTE{% endblock %}
+
+{% set active_page = 'about' %}
+
+{% block extra_css %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+        padding: 120px 60px 80px;
+        text-align: center;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .about-hero h1 {
+        font-size: 48px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        color: #1a1a1a;
+    }
+
+    .about-hero .subtitle {
+        font-size: 20px;
+        color: #666;
+        font-weight: 300;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .about-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 80px 60px;
+    }
+
+    .about-section {
+        margin-bottom: 80px;
+    }
+
+    .about-section h2 {
+        font-size: 36px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        color: #1a1a1a;
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 15px;
+    }
+
+    .about-section p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+
+    .book-showcase {
+        display: flex;
+        gap: 40px;
+        margin: 40px 0;
+        padding: 40px;
+        background: #f8f8f8;
+        border-radius: 2px;
+        align-items: center;
+    }
+
+    .book-image {
+        flex-shrink: 0;
+    }
+
+    .book-image img {
+        width: 200px;
+        height: auto;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-radius: 2px;
+    }
+
+    .book-content {
+        flex: 1;
+    }
+
+    .book-content h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+    }
+
+    .book-content .author {
+        font-size: 16px;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    .book-content p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    .analysis-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px 0;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .analysis-table thead {
+        background: #1a1a1a;
+        color: white;
+    }
+
+    .analysis-table th {
+        padding: 20px;
+        text-align: left;
+        font-weight: 400;
+        letter-spacing: 1px;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .analysis-table td {
+        padding: 20px;
+        border-bottom: 1px solid #e8e8e8;
+        font-size: 16px;
+        color: #444;
+    }
+
+    .analysis-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .analysis-table tbody tr:hover {
+        background: #f8f8f8;
+    }
+
+    .term {
+        font-weight: 500;
+        color: #1a1a1a;
+    }
+
+    .score-example {
+        font-family: 'Courier New', monospace;
+        background: #f0f0f0;
+        padding: 2px 8px;
+        border-radius: 2px;
+        font-size: 14px;
+    }
+
+    .classification-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 2px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    .badge-best { background: #4CAF50; color: white; }
+    .badge-excellent { background: #8BC34A; color: white; }
+    .badge-good { background: #CDDC39; color: #333; }
+    .badge-inaccuracy { background: #FFC107; color: #333; }
+    .badge-mistake { background: #FF9800; color: white; }
+    .badge-blunder { background: #F44336; color: white; }
+
+    @media (max-width: 768px) {
+        .book-showcase {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 36px;
+        }
+
+        .about-container {
+            padding: 40px 30px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>About Chess Elegante</h1>
+        <p class="subtitle">Where classical chess wisdom meets modern analysis</p>
+    </section>
+
+    <div class="about-container">
+        <!-- Purpose Section -->
+        <div class="about-section">
+            <h2>Our Purpose</h2>
+            <p>
+                Chess Elegante exists to bridge the gap between knowing the moves and understanding the game.
+                Many players learn how each piece moves, memorize a few openings, and yet struggle to improve
+                beyond beginner level. Why? Because chess mastery isn't about memorization—it's about logical thinking.
+            </p>
+            <p>
+                We believe that every move should have a purpose, every plan should have reasoning, and every
+                player deserves clear explanations. Our platform combines powerful Stockfish analysis with
+                AI-generated commentary in the style of Irving Chernev, helping you understand not just what
+                the best move is, but <em>why</em> it's the best move.
+            </p>
+            <p>
+                This is chess education for those ready to advance beyond pattern recognition and into genuine
+                strategic understanding.
+            </p>
+        </div>
+
+        <!-- Book Section -->
+        <div class="about-section">
+            <h2>Inspired by a Classic</h2>
+
+            <div class="book-showcase">
+                <div class="book-image">
+                    <img src="https://m.media-amazon.com/images/I/71V8f+RoE6L._SL1500_.jpg"
+                         alt="Logical Chess: Move by Move by Irving Chernev">
+                </div>
+                <div class="book-content">
+                    <h3>Logical Chess: Move by Move</h3>
+                    <p class="author">by Irving Chernev</p>
+                    <p>
+                        This timeless masterpiece revolutionized chess instruction by explaining <em>every single move</em>
+                        of 33 classic games. Chernev doesn't just show you what happened—he explains the reasoning,
+                        the plans, and the principles behind each decision.
+                    </p>
+                    <p>
+                        His approach transformed generations of players from move-pushers into strategic thinkers.
+                        Chess Elegante brings this philosophy into the digital age, providing Chernev-style commentary
+                        for <em>your</em> games using advanced AI.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Understanding Analysis Section -->
+        <div class="about-section">
+            <h2>Understanding Chess Analysis</h2>
+            <p>
+                If you're new to computer chess analysis, the scores and terminology can be confusing.
+                Here's what everything means:
+            </p>
+
+            <table class="analysis-table">
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Meaning</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term">Evaluation (Centipawns)</span></td>
+                        <td>
+                            Position score in hundredths of a pawn. <span class="score-example">+100</span> = White is
+                            ahead by 1 pawn. <span class="score-example">-250</span> = Black is ahead by 2.5 pawns.
+                        </td>
+                        <td><span class="score-example">+150</span> (White +1.5)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="term">Evaluation Loss</span></td>
+                        <td>
+                            How much worse your move was compared to the best move. Lower is better.
+                            Measures the opportunity cost of your decision.
+                        </td>
+                        <td><span class="score-example">50cp loss</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-best">Best Move</span></td>
+                        <td>
+                            The engine's top choice. You found the absolute best move in the position.
+                        </td>
+                        <td>0 centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-excellent">Excellent</span></td>
+                        <td>
+                            Nearly as good as the best move. A strong, principled choice with minimal evaluation loss.
+                        </td>
+                        <td>1-49 centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-good">Good</span></td>
+                        <td>
+                            A solid move that maintains your position. Not the strongest, but perfectly playable.
+                        </td>
+                        <td>50-99 centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-inaccuracy">Inaccuracy</span></td>
+                        <td>
+                            A questionable move that slightly worsens your position. Still salvageable, but you're
+                            drifting from optimal play.
+                        </td>
+                        <td>100-199 centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-mistake">Mistake</span></td>
+                        <td>
+                            A clear error that significantly damages your position. Your opponent now has a meaningful advantage.
+                        </td>
+                        <td>200-399 centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="classification-badge badge-blunder">Blunder</span></td>
+                        <td>
+                            A severe mistake that may lose the game. Often hangs material or allows checkmate.
+                            This is what separates wins from losses.
+                        </td>
+                        <td>400+ centipawn loss</td>
+                    </tr>
+                    <tr>
+                        <td><span class="term">Principal Variation (PV)</span></td>
+                        <td>
+                            The sequence of best moves the engine calculates for both sides. Shows you what
+                            should happen if both players play optimally.
+                        </td>
+                        <td>1. e4 e5 2. Nf3 Nc6</td>
+                    </tr>
+                    <tr>
+                        <td><span class="term">Depth</span></td>
+                        <td>
+                            How many moves ahead the engine analyzed. Higher depth = more accurate evaluation,
+                            but takes longer to calculate.
+                        </td>
+                        <td>Depth 20 (20 half-moves)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 30px;">
+                Understanding these metrics helps you identify patterns in your play. Are you making too many
+                inaccuracies in the middlegame? Blundering in time pressure? Our analysis shows you exactly
+                where to focus your improvement efforts.
+            </p>
+        </div>
+
+        <!-- How It Helps Section -->
+        <div class="about-section">
+            <h2>How Chess Elegante Helps You Improve</h2>
+            <p>
+                <strong>Play with Purpose:</strong> Our AI opponent provides real resistance at multiple difficulty
+                levels. Every game is a learning opportunity.
+            </p>
+            <p>
+                <strong>Immediate Feedback:</strong> Get move-by-move analysis as you play. See your evaluation
+                loss instantly and understand what went wrong—or right.
+            </p>
+            <p>
+                <strong>Contextual Commentary:</strong> AI-generated explanations in Chernev's educational style
+                help you understand the logic behind each position. Not just "this move is bad," but
+                "this move weakens your kingside because..."
+            </p>
+            <p>
+                <strong>Deep Position Analysis:</strong> Study critical positions with multi-line Stockfish analysis.
+                See multiple candidate moves and understand the trade-offs between them.
+            </p>
+            <p>
+                <strong>PGN Analysis:</strong> Upload any chess game and get detailed move-by-move breakdowns.
+                Learn from masters, study your own games, or analyze your opponents.
+            </p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}CHESS ELEGANTE - Modern Chess Platform{% endblock %}
+
+{% set active_page = 'home' %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>The Art of Strategic Thinking</h1>
+                <p class="subtitle">Experience chess reimagined. Where classical strategy meets contemporary elegance.</p>
+                <a href="/play" class="cta-button">Begin Your Journey</a>
+            </div>
+            <div class="hero-board">
+                <div class="chess-board-preview">
+                    <!-- Chess board squares (alternating pattern) -->
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                    <div class="square dark"></div>
+                    <div class="square light"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="featured" id="features">
+        <div class="container">
+            <h2 class="section-title">Refined Features</h2>
+            <div class="featured-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">♔</div>
+                    <h3>Play Against AI</h3>
+                    <p>Challenge our advanced chess engine with multiple difficulty levels. From beginner to grandmaster.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♗</div>
+                    <h3>Deep Analysis</h3>
+                    <p>Analyze your games with powerful Stockfish engine. Understand every move, every strategy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">♕</div>
+                    <h3>Game Library</h3>
+                    <p>Save and review your games. Track your progress and learn from your matches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section class="analysis">
+        <div class="analysis-container">
+            <h2>Example Commentary</h2>
+            <div class="move-notation">
+                1. e4    e5<br>
+                2. Nf3   Nc6<br>
+                3. Bb5   a6<br>
+                4. Ba4   Nf6<br>
+                5. O-O   Be7
+            </div>
+            <div class="analysis-text">
+                <p>The Ruy Lopez unfolds with classical precision. White develops systematically—each move serving multiple purposes. The knight to f3 attacks the central e5 pawn while developing toward the kingside. The bishop to b5 maintains pressure on the c6 knight, which defends e5.</p>
+                
+                <p style="margin-top: 20px;">Black responds with equally principled moves. The a6-Ba4 maneuver demonstrates deep understanding: forcing White's bishop to declare its intentions while maintaining flexibility. This is chess at its most refined—a conversation between two minds across 64 squares.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classical Games Section -->
+    <section class="classical-games-section" id="classical-games">
+        <div class="container">
+            <h2 class="section-title">Study Master Games</h2>
+            <p class="section-intro">
+                Explore annotated games from chess history. Each game includes AI-powered commentary
+                explaining key moments, strategic ideas, and tactical brilliancies. Learn how masters
+                think by studying their most instructive games.
+            </p>
+            <div class="classical-games-grid">
+                <!-- Fischer vs Spassky 1972 -->
+                <article class="classical-game-card" itemscope itemtype="https://schema.org/Game">
+                    <a href="/analyze/a0000000-0000-4000-8000-000000000001" class="game-card-link">
+                        <div class="game-header">
+                            <h3 class="game-title" itemprop="name">Fischer vs Spassky</h3>
+                            <div class="game-meta">
+                                <span itemprop="event">World Championship</span> •
+                                <time itemprop="datePublished" datetime="1972-08-31">1972</time>
+                            </div>
+                        </div>
+                        <div class="game-details">
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Opening</span>
+                                <span class="game-detail-value" itemprop="gameType">Italian Game</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Result</span>
+                                <span class="game-detail-value">1-0</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Commentary</span>
+                                <span class="game-detail-value">✓ Available</span>
+                            </div>
+                        </div>
+                        <p class="game-description" itemprop="description">
+                            Fischer's brilliant Italian Game victory in the World Championship. A masterclass in opening preparation and strategic domination.
+                        </p>
+                    </a>
+                </article>
+
+                <!-- Bronstein vs Kotov 1955 -->
+                <article class="classical-game-card" itemscope itemtype="https://schema.org/Game">
+                    <a href="/analyze/a0000000-0000-4000-8000-000000000002" class="game-card-link">
+                        <div class="game-header">
+                            <h3 class="game-title" itemprop="name">Bronstein vs Kotov</h3>
+                            <div class="game-meta">
+                                <span itemprop="event">USSR Championship</span> •
+                                <time itemprop="datePublished" datetime="1955-01-01">1955</time>
+                            </div>
+                        </div>
+                        <div class="game-details">
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Opening</span>
+                                <span class="game-detail-value" itemprop="gameType">Italian Game</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Result</span>
+                                <span class="game-detail-value">1-0</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Commentary</span>
+                                <span class="game-detail-value">✓ Available</span>
+                            </div>
+                        </div>
+                        <p class="game-description" itemprop="description">
+                            Bronstein's tactical masterpiece in the Italian Game. Demonstrates the attacking potential of classical piece placement.
+                        </p>
+                    </a>
+                </article>
+
+                <!-- Steinitz vs Von Bardeleben 1895 -->
+                <article class="classical-game-card" itemscope itemtype="https://schema.org/Game">
+                    <a href="/analyze/a0000000-0000-4000-8000-000000000003" class="game-card-link">
+                        <div class="game-header">
+                            <h3 class="game-title" itemprop="name">Steinitz vs Von Bardeleben</h3>
+                            <div class="game-meta">
+                                <span itemprop="event">Hastings</span> •
+                                <time itemprop="datePublished" datetime="1895-09-02">1895</time>
+                            </div>
+                        </div>
+                        <div class="game-details">
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Opening</span>
+                                <span class="game-detail-value" itemprop="gameType">Italian Game</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Result</span>
+                                <span class="game-detail-value">1-0</span>
+                            </div>
+                            <div class="game-detail-row">
+                                <span class="game-detail-label">Commentary</span>
+                                <span class="game-detail-value">✓ Available</span>
+                            </div>
+                        </div>
+                        <p class="game-description" itemprop="description">
+                            One of chess history's most brilliant combinations. Steinitz's immortal king hunt remains a testament to tactical genius.
+                        </p>
+                    </a>
+                </article>
+            </div>
+            <div class="cta-center">
+                <a href="/analyze" class="cta-button secondary">Explore More Games</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

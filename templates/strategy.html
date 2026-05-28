@@ -1,0 +1,664 @@
+{% extends "base.html" %}
+
+{% block title %}Chess Strategy - Chess Elegante{% endblock %}
+
+{% set active_page = 'learn' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <!-- Header -->
+    <div class="learn-header">
+        <h1>Strategy & Planning</h1>
+        <p class="subtitle">How to Think</p>
+        <p class="intro">
+            Strategy is the art of forming and executing long-term plans when no immediate tactical blows exist.
+            While tactics win material through forcing sequences, strategy wins games through patient accumulation
+            of small advantages that eventually become decisive. Here you'll learn to evaluate positions objectively,
+            understand how pawn structures dictate piece placement, recognize the permanent weaknesses that can be
+            exploited over dozens of moves, and create coherent plans that give every move purpose.
+            This is where chess transcends calculation and becomes an art.
+        </p>
+    </div>
+
+    <!-- ==================== SECTION A: POSITIONAL CONCEPTS ==================== -->
+    <section id="positional" class="learn-section">
+        <div class="section-header">
+            <h2>A. Positional Concepts</h2>
+            <p class="section-subtitle">Understanding the Position</p>
+        </div>
+        <p class="section-intro">
+            Positional understanding is what separates masters from club players. These concepts help you
+            evaluate positions accurately when no forcing sequences exist—which is most of the game.
+            While tactics require precise calculation, positional judgment requires intuition built from
+            studying thousands of positions. Learn to recognize the subtle long-term advantages that
+            compound over time, and develop the patience to convert them into victories.
+        </p>
+
+        <!-- Good vs Bad Bishop -->
+        <article class="lesson-card" data-searchable="good bishop bad bishop color complex light squared dark squared pawn chain">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Good Bishop vs Bad Bishop</h3>
+                <div class="lesson-text">
+                    <p>
+                        A bishop is deemed "bad" when your own pawns are fixed on the same color squares as the bishop,
+                        blocking its mobility and severely limiting its scope. Meanwhile, a "good" bishop operates on
+                        the opposite color from your pawn chain, roaming freely along open diagonals and exerting
+                        constant pressure on the enemy position.
+                    </p>
+                    <p>
+                        In the French Defense, Black often struggles with the notorious "problem bishop"—a light-squared
+                        bishop trapped behind pawns on e6 and d5, with no way to enter the game actively. White's
+                        dark-squared bishop, by contrast, operates freely and can be deployed to devastating effect.
+                        This imbalance can prove decisive in the endgame—a truly bad bishop contributes little more
+                        than a pawn to your position's strength.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Before committing your pawn structure, consider which color
+                        squares your pawns will occupy. Keep your bishop active on the opposite color. If you end
+                        up with a bad bishop, either trade it for an opponent's good piece or maneuver it outside
+                        your pawn chain to restore its usefulness.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="good-bad-bishop">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-good-bad-bishop">
+                <div class="board-container">
+                    <div id="board-good-bad-bishop" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-good-bad-bishop">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="good-bad-bishop">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="good-bad-bishop">◀</button>
+                        <button class="control-btn" data-action="next" data-board="good-bad-bishop">▶</button>
+                        <button class="control-btn" data-action="last" data-board="good-bad-bishop">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-good-bad-bishop">
+                    In this French Defense position, Black's light-squared bishop on c8 is trapped behind
+                    the pawn chain on e6 and d5. White's dark-squared bishop operates freely on g5, controlling
+                    important squares. This is a classic good bishop versus bad bishop scenario.
+                </div>
+            </div>
+        </article>
+
+        <!-- Open Files and Outposts -->
+        <article class="lesson-card" data-searchable="open file half-open rook file control seventh rank outpost strong square">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Open Files & Outposts</h3>
+                <div class="lesson-text">
+                    <p>
+                        An open file is a file with no pawns. Control of an open file with your rooks gives
+                        you invasion routes into the enemy position. The seventh rank is especially powerful—
+                        rooks on the seventh attack pawns and cut off the enemy king.
+                    </p>
+                    <p>
+                        An outpost is a square deep in enemy territory that cannot be attacked by enemy pawns.
+                        A knight on an outpost, supported by your pawns, is a tremendous asset. It controls
+                        key squares, restricts enemy pieces, and often creates tactical opportunities.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> When you have an open file, immediately place your rooks
+                        on it and fight for control. When you identify a weak square in your opponent's position,
+                        maneuver a knight there. A well-placed knight on an outpost is worth more than a rook.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="open-files">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-open-files">
+                <div class="board-container">
+                    <div id="board-open-files" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-open-files">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="open-files">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="open-files">◀</button>
+                        <button class="control-btn" data-action="next" data-board="open-files">▶</button>
+                        <button class="control-btn" data-action="last" data-board="open-files">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-open-files">
+                    White controls the d-file with doubled rooks, and the knight sits on the outpost at d5,
+                    supported by the e4 pawn. Black cannot dislodge it with pawns. This combination of file
+                    control and knight outpost gives White a decisive advantage.
+                </div>
+            </div>
+        </article>
+
+        <!-- Weak Squares -->
+        <article class="lesson-card" data-searchable="weak squares holes color weakness permanent weakness blockade">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Weak Squares (Holes)</h3>
+                <div class="lesson-text">
+                    <p>
+                        A weak square, or "hole," is a square in your position that cannot be defended by pawns.
+                        These squares become targets for enemy pieces, especially knights. Once a piece occupies
+                        a hole, it's difficult to dislodge because pawns can't attack it.
+                    </p>
+                    <p>
+                        Weak squares are created when you advance pawns without being able to support them with
+                        other pawns. For example, if you play ...e6 and ...c5 without playing ...d6, the d5
+                        square becomes a permanent weakness. Your opponent can place a knight there with impunity.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Before advancing a pawn, ask: "Will this create a weak
+                        square?" If yes, make sure you can control that square with pieces. Conversely, try
+                        to create weak squares in your opponent's position and occupy them with knights.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="weak-squares">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-weak-squares">
+                <div class="board-container">
+                    <div id="board-weak-squares" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-weak-squares">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="weak-squares">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="weak-squares">◀</button>
+                        <button class="control-btn" data-action="next" data-board="weak-squares">▶</button>
+                        <button class="control-btn" data-action="last" data-board="weak-squares">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-weak-squares">
+                    Black's pawn on c5 and e6 create a permanent hole on d5. No Black pawn can ever control
+                    this square. White places a knight on d5, and it becomes a monster—controlling key squares,
+                    restricting Black's pieces, and supporting White's attack.
+                </div>
+            </div>
+        </article>
+
+        <!-- Passed Pawns -->
+        <article class="lesson-card" data-searchable="passed pawn outside passed pawn protected passed pawn pawn majority">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Passed Pawns</h3>
+                <div class="lesson-text">
+                    <p>
+                        A passed pawn is a pawn with no enemy pawns in front of it on its own file or adjacent
+                        files. It's "passed" the enemy pawn barrier and can march toward promotion. Passed pawns
+                        are a tremendous asset—they tie down enemy pieces and create constant threats.
+                    </p>
+                    <p>
+                        The most dangerous passed pawns are protected passed pawns (defended by another pawn)
+                        and outside passed pawns (far from the kings in the endgame). Tarrasch said: "A passed
+                        pawn is a criminal who should be kept under lock and key. Mild measures, such as
+                        police surveillance, are not sufficient."
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Create passed pawns by trading pawns favorably. In the
+                        endgame, push passed pawns aggressively—they draw enemy pieces away from the main
+                        theater. If your opponent has a passed pawn, blockade it immediately with a piece.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="passed-pawns">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-passed-pawns">
+                <div class="board-container">
+                    <div id="board-passed-pawns" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-passed-pawns">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="passed-pawns">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="passed-pawns">◀</button>
+                        <button class="control-btn" data-action="next" data-board="passed-pawns">▶</button>
+                        <button class="control-btn" data-action="last" data-board="passed-pawns">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-passed-pawns">
+                    White has a protected passed pawn on d5 (protected by the e4 pawn). This pawn is a monster—
+                    it restricts Black's pieces, controls key central squares, and threatens to advance further.
+                    Black must commit pieces to blockade it, reducing their activity.
+                </div>
+            </div>
+        </article>
+
+        <!-- Space Advantage -->
+        <article class="lesson-card" data-searchable="space advantage cramped position territory piece activity mobility">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Space Advantage</h3>
+                <div class="lesson-text">
+                    <p>
+                        Space is the amount of territory you control on the board. More space means your pieces
+                        have more squares to maneuver to, making it easier to coordinate attacks and defend
+                        against threats. Your opponent, cramped for space, struggles to coordinate pieces
+                        and find good squares.
+                    </p>
+                    <p>
+                        You gain space by advancing pawns safely and controlling the center. However, space
+                        comes with responsibility—overextended pawns can become weak. The player with more
+                        space should avoid exchanges (they relieve the cramping), while the cramped player
+                        should seek to trade pieces.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> If you have more space, keep pieces on the board and
+                        maneuver for a breakthrough. If you're cramped, trade pieces to reduce the pressure.
+                        Each trade makes it easier to defend and harder for your opponent to attack effectively.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="space-advantage">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-space-advantage">
+                <div class="board-container">
+                    <div id="board-space-advantage" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-space-advantage">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="space-advantage">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="space-advantage">◀</button>
+                        <button class="control-btn" data-action="next" data-board="space-advantage">▶</button>
+                        <button class="control-btn" data-action="last" data-board="space-advantage">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-space-advantage">
+                    White's pawns on e5 and d4 control more central space than Black's pawns on e6 and d6.
+                    White's pieces have more room to maneuver, while Black's pieces are cramped behind the
+                    pawn chain. This space advantage translates to easier piece coordination and attack.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION B: PAWN STRUCTURES ==================== -->
+    <section id="structures" class="learn-section">
+        <div class="section-header">
+            <h2>B. Pawn Structures</h2>
+            <p class="section-subtitle">The Skeleton of the Position</p>
+        </div>
+        <p class="section-intro">
+            Pawn structures form the skeleton of every chess position, and understanding them is essential
+            for strategic play. Since pawns cannot move backward, every pawn advance creates permanent
+            features that dictate plans for both sides. The pawn structure determines where pieces belong,
+            which files will open, and where attacks should be directed. Master these common structures
+            and you'll always have a roadmap for the middlegame—even in unfamiliar territory.
+        </p>
+
+        <!-- Isolated Queen's Pawn -->
+        <article class="lesson-card" data-searchable="isolated queens pawn IQP d4 d5 isolated pawn weakness">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Isolated Queen's Pawn (IQP)</h3>
+                <div class="lesson-text">
+                    <p>
+                        An isolated pawn has no friendly pawns on adjacent files to support it. The isolated
+                        queen's pawn (usually on d4 or d5) is a double-edged feature. It controls key central
+                        squares (c5, e5 for a white IQP on d4), allowing active piece play. But it's also
+                        a long-term weakness that can be attacked.
+                    </p>
+                    <p>
+                        The side with the IQP should attack aggressively before the opponent can blockade
+                        the pawn and besiege it. Launch kingside attacks, use the space advantage, and create
+                        threats faster than your opponent can organize defense. If you're against an IQP,
+                        blockade it, trade pieces, and attack it relentlessly in the endgame.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> With an IQP, avoid trading pieces—you need them for
+                        attack. Against an IQP, exchange pieces and blockade the pawn on its advance square.
+                        In the endgame, the isolated pawn becomes a fatal weakness.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="iqp">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-iqp">
+                <div class="board-container">
+                    <div id="board-iqp" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-iqp">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="iqp">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="iqp">◀</button>
+                        <button class="control-btn" data-action="next" data-board="iqp">▶</button>
+                        <button class="control-btn" data-action="last" data-board="iqp">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-iqp">
+                    White has an isolated pawn on d4. It controls c5 and e5, giving White active piece play.
+                    But it's also a target. White must attack quickly before Black blockades it on d5 and
+                    besieges it. This tension between strength and weakness defines IQP positions.
+                </div>
+            </div>
+        </article>
+
+        <!-- Hanging Pawns -->
+        <article class="lesson-card" data-searchable="hanging pawns c4 d4 c5 d5 pawn duo semi-isolated">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Hanging Pawns</h3>
+                <div class="lesson-text">
+                    <p>
+                        Hanging pawns are a pair of adjacent pawns (usually on c4 and d4, or c5 and d5) with
+                        no neighboring pawns to support them. They control key central squares and provide
+                        space, but they can also become weak targets if the opponent blockades them and attacks
+                        them systematically.
+                    </p>
+                    <p>
+                        Hanging pawns are dynamic. The player with them should use the space they provide to
+                        create piece activity and threats. Advancing one pawn (c5 or d5) can create a passed
+                        pawn or open lines. But if they become static, they transform from strength to weakness—
+                        sitting ducks waiting to be captured.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> With hanging pawns, keep piece activity high and look
+                        for the right moment to push one forward (often a pawn break). Against hanging pawns,
+                        blockade them, prevent their advance, and attack them with pieces once they're fixed.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="hanging-pawns">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-hanging-pawns">
+                <div class="board-container">
+                    <div id="board-hanging-pawns" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-hanging-pawns">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="hanging-pawns">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="hanging-pawns">◀</button>
+                        <button class="control-btn" data-action="next" data-board="hanging-pawns">▶</button>
+                        <button class="control-btn" data-action="last" data-board="hanging-pawns">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-hanging-pawns">
+                    White's pawns on c4 and d4 are hanging pawns. They control central space and give White
+                    active play. But if Black blockades them and keeps them fixed, they become vulnerable
+                    targets. White must use the dynamic potential before they become static liabilities.
+                </div>
+            </div>
+        </article>
+
+        <!-- Carlsbad Structure -->
+        <article class="lesson-card" data-searchable="carlsbad structure minority attack queens gambit exchange c6 e6 pawn chain">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Carlsbad Structure</h3>
+                <div class="lesson-text">
+                    <p>
+                        The Carlsbad structure arises from the Queen's Gambit Declined after White exchanges
+                        on d5. White gets a queenside pawn majority (c-pawn and b-pawn vs Black's a-pawn),
+                        while Black gets a kingside majority. This structure has been analyzed for over a
+                        century, and both sides have clear, well-established plans.
+                    </p>
+                    <p>
+                        White executes the "minority attack"—pushing b4-b5 to create weaknesses in Black's
+                        queenside majority. Black aims for a kingside pawn storm with ...f6, ...e5, or ...f5
+                        depending on the position. Black must also prevent White's minority attack or counter
+                        in the center with ...c5.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> In Carlsbad positions, White plays on the queenside
+                        with b4-b5, Black plays on the kingside or counter-attacks with ...c5. Understanding
+                        this structure is essential for Queen's Gambit players.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="carlsbad">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-carlsbad">
+                <div class="board-container">
+                    <div id="board-carlsbad" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-carlsbad">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="carlsbad">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="carlsbad">◀</button>
+                        <button class="control-btn" data-action="next" data-board="carlsbad">▶</button>
+                        <button class="control-btn" data-action="last" data-board="carlsbad">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-carlsbad">
+                    The classic Carlsbad structure: Black's pawns on a7, b7, c6, d5, e6, f7, g7, h7 vs
+                    White's e4, d4, c3, b2, a2, f2, g2, h2. White will play b4-b5, Black counters with
+                    ...c5 or prepares ...e5. Both sides have clear, principled plans.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION C: HOW TO MAKE A PLAN ==================== -->
+    <section id="planning" class="learn-section">
+        <div class="section-header">
+            <h2>C. How to Make a Plan</h2>
+            <p class="section-subtitle">Thinking Process</p>
+        </div>
+        <p class="section-intro">
+            Planning is what separates strong players from aimless ones. Without a plan, you're merely
+            shuffling pieces and hoping for opponent mistakes. With a coherent plan, every move serves
+            a purpose—building toward a concrete goal. The great Siegbert Tarrasch said: "He who has a
+            plan is more likely to win than he who has no plan at all." Here's how masters think about
+            creating winning plans, and how you can apply the same methodology in your own games.
+        </p>
+
+        <!-- Improve Your Worst Piece -->
+        <article class="lesson-card" data-searchable="improve worst piece piece activity bad piece repositioning maneuver">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Improve Your Worst Piece</h3>
+                <div class="lesson-text">
+                    <p>
+                        When you're unsure what to do, there's a reliable fallback: identify your worst-placed
+                        piece and improve it. Is a knight languishing on the rim where it controls few squares?
+                        Reroute it toward the center. Is a bishop hemmed in by pawns? Find a better diagonal or
+                        fianchetto it. Is a rook sitting passively on its starting square? Activate it on an open
+                        file where it can enter the enemy position.
+                    </p>
+                    <p>
+                        This principle, championed by the Soviet chess school and taught to generations of
+                        grandmasters, gives you a concrete plan when the position offers no immediate tactics.
+                        You're not just making moves—you're systematically strengthening your position piece by
+                        piece. Meanwhile, your opponent must either respond to threats or watch helplessly as
+                        your army becomes increasingly coordinated and dangerous.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> After each opponent move, ask yourself: "Which of my pieces
+                        is positioned worst?" Then invest 2-3 moves improving it. This simple question prevents
+                        aimless play and ensures you're constantly making progress toward a superior position.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="improve-piece">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-improve-piece">
+                <div class="board-container">
+                    <div id="board-improve-piece" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-improve-piece">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="improve-piece">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="improve-piece">◀</button>
+                        <button class="control-btn" data-action="next" data-board="improve-piece">▶</button>
+                        <button class="control-btn" data-action="last" data-board="improve-piece">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-improve-piece">
+                    White's knight on b1 is poorly placed. The plan: improve it via Nd2-f3-e5, where it
+                    controls key squares and supports a kingside attack. Three moves turn the worst piece
+                    into a dominant force. This is strategic chess—purposeful improvement.
+                </div>
+            </div>
+        </article>
+
+        <!-- Create a Weakness -->
+        <article class="lesson-card" data-searchable="create weakness target pawn weakness fixing weakness exploitation">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Create a Weakness</h3>
+                <div class="lesson-text">
+                    <p>
+                        If your opponent has a solid position with no weaknesses, create one. Force them to
+                        make pawn moves that create holes or weak squares. Provoke pawn advances that overextend
+                        their position. Once you've created a weakness, you have a target—something concrete
+                        to attack.
+                    </p>
+                    <p>
+                        You create weaknesses by attacking. Put pressure on a point until your opponent must
+                        weaken their structure to defend it. For example, attack a pawn repeatedly until they
+                        must push it (creating holes) or defend it awkwardly (tying pieces down). Then shift
+                        your attack to the newly created weakness.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Against a solid position, don't attack randomly. Pick
+                        one point, pressure it relentlessly, and force your opponent to create a weakness
+                        defending it. Then you have your target.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="create-weakness">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-create-weakness">
+                <div class="board-container">
+                    <div id="board-create-weakness" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-create-weakness">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="create-weakness">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="create-weakness">◀</button>
+                        <button class="control-btn" data-action="next" data-board="create-weakness">▶</button>
+                        <button class="control-btn" data-action="last" data-board="create-weakness">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-create-weakness">
+                    White pressures the h7 pawn repeatedly. Eventually, Black must play ...g6 to defend it,
+                    creating weaknesses on f6 and h6. Now White has targets—the dark squares around Black's
+                    king. Pressure created the weakness; now White exploits it.
+                </div>
+            </div>
+        </article>
+
+        <!-- Attack Where You Have Space -->
+        <article class="lesson-card" data-searchable="attack space advantage wing play kingside attack queenside attack">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Attack on the Wing Where You Have Space</h3>
+                <div class="lesson-text">
+                    <p>
+                        Steinitz taught this principle: attack where you have a space advantage. If you have
+                        more space on the kingside, launch a kingside attack. If you control more queenside
+                        territory, that's where your attack belongs. Don't attack where you're cramped—
+                        you'll lack room for effective piece coordination.
+                    </p>
+                    <p>
+                        Space gives you room to maneuver pieces into attacking positions. Your pawns can
+                        advance to support the attack. Your opponent, cramped in that sector, struggles to
+                        defend. This is why pawn majorities often indicate where to attack—you have more
+                        pawns there, hence more space.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Look at the pawn structure. Where do you have more
+                        space or a pawn majority? Attack there. Where is your opponent cramped? Make them
+                        suffer in their cramped sector.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="attack-space">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-attack-space">
+                <div class="board-container">
+                    <div id="board-attack-space" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-attack-space">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="attack-space">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="attack-space">◀</button>
+                        <button class="control-btn" data-action="next" data-board="attack-space">▶</button>
+                        <button class="control-btn" data-action="last" data-board="attack-space">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-attack-space">
+                    In the King's Indian, White has more space on the queenside, Black on the kingside.
+                    So White attacks with c5, b4, Black attacks with ...f5, ...g5, ...h5. Each side plays
+                    where they have space. This is strategic chess—exploiting your advantages.
+                </div>
+            </div>
+        </article>
+
+        <!-- When to Trade Pieces -->
+        <article class="lesson-card" data-searchable="when trade pieces exchanges simplification material advantage defender">
+            <div class="lesson-content">
+                <h3 class="lesson-title">When to Trade vs When Not to Trade</h3>
+                <div class="lesson-text">
+                    <p>
+                        Trading pieces (exchanging) is not neutral—it changes the character of the position.
+                        The general rules: trade when you're ahead in material (to reach a winning endgame),
+                        when you're cramped for space (exchanges relieve pressure), or when you're removing
+                        a strong enemy piece.
+                    </p>
+                    <p>
+                        Avoid trades when you have more space (you want pieces to exploit it), when you're
+                        attacking (you need pieces for the attack), or when you have positional advantages
+                        that become less significant in simplified positions. Also, trade your bad pieces
+                        for opponent's good pieces, but keep your good pieces.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Before trading, ask: "Does this exchange help or hurt
+                        my plan?" If you're attacking, avoid trades. If defending, seek them. If ahead in
+                        material, trade pieces (not pawns) to reach an endgame.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="when-trade">
+                    <span>View Example</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-when-trade">
+                <div class="board-container">
+                    <div id="board-when-trade" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-when-trade">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="when-trade">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="when-trade">◀</button>
+                        <button class="control-btn" data-action="next" data-board="when-trade">▶</button>
+                        <button class="control-btn" data-action="last" data-board="when-trade">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-when-trade">
+                    White is up a pawn and should trade pieces to reach an endgame. Each trade makes Black's
+                    defense harder. But White should avoid trading pawns—pawn exchanges can create passed
+                    pawns for Black or open files. Trade pieces, keep pawns.
+                </div>
+            </div>
+        </article>
+    </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,247 @@
+/* Learn Hub Page - Module Overview */
+/* Used by: learn.html (landing page for learning modules) */
+
+.learn-hub-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+    min-height: 100vh;
+}
+
+.learn-hub-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.learn-hub-header h1 {
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.learn-hub-header .tagline {
+    font-size: 22px;
+    color: #666;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.learn-hub-header .description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.module-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    padding: 40px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #1a1a1a;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.module-card:hover {
+    border-color: #ccc;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.module-card:hover::before {
+    transform: scaleY(1);
+}
+
+.module-number {
+    font-size: 48px;
+    font-weight: 300;
+    color: #e8e8e8;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.module-title {
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.module-subtitle {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.module-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.module-topics {
+    margin-bottom: 25px;
+}
+
+.module-topics h4 {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.module-topics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.module-topics li {
+    font-size: 14px;
+    color: #666;
+    padding-left: 15px;
+    position: relative;
+}
+
+.module-topics li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.module-link {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #1a1a1a;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.module-link:hover {
+    background: #333;
+    padding-right: 35px;
+}
+
+.module-link::after {
+    content: ' →';
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.module-link:hover::after {
+    opacity: 1;
+}
+
+.philosophy-section {
+    background: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    padding: 50px 60px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.philosophy-section h2 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.philosophy-section p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 15px;
+    font-weight: 300;
+}
+
+.philosophy-section p:last-child {
+    margin-bottom: 0;
+}
+
+.philosophy-section em {
+    font-style: italic;
+    color: #1a1a1a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .learn-hub-page {
+        padding: 80px 20px 60px;
+    }
+
+    .learn-hub-header h1 {
+        font-size: 36px;
+    }
+
+    .learn-hub-header .tagline {
+        font-size: 18px;
+    }
+
+    .modules-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .module-card {
+        padding: 30px 25px;
+    }
+
+    .module-topics ul {
+        grid-template-columns: 1fr;
+    }
+
+    .philosophy-section {
+        padding: 40px 30px;
+    }
+
+    .philosophy-section h2 {
+        font-size: 24px;
+    }
+
+    .philosophy-section p {
+        font-size: 16px;
+    }
+}

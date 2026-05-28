@@ -1,0 +1,638 @@
+/* Chess Learning Pages - Unified Styles */
+/* Used by: openings.html, tactics.html, strategy.html, endgames.html */
+
+/* ==================== Page Layout ==================== */
+.learn-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+    min-height: 100vh;
+}
+
+.learn-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+.learn-header h1 {
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.learn-header .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.learn-header .intro {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* ==================== Search ==================== */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: #1a1a1a;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#search-input::placeholder {
+    color: #999;
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #999;
+    pointer-events: none;
+}
+
+.search-results-count {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    min-height: 20px;
+}
+
+.search-results-count.no-results {
+    color: #c00;
+}
+
+/* ==================== Table of Contents ==================== */
+.toc {
+    background: #f8f8f8;
+    border: 1px solid #e8e8e8;
+    padding: 25px 30px;
+    margin-bottom: 60px;
+}
+
+.toc h3 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 30px;
+}
+
+.toc a {
+    color: #444;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 300;
+    transition: color 0.2s;
+}
+
+.toc a:hover {
+    color: #1a1a1a;
+    text-decoration: underline;
+}
+
+/* ==================== Sections ==================== */
+.learn-section {
+    margin-bottom: 80px;
+}
+
+.learn-section.hidden {
+    display: none;
+}
+
+.section-header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.section-intro {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* ==================== Lesson Cards ==================== */
+.lesson-card {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.lesson-card:hover {
+    border-color: #ccc;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-card.hidden {
+    display: none;
+}
+
+.lesson-card.search-match {
+    border-left: 3px solid #1a1a1a;
+}
+
+.lesson-content {
+    padding: 30px;
+}
+
+.lesson-title {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.lesson-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    font-weight: 300;
+}
+
+.lesson-text p {
+    margin-bottom: 15px;
+}
+
+.lesson-text p:last-child {
+    margin-bottom: 0;
+}
+
+.key-insight {
+    background: #f8f8f8;
+    padding: 15px 20px;
+    border-left: 3px solid #1a1a1a;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.key-insight strong {
+    color: #1a1a1a;
+}
+
+/* ==================== Opening Family Cards ==================== */
+.family-card .lesson-content {
+    padding-bottom: 20px;
+}
+
+.family-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #666;
+    background: #f0f0f0;
+    padding: 4px 12px;
+    margin-bottom: 15px;
+}
+
+.structure-info {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.structure-info h4 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 20px 0 10px;
+}
+
+.structure-info h4:first-child {
+    margin-top: 0;
+}
+
+.structure-info p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.structure-info ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.structure-info li {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* ==================== Popular Opening Cards ==================== */
+.opening-card .lesson-content {
+    padding-bottom: 20px;
+}
+
+.opening-header {
+    margin-bottom: 20px;
+}
+
+.opening-header .lesson-title {
+    margin-bottom: 10px;
+}
+
+.opening-moves-display {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #666;
+    background: #f8f8f8;
+    padding: 8px 15px;
+    display: inline-block;
+    border-left: 3px solid #1a1a1a;
+}
+
+.opening-idea,
+.middlegame-plans,
+.beginner-mistakes {
+    margin-bottom: 25px;
+}
+
+.opening-idea h4,
+.middlegame-plans h4,
+.beginner-mistakes h4 {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.opening-idea p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.middlegame-plans ul,
+.beginner-mistakes ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.middlegame-plans li,
+.beginner-mistakes li {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* ==================== View Board Button ==================== */
+.view-board-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.view-board-btn:hover {
+    background: #333;
+}
+
+.toggle-arrow {
+    font-size: 10px;
+    transition: transform 0.3s;
+}
+
+/* ==================== Board Section ==================== */
+.board-section {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    background: #f8f8f8;
+    border-top: 1px solid #e8e8e8;
+}
+
+.board-section.expanded {
+    max-height: 700px;
+    opacity: 1;
+    padding: 30px;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.chess-board {
+    width: 350px;
+    max-width: 100%;
+}
+
+.board-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.move-info {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #1a1a1a;
+    font-weight: 500;
+    min-height: 24px;
+    text-align: center;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.position-explanation {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    font-weight: 300;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+    .learn-page {
+        padding: 80px 20px 60px;
+    }
+
+    .learn-header h1 {
+        font-size: 36px;
+        letter-spacing: 2px;
+    }
+
+    .learn-header .subtitle {
+        font-size: 16px;
+    }
+
+    .learn-header .intro {
+        font-size: 15px;
+    }
+
+    .toc ul {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .section-header h2 {
+        font-size: 26px;
+    }
+
+    .lesson-content {
+        padding: 25px 20px;
+    }
+
+    .lesson-title {
+        font-size: 20px;
+    }
+
+    .lesson-text {
+        font-size: 15px;
+    }
+
+    .chess-board {
+        width: 300px;
+    }
+
+    .board-section.expanded {
+        padding: 25px 20px;
+        max-height: 650px;
+    }
+}
+
+@media (max-width: 480px) {
+    .learn-header h1 {
+        font-size: 28px;
+    }
+
+    .section-header h2 {
+        font-size: 22px;
+    }
+
+    .lesson-title {
+        font-size: 18px;
+    }
+
+    .lesson-content {
+        padding: 20px 15px;
+    }
+
+    .chess-board {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .view-board-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .position-explanation {
+        font-size: 14px;
+    }
+}
+
+/* ==================== Classical Games ==================== */
+.classical-games {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.classical-games h4 {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.classical-games-intro {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.classical-games-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.classical-game-link {
+    display: block;
+    padding: 12px 16px;
+    background: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #1a1a1a;
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+}
+
+.classical-game-link:hover {
+    background: #fff;
+    border-color: #b58863;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+/* Legacy support for old structure with nested spans */
+.classical-game-link .game-players {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.classical-game-link .game-meta {
+    font-size: 13px;
+    color: #666;
+}
+
+.loading-games {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+}
+
+.no-games {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+    margin: 0;
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+    .search-container,
+    .view-board-btn,
+    .board-section,
+    .toc,
+    .classical-games {
+        display: none !important;
+    }
+
+    .learn-page {
+        padding: 20px;
+    }
+
+    .lesson-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

@@ -1,0 +1,19 @@
+# Chess Website Development Agent
+
+## Project Context
+Building a chess website with multiple themes:
+- Main theme: Minimalistic vogue style
+- Kids themes: Colorful, playful alternatives
+
+## Working Style
+- Always say "Agent file loaded" at start of response
+- Make code changes directly without testing
+- Don't try to run test, run server, run commands in bash, instead ask me to perform it and wait
+- Focus on efficient, token-conscious responses, reduce verbose summary at the end
+
+## Code Preferences
+
+## Communication Style
+- Be concise
+- Skip unnecessary explanations unless asked
+- Provide brief confirmations after changes

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze Game - Chess Elegante{% endblock %}
+
+{% set active_page = 'analyze' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/analyze_upload.css') }}">
+{% endblock %}
+
+{% block content %}
+<p class="page-subtitle">Explore famous games or analyze your own chess games</p>
+
+<!-- Analyze Upload Button -->
+<div class="analyze-upload-trigger">
+    <button id="openUploadModalBtn" class="btn-analyze">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M8 11V3m0 0L5 6m3-3l3 3M2 13h12"/>
+        </svg>
+        <span>Analyze</span>
+    </button>
+</div>
+
+<!-- PGN Upload Modal -->
+<div id="uploadModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Upload or Paste PGN</h3>
+            <span class="close-modal" data-modal="uploadModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="upload-controls">
+                <button id="loadPgnBtn" class="icon-btn" data-tooltip="Load PGN">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M8 11V3m0 0L5 6m3-3l3 3M2 13h12"/>
+                    </svg>
+                    <span class="tooltip">Load PGN</span>
+                </button>
+                <button id="clearPgnBtn" class="icon-btn" data-tooltip="Clear">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 4l8 8m0-8l-8 8"/>
+                    </svg>
+                    <span class="tooltip">Clear</span>
+                </button>
+            </div>
+            <textarea id="pgnInput" placeholder="Paste your PGN here...
+
+Example:
+[Event &quot;Casual Game&quot;]
+[White &quot;Player 1&quot;]
+[Black &quot;Player 2&quot;]
+
+1. e4 e5 2. Nf3 Nc6..." rows="12"></textarea>
+            <div id="uploadStatus" class="status-message"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Component for PGNs -->
+<div class="pgns-section">
+    <div class="pgns-container">
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="curated">Famous Games</button>
+            <button class="tab-button" data-tab="saved">Saved PGNs</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content-wrapper">
+            <!-- Curated PGNs Tab -->
+            <div id="curatedTab" class="tab-content active">
+                <div id="curatedPgnsList" class="pgns-list">
+                    <p class="empty-state">Loading curated games...</p>
+                </div>
+            </div>
+
+            <!-- Saved PGNs Tab -->
+            <div id="savedTab" class="tab-content">
+                <div id="savedPgnsList" class="pgns-list">
+                    <p class="empty-state">No saved PGNs yet. Load a PGN above to get started.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete PGN Confirmation Modal -->
+<div id="deletePgnModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Delete PGN</h3>
+            <span class="close-modal" data-modal="deletePgnModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this PGN?</p>
+            <div id="deletePgnStatus" class="status-message" style="margin-top: 10px;"></div>
+        </div>
+        <div class="modal-footer">
+            <button id="cancelDeleteBtn" class="btn btn-secondary">Cancel</button>
+            <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/analyze_upload.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Learn Chess - Chess Elegante{% endblock %}
+
+{% set active_page = 'learn' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn-hub.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="learn-hub-page">
+    <div class="learn-hub-header">
+        <h1>Learn Chess</h1>
+        <p class="tagline">Where classical wisdom meets modern understanding</p>
+        <p class="description">
+            Chess mastery isn't about rote learning—it's about developing genuine understanding. Each module below teaches
+            you the fundamental ideas that guide strong players, from opening principles to endgame technique.
+            Study the concepts, recognize the patterns, and watch your game transform as you begin to think
+            like the masters who came before you.
+        </p>
+    </div>
+
+    <div class="modules-grid">
+        <!-- Module 1: Openings -->
+        <div class="module-card">
+            <div class="module-number">01</div>
+            <h2 class="module-title">Openings</h2>
+            <p class="module-subtitle">Starting with a Plan</p>
+            <p class="module-description">
+                The opening sets the tone for the entire game. Learn the fundamental principles that govern
+                all sound opening play—center control, rapid development, king safety—and understand how
+                different opening families create distinct strategic landscapes. You'll discover why grandmasters
+                choose certain setups and how to select openings that match your playing style.
+            </p>
+            <div class="module-topics">
+                <h4>You'll Understand:</h4>
+                <ul>
+                    <li>Opening Principles</li>
+                    <li>Opening Families</li>
+                    <li>Popular Openings</li>
+                    <li>Pawn Structures</li>
+                    <li>Common Plans</li>
+                    <li>Typical Mistakes</li>
+                </ul>
+            </div>
+            <a href="/openings" class="module-link">Start Learning</a>
+        </div>
+
+        <!-- Module 2: Tactics -->
+        <div class="module-card">
+            <div class="module-number">02</div>
+            <h2 class="module-title">Tactics</h2>
+            <p class="module-subtitle">Seeing the Board</p>
+            <p class="module-description">
+                Tactical vision is where most players improve fastest. Learn to recognize the building blocks
+                of combinations—forks, pins, skewers, discoveries—and train your eye to spot winning sequences
+                that others miss. Every tactical motif is explained with clear examples, and you'll develop
+                the calculation skills that turn small advantages into decisive victories.
+            </p>
+            <div class="module-topics">
+                <h4>You'll Understand:</h4>
+                <ul>
+                    <li>Tactical Motifs</li>
+                    <li>Forks & Pins</li>
+                    <li>Discoveries</li>
+                    <li>Sacrifices</li>
+                    <li>Combination Play</li>
+                    <li>Calculation</li>
+                </ul>
+            </div>
+            <a href="/tactics" class="module-link">Start Learning</a>
+        </div>
+
+        <!-- Module 3: Strategy -->
+        <div class="module-card">
+            <div class="module-number">03</div>
+            <h2 class="module-title">Strategy & Planning</h2>
+            <p class="module-subtitle">How to Think</p>
+            <p class="module-description">
+                Strategy is the art of forming and executing long-term plans when no immediate tactics exist.
+                Learn to evaluate positions based on pawn structure, piece activity, and weak squares. Develop
+                the judgment to know when to attack, when to defend, and when to patiently improve your pieces.
+                This is where chess transcends calculation and becomes an art form.
+            </p>
+            <div class="module-topics">
+                <h4>You'll Understand:</h4>
+                <ul>
+                    <li>Positional Concepts</li>
+                    <li>Pawn Structures</li>
+                    <li>Piece Placement</li>
+                    <li>Making Plans</li>
+                    <li>Weak Squares</li>
+                    <li>Space & Initiative</li>
+                </ul>
+            </div>
+            <a href="/strategy" class="module-link">Start Learning</a>
+        </div>
+
+        <!-- Module 4: Endgames -->
+        <div class="module-card">
+            <div class="module-number">04</div>
+            <h2 class="module-title">Endgames</h2>
+            <p class="module-subtitle">How Games Are Won</p>
+            <p class="module-description">
+                The endgame is where games are truly decided—and where knowledge trumps talent. Learn the
+                fundamental checkmates that every player must know, the subtle art of king and pawn endings,
+                and the critical rook endgame positions like Lucena and Philidor. Most training resources
+                neglect this phase—we don't. Master these techniques and convert winning positions with confidence.
+            </p>
+            <div class="module-topics">
+                <h4>You'll Understand:</h4>
+                <ul>
+                    <li>Basic Checkmates</li>
+                    <li>King & Pawn Endgames</li>
+                    <li>Rook Endgames</li>
+                    <li>Opposition</li>
+                    <li>Key Squares</li>
+                    <li>Winning Techniques</li>
+                </ul>
+            </div>
+            <a href="/endgames" class="module-link">Start Learning</a>
+        </div>
+    </div>
+
+    <div class="philosophy-section">
+        <h2>The Logical Chess Philosophy</h2>
+        <p>
+            Inspired by Irving Chernev's <em>Logical Chess: Move by Move</em>, every lesson explains
+            not just <em>what</em> to do, but <em>why</em> to do it. We believe chess improvement comes
+            from understanding underlying principles, not drilling endless variations. When you grasp the
+            reasoning behind strong moves, you can find those moves yourself in positions you've never seen.
+        </p>
+        <p>
+            Each module includes interactive board positions, clear explanations in Chernev's educational style,
+            and searchable content so you can find exactly what you need. Whether you're a complete beginner
+            or an experienced club player looking to shore up weaknesses, this is chess education designed
+            for those ready to think deeply about the game they love.
+        </p>
+    </div>
+</div>
+{% endblock %}

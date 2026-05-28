@@ -1,0 +1,1274 @@
+let board = null;
+let game = new Chess();
+let gameActive = false;
+let gameId = null;
+let eventSource = null;
+let selectedSquare = null;
+let possibleMoves = [];
+let movesHistory = []; // Store all moves with their evaluations and commentary
+let navigator = null; // Move navigator instance
+let isReviewingHistory = false; // Flag to indicate if user is reviewing past moves
+let cachedBestMove = null; // Cache best move result for current position
+let engineType = 'lichess'; // Track current engine type ('lichess' or 'stockfish')
+let isProcessingMove = false; // Lock to prevent moves while one is being processed
+
+const statusEl = document.getElementById('status');
+const moveListEl = document.getElementById('movesList');
+
+// Initialize board when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initBoard();
+    setupEventListeners();
+    setupMobileInteractions();
+    setupBottomTabs();
+    loadBoardTheme('boardTheme'); // Load theme with select element ID
+    checkForActiveGame();
+});
+
+function initBoard() {
+    const config = {
+        draggable: false, // Disable drag and drop
+        position: 'start',
+        pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png'
+    };
+
+    // ChessBoard (capital B) is the correct constructor name
+    board = ChessBoard('board', config);
+
+    // Add click handlers for click-to-move
+    addClickHandlers();
+}
+
+function addClickHandlers() {
+    // Use event delegation on the board container
+    const boardEl = document.getElementById('board');
+
+    boardEl.addEventListener('click', function(e) {
+        let element = e.target;
+
+        // Traverse up to find an element with a square notation class (square-XX format)
+        let squareEl = null;
+        let currentEl = element;
+
+        while (currentEl && currentEl !== boardEl) {
+            // Look for square notation in class list (e.g., "square-e4", "square-a1")
+            const squareClass = Array.from(currentEl.classList || []).find(cls =>
+                cls.match(/^square-[a-h][1-8]$/)
+            );
+
+            if (squareClass) {
+                squareEl = currentEl;
+                const square = squareClass.replace('square-', '');
+                handleSquareClick(square);
+                return;
+            }
+
+            currentEl = currentEl.parentElement;
+        }
+    });
+}
+
+function handleSquareClick(square) {
+    // Don't handle clicks if game is not active
+    if (!gameActive || game.game_over()) return;
+
+    // Don't allow moves if reviewing history
+    if (isReviewingHistory) {
+        setStatus('Navigate to current position to make moves', 'warning');
+        return;
+    }
+
+    // Don't allow moves if currently processing a move
+    if (isProcessingMove) {
+        return;
+    }
+
+    // Don't allow moves if it's not player's turn
+    if (game.turn() !== 'w') return;
+
+    // If no piece is selected
+    if (!selectedSquare) {
+        const piece = game.get(square);
+
+        // Only select white pieces (player pieces)
+        if (piece && piece.color === 'w') {
+            selectedSquare = square;
+            possibleMoves = getLegalMovesForSquare(square);
+            highlightSquare(square);
+            showPossibleMoves(possibleMoves);
+        }
+    } else {
+        // A piece is already selected
+
+        // Check if clicking on the same square (deselect)
+        if (square === selectedSquare) {
+            clearSelection();
+            return;
+        }
+
+        // Check if clicking on another white piece (change selection)
+        const clickedPiece = game.get(square);
+        if (clickedPiece && clickedPiece.color === 'w') {
+            clearSelection();
+            selectedSquare = square;
+            possibleMoves = getLegalMovesForSquare(square);
+            highlightSquare(square);
+            showPossibleMoves(possibleMoves);
+            return;
+        }
+
+        // Try to make a move
+        const moveObj = possibleMoves.find(m => m.to === square);
+        if (moveObj) {
+            // Store FEN before the move for evaluation
+            const fenBeforeMove = game.fen();
+
+            // Make the move
+            const move = game.move({
+                from: selectedSquare,
+                to: square,
+                promotion: 'q' // Always promote to queen
+            });
+
+            if (move) {
+                // Lock moves while processing
+                isProcessingMove = true;
+                updateNavigationStatus(); // Update status immediately
+
+                // Clear selection and highlights
+                clearSelection();
+
+                // Update board position
+                board.position(game.fen());
+
+                // Add move to history immediately for display
+                movesHistory.push({
+                    san: move.san,
+                    uci: move.from + move.to,
+                    evaluation: null,
+                    commentary: null
+                });
+
+                // Update move history display
+                updateMoveHistory();
+
+                // Make the move on server and evaluate
+                makeMove(move.from + move.to, fenBeforeMove);
+            }
+        } else {
+            // Invalid move, clear selection
+            clearSelection();
+        }
+    }
+}
+
+function getLegalMovesForSquare(square) {
+    return game.moves({ square: square, verbose: true });
+}
+
+function highlightSquare(square) {
+    const squareEl = document.querySelector(`.square-${square}`);
+    if (squareEl) {
+        squareEl.classList.add('selected-square');
+    }
+}
+
+function showPossibleMoves(moves) {
+    moves.forEach(move => {
+        const squareEl = document.querySelector(`.square-${move.to}`);
+        if (squareEl) {
+            // Add a dot indicator
+            const dot = document.createElement('div');
+            dot.className = 'move-hint';
+
+            // Use bigger dot if capturing
+            if (move.captured) {
+                dot.classList.add('capture-hint');
+            }
+
+            squareEl.appendChild(dot);
+        }
+    });
+}
+
+function clearSelection() {
+    selectedSquare = null;
+    possibleMoves = [];
+
+    // Remove all highlights and hints
+    document.querySelectorAll('.selected-square').forEach(el => {
+        el.classList.remove('selected-square');
+    });
+
+    document.querySelectorAll('.move-hint').forEach(el => {
+        el.remove();
+    });
+}
+
+function setupEventListeners() {
+    document.getElementById('settingsBtn').addEventListener('click', openSettingsModal);
+    document.getElementById('resignBtn').addEventListener('click', resignGame);
+    document.getElementById('getBestMoveBtn')?.addEventListener('click', getBestMove);
+
+    // Navigation controls - will be connected when navigator is created
+    const prevMoveBtn = document.getElementById('prevMoveBtn');
+    const nextMoveBtn = document.getElementById('nextMoveBtn');
+
+    if (prevMoveBtn) prevMoveBtn.addEventListener('click', () => navigator && navigator.goPrevious());
+    if (nextMoveBtn) nextMoveBtn.addEventListener('click', () => navigator && navigator.goNext());
+
+    // Settings modal listeners
+    document.getElementById('saveSettingsBtn').addEventListener('click', saveSettings);
+    document.querySelector('.close-modal').addEventListener('click', closeSettingsModal);
+    document.getElementById('settingsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeSettingsModal();
+        }
+    });
+
+    // Best Move modal listeners
+    const closeBestMoveBtn = document.querySelector('.close-best-move-modal');
+    if (closeBestMoveBtn) {
+        closeBestMoveBtn.addEventListener('click', closeBestMoveModal);
+    }
+    const bestMoveModal = document.getElementById('bestMoveModal');
+    if (bestMoveModal) {
+        bestMoveModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBestMoveModal();
+            }
+        });
+    }
+
+    // Board theme change listener
+    document.getElementById('boardTheme').addEventListener('change', function() {
+        applyBoardTheme(this.value);
+    });
+}
+
+// Mobile-specific interactions
+function setupMobileInteractions() {
+    // Only run on mobile screens
+    if (window.innerWidth > 768) return;
+
+    // Collapsible Move History
+    const moveHistory = document.querySelector('.move-history');
+    const moveHistoryHeader = moveHistory?.querySelector('h3');
+
+    if (moveHistoryHeader) {
+        moveHistoryHeader.addEventListener('click', function() {
+            moveHistory.classList.toggle('expanded');
+        });
+    }
+
+    // Bottom drawer for Analysis Panel
+    const analysisPanel = document.querySelector('.analysis-panel');
+    const analysisPanelHeader = analysisPanel?.querySelector('h3');
+
+    if (analysisPanelHeader) {
+        analysisPanelHeader.addEventListener('click', function() {
+            analysisPanel.classList.toggle('expanded');
+        });
+    }
+
+    // Close drawer when clicking outside (optional)
+    document.addEventListener('click', function(e) {
+        if (analysisPanel?.classList.contains('expanded')) {
+            if (!analysisPanel.contains(e.target)) {
+                analysisPanel.classList.remove('expanded');
+            }
+        }
+    });
+
+    // Re-check on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            // Remove mobile classes on desktop
+            moveHistory?.classList.remove('expanded');
+            analysisPanel?.classList.remove('expanded');
+        }
+    });
+}
+
+// Bottom Tabs for Mobile
+function setupBottomTabs() {
+    const bottomTabs = document.querySelector('.mobile-bottom-tabs');
+
+    if (!bottomTabs) return;
+
+    // Check if we're on mobile (bottom tabs visible)
+    const isMobile = window.innerWidth <= 767;
+
+    if (isMobile) {
+        // Move move history + commentary into history tab
+        const historyTab = document.getElementById('historyTab');
+        const rightPanel = document.querySelector('.right-panel .analysis-panel');
+
+        // History tab: move history + commentary
+        if (historyTab && rightPanel) {
+            historyTab.appendChild(rightPanel);
+        }
+
+        // Re-attach event listeners after moving elements
+        const toggleCommentaryBtn = document.getElementById('toggleCommentaryBtn');
+        if (toggleCommentaryBtn && !toggleCommentaryBtn.dataset.listenerAttached) {
+            toggleCommentaryBtn.addEventListener('click', toggleCommentary);
+            toggleCommentaryBtn.dataset.listenerAttached = 'true';
+        }
+    }
+
+    // No tab buttons needed anymore - always expanded
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            // Reload page on resize to re-organize layout
+            if ((window.innerWidth <= 767) !== isMobile) {
+                location.reload();
+            }
+        }, 250);
+    });
+}
+
+function toggleCommentary() {
+    const content = document.getElementById('commentaryContent');
+    const toggleBtn = document.getElementById('toggleCommentaryBtn');
+
+    if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+        toggleBtn.textContent = '−';
+    } else {
+        content.classList.add('collapsed');
+        toggleBtn.textContent = '+';
+    }
+}
+
+function showCommentary(commentaryText) {
+    const panel = document.getElementById('commentaryPanel');
+    const textElement = document.getElementById('commentaryText');
+    const content = document.getElementById('commentaryContent');
+
+    textElement.textContent = commentaryText;
+    panel.style.display = 'block';
+
+    // Make sure it's expanded
+    content.classList.remove('collapsed');
+    document.getElementById('toggleCommentaryBtn').textContent = '−';
+}
+
+function openSettingsModal() {
+    document.getElementById('settingsModal').style.display = 'flex';
+}
+
+function closeSettingsModal() {
+    document.getElementById('settingsModal').style.display = 'none';
+}
+
+function saveSettings() {
+    const selectedTheme = document.getElementById('boardTheme').value;
+    localStorage.setItem('boardTheme', selectedTheme);
+    applyBoardTheme(selectedTheme);
+    closeSettingsModal();
+}
+
+async function startNewGame() {
+    const level = parseInt(document.getElementById('aiLevel').value);
+
+    setStatus('Starting new game...', 'info');
+
+    try {
+        const response = await fetch('/api/new-game', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ level: level })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            gameId = data.game_id;
+            gameActive = true;
+            engineType = data.engine_type || 'lichess';
+            game = new Chess();
+            board.position(game.fen());
+            isProcessingMove = false; // Reset lock for new game
+
+            const engineName = engineType === 'stockfish' ? 'Local Stockfish' : 'Lichess AI';
+            setStatus(`Game started! Your turn.`, 'success');
+            updateNavigationStatus();
+
+            document.getElementById('resignBtn').style.display = 'flex';
+
+            // Clear move history
+            moveListEl.innerHTML = '';
+
+            // Start SSE connection only for Lichess games
+            if (engineType === 'lichess') {
+                connectToGameStream();
+            }
+        } else {
+            setStatus('Error: ' + data.error, 'error');
+        }
+    } catch (error) {
+        setStatus('Error starting game: ' + error.message, 'error');
+    }
+}
+
+// Drag and drop functions removed - using click-to-move only
+
+async function makeMove(moveUci, fenBeforeMove) {
+    setStatus('Processing move...', 'info');
+
+    try {
+        const response = await fetch('/api/make-move', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ move: moveUci })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Reset best move button for new position
+            resetBestMoveButton();
+
+            // Evaluate the move automatically
+            if (fenBeforeMove) {
+                evaluatePlayerMove(fenBeforeMove, moveUci);
+            }
+
+            // Handle AI response based on engine type
+            if (engineType === 'stockfish' && data.ai_move) {
+                // Stockfish returns AI move immediately
+                setStatus("Computer is thinking...", 'info');
+
+                // Small delay for better UX
+                setTimeout(() => {
+                    handleAIMove(data.ai_move, data.ai_move_san);
+                    // Unlock after AI responds for Stockfish
+                    isProcessingMove = false;
+                    setStatus('Your turn!', 'success');
+                    updateNavigationStatus();
+                }, 500);
+            } else {
+                // Lichess - SSE will notify us of opponent's response
+                // Don't unlock yet - wait for SSE to deliver AI move
+                setStatus("Waiting for computer...", 'info');
+            }
+        } else {
+            // Revert the move
+            game.undo();
+            board.position(game.fen());
+            movesHistory.pop(); // Remove the optimistic move from history
+            updateMoveHistory(); // Update to remove the reverted move
+            setStatus('Error: ' + data.error, 'error');
+            // Unlock on error
+            isProcessingMove = false;
+            updateNavigationStatus();
+        }
+    } catch (error) {
+        game.undo();
+        board.position(game.fen());
+        movesHistory.pop(); // Remove the optimistic move from history
+        updateMoveHistory(); // Update to remove the reverted move
+        setStatus('Error making move: ' + error.message, 'error');
+        // Unlock on error
+        isProcessingMove = false;
+        updateNavigationStatus();
+    }
+}
+
+function handleAIMove(moveUci, moveSan) {
+    // Apply AI move to the game
+    const move = game.move({ from: moveUci.substring(0, 2), to: moveUci.substring(2, 4) });
+
+    if (move) {
+        board.position(game.fen());
+
+        // Add AI move to history
+        movesHistory.push({
+            san: moveSan || move.san,
+            uci: moveUci,
+            evaluation: null,
+            commentary: null
+        });
+
+        updateMoveHistory();
+
+        // Check for game over
+        if (game.game_over()) {
+            handleGameOver();
+        } else {
+            // Only show "Your turn!" if game is still active
+            setStatus('Your turn!', 'success');
+        }
+    }
+}
+
+function connectToGameStream() {
+    // Close existing connection if any
+    if (eventSource) {
+        eventSource.close();
+    }
+
+    // Create new SSE connection
+    eventSource = new EventSource('/api/game-stream');
+
+    eventSource.onopen = function() {
+        console.log('SSE connection established');
+    };
+
+    eventSource.addEventListener('game_update', function(event) {
+        const data = JSON.parse(event.data);
+        handleGameStateUpdate(data);
+    });
+
+    eventSource.addEventListener('game_end', function(event) {
+        const data = JSON.parse(event.data);
+        handleGameEnd(data.status, data.winner);
+    });
+
+    eventSource.onerror = function(error) {
+        console.error('SSE error:', error);
+
+        // If game is still active and connection failed, try to reconnect after delay
+        if (gameActive && eventSource.readyState === EventSource.CLOSED) {
+            console.log('Connection closed, attempting to reconnect in 3 seconds...');
+            setTimeout(() => {
+                if (gameActive) {
+                    connectToGameStream();
+                }
+            }, 3000);
+        }
+    };
+}
+
+function disconnectFromGameStream() {
+    if (eventSource) {
+        eventSource.close();
+        eventSource = null;
+        console.log('SSE connection closed');
+    }
+}
+
+function handleGameStateUpdate(data) {
+    if (!gameActive) return;
+
+    // Get moves from server
+    const serverMoves = data.moves || [];
+    const currentMoveCount = movesHistory.length;
+
+    // Only apply NEW moves (incremental update - no rebuild!)
+    if (serverMoves.length > currentMoveCount) {
+        const newMoves = serverMoves.slice(currentMoveCount);
+
+        for (let moveUci of newMoves) {
+            try {
+                const move = game.move(moveUci, { sloppy: true });
+                // Add to movesHistory with SAN notation
+                movesHistory.push({
+                    san: move.san,
+                    uci: moveUci,
+                    evaluation: null, // Will be filled by evaluatePlayerMove
+                    commentary: null
+                });
+            } catch (e) {
+                console.error('Failed to apply move:', moveUci, e);
+            }
+        }
+
+        // Update board position (only if not reviewing history)
+        if (!isReviewingHistory) {
+            board.position(game.fen());
+        }
+
+        // Update move history display
+        updateMoveHistory();
+
+        if (data.last_move) {
+            // Reset best move button for new position after opponent move
+            resetBestMoveButton();
+            // Unlock moves after AI responds (for Lichess SSE)
+            isProcessingMove = false;
+
+            // Check if game is still active before showing "Your turn!"
+            if (gameActive && !game.game_over()) {
+                setStatus('Your turn!', 'success');
+            }
+            updateNavigationStatus();
+        }
+    } else if (serverMoves.length < currentMoveCount) {
+        // Server has fewer moves than client - something went wrong, rebuild from server state
+        console.warn('Server state behind client, rebuilding from server');
+        game = new Chess();
+        movesHistory.length = 0;
+
+        for (let moveUci of serverMoves) {
+            try {
+                const move = game.move(moveUci, { sloppy: true });
+                movesHistory.push({
+                    san: move.san,
+                    uci: moveUci,
+                    evaluation: null,
+                    commentary: null
+                });
+            } catch (e) {
+                console.error('Failed to apply move:', moveUci, e);
+            }
+        }
+
+        if (!isReviewingHistory) {
+            board.position(game.fen());
+        }
+        updateMoveHistory();
+        // Unlock after rebuild
+        isProcessingMove = false;
+        updateNavigationStatus();
+    }
+
+    // Check if game is over
+    if (data.status !== 'started') {
+        handleGameEnd(data.status, data.winner);
+    } else if (game.game_over()) {
+        handleGameEnd('finished', null);
+    }
+}
+
+function handleGameEnd(status, winner) {
+    gameActive = false;
+    disconnectFromGameStream();
+
+    let message = '';
+    if (game.in_checkmate()) {
+        message = game.turn() === 'w' ? 'Checkmate! You lost.' : 'Checkmate! You won!';
+    } else if (game.in_draw()) {
+        message = 'Game drawn!';
+    } else if (game.in_stalemate()) {
+        message = 'Stalemate!';
+    } else if (status === 'resign') {
+        message = winner === 'white' ? 'Computer resigned! You won!' : 'You resigned.';
+    } else {
+        message = `Game ended: ${status}`;
+    }
+
+    setStatus(message, 'warning');
+    document.getElementById('resignBtn').style.display = 'none';
+    document.getElementById('newGameBtn').style.display = 'inline-block';
+}
+
+async function resignGame() {
+    if (!confirm('Are you sure you want to resign?')) return;
+
+    try {
+        const response = await fetch('/api/resign', {
+            method: 'POST'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            handleGameEnd('resign', 'black');
+        }
+    } catch (error) {
+        setStatus('Error resigning: ' + error.message, 'error');
+    }
+}
+
+function setStatus(message, type = 'info') {
+    statusEl.textContent = message;
+    statusEl.className = 'status-message ' + type;
+
+    // Also update mobile status text
+    const statusTextMobile = document.getElementById('statusText');
+    if (statusTextMobile) {
+        statusTextMobile.textContent = message;
+    }
+}
+
+function updateMoveHistory(fromNavigator = false) {
+    // Reinitialize navigator if movesHistory changed
+    if (movesHistory.length > 0 && !navigator) {
+        initializeNavigator();
+        return; // Navigator initialization handles the display
+    }
+
+    // If called from navigator callback, just re-render
+    if (fromNavigator && navigator) {
+        const currentIndex = navigator.getCurrentIndex();
+        renderCurrentMoveOnly(movesHistory, moveListEl, currentIndex, (index) => navigator.goToMove(index));
+        return;
+    }
+
+    // Update navigator to show latest move if not reviewing history
+    if (navigator && !isReviewingHistory && movesHistory.length > 0) {
+        const latestMoveIndex = movesHistory.length - 1;
+        if (navigator.getCurrentIndex() !== latestMoveIndex) {
+            // Use goToMove instead of updateCurrentIndex to trigger callbacks
+            navigator.goToMove(latestMoveIndex);
+        }
+    } else if (navigator) {
+        // Just re-render the current position if reviewing history
+        const currentIndex = navigator.getCurrentIndex();
+        renderCurrentMoveOnly(movesHistory, moveListEl, currentIndex, (index) => navigator.goToMove(index));
+    }
+}
+
+function initializeNavigator() {
+    navigator = createMoveNavigator({
+        board: board,
+        game: game,
+        moves: movesHistory,
+        onMoveChange: (moveIndex, _fen, moveData) => {
+            isReviewingHistory = !navigator.isAtEnd();
+
+            // Only update commentary panel when reviewing history or when there's data
+            if (isReviewingHistory) {
+                // When reviewing history, show evaluation if available for that move
+                if (moveData && (moveData.commentary || moveData.evaluation)) {
+                    displayPlayCommentary(moveData);
+                } else {
+                    hidePlayCommentary();
+                }
+            } else {
+                // When at current position, find and display the most recent player move evaluation
+                const lastPlayerMoveIndex = findLastPlayerMoveWithEvaluation();
+                if (lastPlayerMoveIndex !== -1 && movesHistory[lastPlayerMoveIndex]) {
+                    displayPlayCommentary(movesHistory[lastPlayerMoveIndex]);
+                } else if (moveData && (moveData.commentary || moveData.evaluation)) {
+                    displayPlayCommentary(moveData);
+                }
+            }
+
+            // Update status
+            updateNavigationStatus();
+        },
+        onHistoryUpdate: () => {
+            updateMoveHistory(true); // Pass true to indicate this is from navigator
+        }
+    });
+
+    // Setup keyboard shortcuts
+    setupNavigationKeyboard(navigator, () => gameActive);
+
+    // Set initial position to last move
+    if (movesHistory.length > 0) {
+        navigator.goToMove(movesHistory.length - 1);
+    }
+}
+
+// Helper function to find the last player (White) move with evaluation
+function findLastPlayerMoveWithEvaluation() {
+    // Iterate backwards to find the most recent White move (even indices) with evaluation
+    for (let i = movesHistory.length - 1; i >= 0; i--) {
+        const move = movesHistory[i];
+        // White moves are at even indices (0, 2, 4, etc.)
+        if (i % 2 === 0 && move && move.evaluation) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+async function checkForActiveGame() {
+    // Check if there's a resumed game in the session
+    try {
+        const response = await fetch('/api/game-state');
+        const data = await response.json();
+
+        if (data.success) {
+            // There's an active game, load it from moves
+            gameActive = true;
+            engineType = data.engine_type || 'lichess';
+
+            // Rebuild game from move history
+            game = new Chess();
+            const moves = data.moves || [];
+            const moveAnalysis = data.move_analysis || [];
+
+            // Create a map of move_uci to analysis data for quick lookup
+            const analysisMap = new Map();
+            moveAnalysis.forEach(analysis => {
+                analysisMap.set(analysis.move_uci, analysis);
+            });
+
+            // Build movesHistory with moves and their analysis
+            movesHistory = [];
+            for (let moveData of moves) {
+                try {
+                    // Handle both formats: string (UCI) or object {san, uci}
+                    let moveUci, moveSan;
+                    if (typeof moveData === 'string') {
+                        moveUci = moveData;
+                        const move = game.move(moveUci, { sloppy: true });
+                        moveSan = move.san;
+                    } else {
+                        moveUci = moveData.uci;
+                        moveSan = moveData.san;
+                        game.move(moveUci, { sloppy: true });
+                    }
+
+                    const analysis = analysisMap.get(moveUci);
+
+                    // Add to movesHistory with SAN notation and analysis if available
+                    movesHistory.push({
+                        san: moveSan,
+                        uci: moveUci,
+                        evaluation: analysis?.evaluation || null,
+                        commentary: analysis?.commentary || null
+                    });
+                } catch (e) {
+                    console.error('Failed to apply move:', moveData, e);
+                }
+            }
+
+            board.position(game.fen());
+            updateMoveHistory();
+
+            if (data.status === 'started') {
+                // Check if it's player's turn (White)
+                if (game.turn() === 'w') {
+                    setStatus('Game resumed! Your turn.', 'success');
+                } else {
+                    setStatus('Game resumed! Waiting for computer...', 'info');
+                }
+                document.getElementById('resignBtn').style.display = 'flex';
+
+                // Only connect to SSE for Lichess games
+                if (engineType === 'lichess') {
+                    connectToGameStream();
+                }
+            } else {
+                setStatus(`Game finished: ${data.status}`, 'warning');
+                document.getElementById('newGameBtn').style.display = 'inline-block';
+            }
+        }
+    } catch (error) {
+        // No active game, that's fine
+        console.log('No active game to resume');
+    }
+}
+
+// Board theme functions moved to chess-utils.js
+// Use: loadBoardTheme('boardTheme') and applyBoardTheme(theme)
+
+async function getBestMove() {
+    const btn = document.getElementById('getBestMoveBtn');
+    const isMobile = window.innerWidth <= 768;
+
+    // Check if reviewing history
+    if (isReviewingHistory) {
+        const messageHtml = '<div style="text-align: center; padding: 20px; color: #666;">No historical best move available. Navigate to current position to see best move.</div>';
+        if (isMobile) {
+            openBestMoveModal();
+            document.getElementById('bestMoveModalContent').innerHTML = messageHtml;
+        } else {
+            const panel = document.getElementById('bestMovePanel');
+            const resultEl = document.getElementById('bestMoveResult');
+            panel.style.display = 'block';
+            resultEl.innerHTML = messageHtml;
+        }
+        return;
+    }
+
+    // If we have cached result for current position, redisplay it
+    if (cachedBestMove) {
+        if (isMobile) {
+            openBestMoveModal();
+            displayBestMoveResult(cachedBestMove, isMobile);
+        } else {
+            const panel = document.getElementById('bestMovePanel');
+            panel.style.display = 'block';
+            displayBestMoveResult(cachedBestMove, isMobile);
+        }
+        return;
+    }
+
+    // Show loading indicator
+    btn.disabled = true;
+
+    // Open modal on mobile, show panel on desktop
+    if (isMobile) {
+        openBestMoveModal();
+        const modalContent = document.getElementById('bestMoveModalContent');
+        modalContent.innerHTML = '<div style="text-align: center; padding: 20px;">Loading...</div>';
+    } else {
+        const panel = document.getElementById('bestMovePanel');
+        const resultEl = document.getElementById('bestMoveResult');
+        panel.style.display = 'block';
+        resultEl.innerHTML = '<div style="text-align: center; padding: 20px;">Loading...</div>';
+    }
+
+    try {
+        // Get current move number for context
+        const moveHistory = game.history();
+        const moveNumber = Math.floor(moveHistory.length / 2) + 1;
+
+        const response = await fetch('/api/analyze-best-move', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fen: game.fen(),
+                context: {
+                    move_number: moveNumber
+                }
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            cachedBestMove = data; // Cache the result
+            displayBestMoveResult(data, isMobile);
+            btn.disabled = false; // Re-enable button so user can reopen modal
+        } else {
+            const errorHtml = `<div class="error">Error: ${data.error || 'No analysis available.'}</div>`;
+            if (isMobile) {
+                document.getElementById('bestMoveModalContent').innerHTML = errorHtml;
+            } else {
+                document.getElementById('bestMoveResult').innerHTML = errorHtml;
+            }
+            btn.disabled = false; // Re-enable on error
+        }
+    } catch (error) {
+        const errorHtml = `<div class="error">Error: ${error.message}</div>`;
+        if (isMobile) {
+            document.getElementById('bestMoveModalContent').innerHTML = errorHtml;
+        } else {
+            document.getElementById('bestMoveResult').innerHTML = errorHtml;
+        }
+        btn.disabled = false; // Re-enable on error
+    }
+}
+
+function displayBestMoveResult(data, isMobile) {
+    let html = `<div class="move-display">${data.best_move}</div>`;
+    html += `<div class="eval-display">${data.evaluation_text}</div>`;
+
+    if (data.pv_line && data.pv_line.length > 1) {
+        html += `<div class="pv-line"><div class="pv-label">Best continuation</div>${data.pv_line.join(' ')}</div>`;
+    }
+
+    if (data.commentary) {
+        html += `<div class="commentary">${data.commentary}</div>`;
+    }
+
+    if (isMobile) {
+        document.getElementById('bestMoveModalContent').innerHTML = html;
+    } else {
+        document.getElementById('bestMoveResult').innerHTML = html;
+    }
+}
+
+// Re-enable best move button when a move is made
+function resetBestMoveButton() {
+    const btn = document.getElementById('getBestMoveBtn');
+    const panel = document.getElementById('bestMovePanel');
+    const resultEl = document.getElementById('bestMoveResult');
+
+    if (btn) {
+        btn.disabled = false;
+    }
+    if (panel) {
+        panel.style.display = 'none';
+    }
+    if (resultEl) {
+        resultEl.innerHTML = '';
+    }
+
+    // Clear cached best move
+    cachedBestMove = null;
+
+    // Close mobile modal if open
+    closeBestMoveModal();
+}
+
+// Best Move Modal functions
+function openBestMoveModal() {
+    const modal = document.getElementById('bestMoveModal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeBestMoveModal() {
+    const modal = document.getElementById('bestMoveModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function displayAnalysis(analysis) {
+    const analysisEl = document.getElementById('analysis');
+    analysisEl.innerHTML = '';
+
+    if (!analysis || !analysis.pvs || analysis.pvs.length === 0) {
+        analysisEl.innerHTML = '<div class="analysis-item">No analysis available for this position.</div>';
+        return;
+    }
+
+    // Display each principal variation
+    analysis.pvs.forEach((pv, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'analysis-item';
+
+        // Format evaluation
+        let evalText = '';
+        let evalClass = 'evaluation-neutral';
+
+        if (pv.cp !== undefined && pv.cp !== null) {
+            // Centipawn evaluation
+            const evalScore = (pv.cp / 100).toFixed(2);
+            if (pv.cp > 0) {
+                evalText = `+${evalScore}`;
+                evalClass = 'evaluation-positive';
+            } else if (pv.cp < 0) {
+                evalText = evalScore;
+                evalClass = 'evaluation-negative';
+            } else {
+                evalText = '0.00';
+            }
+        } else if (pv.mate !== undefined && pv.mate !== null) {
+            // Mate in X moves
+            evalText = `Mate in ${Math.abs(pv.mate)}`;
+            evalClass = pv.mate > 0 ? 'evaluation-positive' : 'evaluation-negative';
+        }
+
+        // Use SAN moves from the engine response
+        const movesSan = pv.san_moves || [];
+        const firstMove = movesSan[0] || (pv.moves && pv.moves[0]) || 'N/A';
+
+        itemDiv.innerHTML = `
+            <div class="analysis-evaluation ${evalClass}">${index === 0 ? 'Best: ' : `#${index + 1}: `}${evalText}</div>
+            <div class="analysis-best-move">${firstMove}</div>
+            <div class="analysis-pv">Line: ${movesSan.slice(0, 5).join(' ')}</div>
+        `;
+
+        analysisEl.appendChild(itemDiv);
+    });
+
+    // Add depth and node info if available
+    if (analysis.depth) {
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'analysis-item';
+        infoDiv.style.fontSize = '12px';
+        infoDiv.style.color = '#999';
+
+        let infoText = `Depth: ${analysis.depth}`;
+
+        // Add node count if available from first PV
+        if (analysis.pvs[0] && analysis.pvs[0].nodes) {
+            const nodes = analysis.pvs[0].nodes;
+            const nodesFormatted = nodes > 1000000
+                ? `${(nodes / 1000000).toFixed(1)}M`
+                : `${(nodes / 1000).toFixed(0)}k`;
+            infoText += ` | Nodes: ${nodesFormatted}`;
+        }
+
+        infoDiv.innerHTML = infoText;
+        analysisEl.appendChild(infoDiv);
+    }
+}
+
+function displayBestMoveAnalysis(data) {
+    const analysisEl = document.getElementById('analysis');
+    analysisEl.innerHTML = '';
+
+    // Best move section
+    const bestMoveDiv = document.createElement('div');
+    bestMoveDiv.className = 'analysis-item';
+
+    // Determine evaluation class
+    let evalClass = 'evaluation-neutral';
+    if (data.evaluation > 0.5) {
+        evalClass = 'evaluation-positive';
+    } else if (data.evaluation < -0.5) {
+        evalClass = 'evaluation-negative';
+    }
+
+    bestMoveDiv.innerHTML = `
+        <div class="analysis-evaluation ${evalClass}">Best: ${data.evaluation_text}</div>
+        <div class="analysis-best-move">${data.best_move}</div>
+        ${data.pv_line && data.pv_line.length > 1 ? `<div class="analysis-pv">Line: ${data.pv_line.join(' ')}</div>` : ''}
+    `;
+    analysisEl.appendChild(bestMoveDiv);
+
+    // Commentary section
+    if (data.commentary) {
+        const commentaryDiv = document.createElement('div');
+        commentaryDiv.className = 'analysis-item';
+        commentaryDiv.style.marginTop = '15px';
+        commentaryDiv.style.borderLeft = '3px solid #2d7a2d';
+
+        commentaryDiv.innerHTML = `
+            <div style="font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #666; margin-bottom: 10px;">
+                Why This Move?
+            </div>
+            <div style="font-family: 'Helvetica Neue', sans-serif; font-size: 13px; line-height: 1.6; color: #1a1a1a;">
+                ${data.commentary}
+            </div>
+        `;
+        analysisEl.appendChild(commentaryDiv);
+    }
+
+    // Depth info
+    if (data.depth) {
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'analysis-item';
+        infoDiv.style.fontSize = '12px';
+        infoDiv.style.color = '#999';
+        infoDiv.innerHTML = `Depth: ${data.depth}`;
+        analysisEl.appendChild(infoDiv);
+    }
+}
+
+function convertUciToSan(uciMoves) {
+    // Create a temporary game to convert UCI to SAN
+    const tempGame = new Chess(game.fen());
+    const sanMoves = [];
+
+    for (let uci of uciMoves) {
+        try {
+            const move = tempGame.move(uci, { sloppy: true });
+            if (move) {
+                sanMoves.push(move.san);
+            } else {
+                sanMoves.push(uci);
+            }
+        } catch (e) {
+            sanMoves.push(uci);
+        }
+    }
+
+    return sanMoves;
+}
+
+async function evaluatePlayerMove(fenBeforeMove, moveUci) {
+    try {
+        // Step 1: Get Stockfish evaluation (fast)
+        const response = await fetch('/api/evaluate-move', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fen: fenBeforeMove,
+                move: moveUci
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            const evaluation = data.evaluation;
+
+            // Update the last move in history with evaluation
+            if (movesHistory.length > 0) {
+                const lastIndex = movesHistory.length - 1;
+                movesHistory[lastIndex] = {
+                    ...movesHistory[lastIndex],
+                    san: evaluation.move_san,
+                    uci: moveUci,
+                    evaluation: evaluation
+                };
+
+                // Display evaluation immediately in right panel
+                displayPlayCommentary(movesHistory[lastIndex]);
+            }
+
+            // Step 2: Request AI commentary (async)
+            try {
+                /* disabled AI commentary for now
+                const aiResponse = await fetch('/api/evaluate-move-ai', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fen: fenBeforeMove,
+                        move_san: evaluation.move_san || data.move_san,
+                        move_uci: moveUci,
+                        evaluation_data: evaluation
+                    })
+                });
+
+                const aiData = await aiResponse.json();
+
+                // Update with commentary when it arrives
+                if (movesHistory.length > 0) {
+                    const lastIndex = movesHistory.length - 1;
+                    movesHistory[lastIndex] = {
+                        ...movesHistory[lastIndex],
+                        commentary: aiData.success ? aiData.commentary : null
+                    };
+
+                    // Refresh display with commentary
+                    displayPlayCommentary(movesHistory[lastIndex]);
+                }
+                */
+
+            } catch (aiError) {
+                console.error('Error getting AI commentary:', aiError);
+            }
+        }
+    } catch (error) {
+        console.error('Error evaluating move:', error);
+    }
+}
+
+
+// Commentary and Navigation Helper Functions
+function displayPlayCommentary(moveData) {
+    const panel = document.getElementById('playCommentaryPanel');
+    const commentaryText = document.getElementById('playCommentaryText');
+    const evaluationText = document.getElementById('playEvaluationText');
+
+    if (!moveData) {
+        hidePlayCommentary();
+        return;
+    }
+
+    // Display commentary
+    if (moveData.commentary) {
+        commentaryText.textContent = moveData.commentary;
+    }
+
+    // Display evaluation using shared utility
+    if (moveData.evaluation) {
+        renderMoveEvaluation(moveData.evaluation, evaluationText, { showPosition: true });
+    }
+
+    panel.style.display = 'block';
+}
+
+function hidePlayCommentary() {
+    const panel = document.getElementById('playCommentaryPanel');
+    if (panel) panel.style.display = 'none';
+}
+
+function updateNavigationStatus() {
+    const statusText = document.getElementById('statusText');
+    if (isReviewingHistory && navigator) {
+        const currentIndex = navigator.getCurrentIndex();
+        const moveNum = Math.floor(currentIndex / 2) + 1;
+        const color = currentIndex % 2 === 0 ? 'White' : 'Black';
+        statusText.textContent = `Analysing - Paused`;
+    } else {
+        // Restore normal game status based on move lock and game state
+        if (!gameActive) {
+            statusText.textContent = 'Ready to start a new game';
+        } else if (isProcessingMove) {
+            statusText.textContent = 'Processing...';
+        } else if (game.turn() === 'w') {
+            statusText.textContent = 'Your turn - Play as White';
+        } else {
+            statusText.textContent = 'Waiting for computer...';
+        }
+    }
+}

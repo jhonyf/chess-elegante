@@ -1,0 +1,601 @@
+{% extends "base.html" %}
+
+{% block title %}Endgames - How Games Are Won{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <div class="learn-header">
+        <h1>Endgames</h1>
+        <p class="subtitle">How Games Are Won</p>
+        <p class="intro">
+            The endgame is where chess knowledge truly pays dividends. In the opening and middlegame, creativity
+            and calculation can compensate for gaps in understanding—but in the endgame, technique reigns supreme.
+            Master the art of converting advantages into victories, learn how to salvage draws from difficult positions,
+            and discover why studying endgames is the fastest path to chess improvement. As Capablanca advised:
+            "In order to improve your game, you must study the endgame before everything else."
+        </p>
+    </div>
+
+    <!-- Section A: Basic Checkmates -->
+    <section class="learn-section" id="basic-checkmates">
+        <div class="section-header">
+            <h2>A. Basic Checkmates</h2>
+            <p class="section-subtitle">The Foundation</p>
+        </div>
+        <p class="section-intro">
+            Every chess player must know how to deliver checkmate with basic material advantages—these positions
+            occur constantly in practical play, and failing to convert them is embarrassing at best, game-losing at worst.
+            These fundamental techniques separate complete beginners from competent players, and mastering them
+            builds the coordination skills that serve you throughout the entire game.
+        </p>
+            <!-- Lesson 1: Queen and King vs King -->
+            <article class="lesson-card" data-searchable="queen king checkmate basic endgame mate Q+K queening ladder">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Queen and King vs King</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The most fundamental checkmate pattern, and one you'll encounter after virtually every
+                            successful pawn promotion. The queen is the most powerful piece on the board, making
+                            this mate relatively straightforward—but it still requires technique to avoid the
+                            embarrassing stalemate trap that catches many beginners.
+                        </p>
+                        <p>
+                            The winning technique involves coordinating your king and queen to systematically restrict
+                            the enemy king's squares. Use the queen to cut off escape routes while your king advances
+                            to support the mating operation. The "stepping stone" method works beautifully: the queen
+                            checks, forcing the king backward, while your king advances one square closer to the action.
+                            Repeat until the enemy king is cornered on the edge.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> Never stalemate! Always verify the enemy king has at least
+                            one legal move before delivering what you think is checkmate. A quick visual check can
+                            save you from turning a won game into an embarrassing draw.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="queen-king-mate">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-queen-king-mate">
+                    <div class="board-container">
+                        <div id="board-queen-king-mate" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-queen-king-mate">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="queen-king-mate" title="First move">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="queen-king-mate" title="Previous move">◀</button>
+                            <button class="control-btn" data-action="next" data-board="queen-king-mate" title="Next move">▶</button>
+                            <button class="control-btn" data-action="last" data-board="queen-king-mate" title="Last move">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>Watch how White systematically pushes the black king to the edge. The queen checks, the king advances, and the enemy king is forced backward. Notice how White avoids stalemate by always giving Black a move.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 2: Rook and King vs King -->
+            <article class="lesson-card" data-searchable="rook king checkmate basic endgame mate R+K rook mate cutting off ladder">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Rook and King vs King</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The second most important basic checkmate. While the rook is less powerful than the queen, it can still deliver mate—but requires more precision. The key is coordination between king and rook.
+                        </p>
+                        <p>
+                            The winning method uses the "box" or "ladder" technique. The rook cuts off the enemy king on a rank or file, while your king advances to support. Gradually shrink the box until the enemy king is on the edge, then deliver checkmate with the rook protected by your king.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The rook cuts off files/ranks from a distance, while the king must come close to deliver the final blow. Opposition is critical—get your king directly opposite the enemy king with one square between them.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="rook-king-mate">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-rook-king-mate">
+                    <div class="board-container">
+                        <div id="board-rook-king-mate" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-rook-king-mate">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="rook-king-mate">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="rook-king-mate">◀</button>
+                            <button class="control-btn" data-action="next" data-board="rook-king-mate">▶</button>
+                            <button class="control-btn" data-action="last" data-board="rook-king-mate">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>The rook restricts the black king to fewer and fewer squares while White's king advances. Notice the "opposition"—White's king faces Black's with one square between them. The final position shows the rook delivering mate, protected by the king.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 3: Two Rooks vs King -->
+            <article class="lesson-card" data-searchable="two rooks checkmate basic endgame mate 2R ladder rolling mate">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Two Rooks vs King</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The easiest checkmate of all—two rooks can deliver mate without any help from the king. This is the famous "rolling mate" or "ladder mate" where the rooks work together to push the enemy king to the edge.
+                        </p>
+                        <p>
+                            The technique is beautifully simple: one rook gives check, forcing the king to move. Then the other rook leapfrogs ahead to give the next check. Repeat this process, and the king is driven inexorably to the edge of the board where it's checkmated.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The two rooks don't need the king's help at all. They form a "ladder" that climbs up the board, checking alternately until mate is delivered. This pattern appears frequently when promoting pawns to rooks.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="two-rooks-mate">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-two-rooks-mate">
+                    <div class="board-container">
+                        <div id="board-two-rooks-mate" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-two-rooks-mate">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="two-rooks-mate">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="two-rooks-mate">◀</button>
+                            <button class="control-btn" data-action="next" data-board="two-rooks-mate">▶</button>
+                            <button class="control-btn" data-action="last" data-board="two-rooks-mate">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>Watch the elegant dance of the two rooks. They alternate giving check, each time cutting off another rank. The black king has no choice but to retreat. This mechanical process guarantees mate in a few moves.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 4: Two Bishops vs King -->
+            <article class="lesson-card" data-searchable="two bishops checkmate basic endgame mate 2B bishop pair corner mate">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Two Bishops vs King</h3>
+                    <div class="lesson-text">
+                        <p>
+                            A more sophisticated checkmate requiring careful coordination. Two bishops on opposite colors control all squares, but they need the king's help to deliver mate in the corner. This is the hardest of the basic mates.
+                        </p>
+                        <p>
+                            The winning plan involves using the bishops to restrict the enemy king's mobility, while your king drives it toward a corner. The bishops create a shrinking barrier, and eventually the enemy king is trapped in the corner and mated.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The two bishops must work on different colored squares—one controls light squares, one controls dark squares. Together they form an impenetrable wall. Drive the king to the corner where your king and bishops combine for checkmate.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="two-bishops-mate">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-two-bishops-mate">
+                    <div class="board-container">
+                        <div id="board-two-bishops-mate" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-two-bishops-mate">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="two-bishops-mate">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="two-bishops-mate">◀</button>
+                            <button class="control-btn" data-action="next" data-board="two-bishops-mate">▶</button>
+                            <button class="control-btn" data-action="last" data-board="two-bishops-mate">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>Notice how the bishops create a diagonal barrier that the black king cannot cross. White's king shepherds the enemy king toward the corner. The final position shows all three pieces cooperating to deliver checkmate.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 5: Bishop and Knight vs King -->
+            <article class="lesson-card" data-searchable="bishop knight checkmate basic endgame mate B+N corner mate complex difficult">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Bishop and Knight vs King</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The most difficult of the basic checkmates, requiring precision and knowledge of the pattern. This mate can only be forced in a corner matching the bishop's color—if you have a light-squared bishop, mate must happen in a light-squared corner (a1 or h8).
+                        </p>
+                        <p>
+                            The technique involves three phases: (1) Drive the king to the edge, (2) Force the king to the correct corner, (3) Deliver the W-maneuver checkmate. The knight and bishop must coordinate perfectly with the king's support.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> This is the only basic mate where the corner matters! You must drive the king to a corner matching your bishop's color. The knight delivers the final checkmate, but all three pieces must work together in a precise sequence.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="bishop-knight-mate">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-bishop-knight-mate">
+                    <div class="board-container">
+                        <div id="board-bishop-knight-mate" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-bishop-knight-mate">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="bishop-knight-mate">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="bishop-knight-mate">◀</button>
+                            <button class="control-btn" data-action="next" data-board="bishop-knight-mate">▶</button>
+                            <button class="control-btn" data-action="last" data-board="bishop-knight-mate">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>This complex sequence shows the final phase—driving the king into the corner and delivering the "W" pattern checkmate. The bishop controls escape squares, the king supports, and the knight delivers the final blow. Study this pattern carefully!</p>
+                    </div>
+                </div>
+            </article>
+
+    <!-- Section B: King & Pawn Endgames -->
+    <section class="learn-section" id="king-pawn">
+        <div class="section-header">
+            <h2>B. King & Pawn Endgames</h2>
+            <p class="section-subtitle">Essential Technique</p>
+        </div>
+        <p class="section-intro">
+            King and pawn endgames are the foundation upon which all endgame knowledge is built. These deceptively
+            simple positions—just kings and pawns on the board—require precise calculation and deep understanding
+            of fundamental concepts. A single tempo can make the difference between winning and drawing, and
+            understanding opposition, the square rule, and key squares is absolutely essential. As the saying goes:
+            "All rook endgames are drawn, all pawn endgames are lost"—meaning the slightest advantage often decides.
+        </p>
+            <!-- Lesson 1: Opposition -->
+            <article class="lesson-card" data-searchable="opposition king pawn endgame direct distant diagonal key square zugzwang">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Opposition</h3>
+                    <div class="lesson-text">
+                        <p>
+                            Opposition is the single most important concept in king and pawn endgames. When two kings face each other with one square between them, the player who just moved has the opposition—and this is usually a decisive advantage.
+                        </p>
+                        <p>
+                            Having the opposition means your opponent must give way. In king and pawn endings, this often determines whether a pawn promotes or whether the defender can hold a draw. The side with the opposition can control where the kings go.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> "Opposition" means the kings face each other with an odd number of squares between them (1, 3, or 5). The player who didn't just move "has the opposition" and forces the opponent to give ground. Master this and you master K+P endgames.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="opposition">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-opposition">
+                    <div class="board-container">
+                        <div id="board-opposition" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-opposition">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="opposition">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="opposition">◀</button>
+                            <button class="control-btn" data-action="next" data-board="opposition">▶</button>
+                            <button class="control-btn" data-action="last" data-board="opposition">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>Watch how White uses the opposition to support the pawn's advance. When White takes the opposition, Black must give way, allowing White's king to penetrate. This is the fundamental winning technique in K+P vs K endgames.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 2: The Square Rule -->
+            <article class="lesson-card" data-searchable="square rule king pawn endgame race passed pawn catching geometry">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">The Square Rule</h3>
+                    <div class="lesson-text">
+                        <p>
+                            When a passed pawn races toward promotion and the enemy king tries to catch it, how do you know who wins? The square rule provides an instant answer without calculating every move.
+                        </p>
+                        <p>
+                            Draw an imaginary square from the pawn to the promotion square (same number of squares on each side). If the defending king can step into this square on their turn, they catch the pawn and draw. If not, the pawn promotes and wins.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The "square" is your friend. From the pawn's current position, count squares to the queening square. That many squares out to the side forms a square. If the defending king is inside or can step inside, they catch the pawn. Outside? The pawn promotes.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="square-rule">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-square-rule">
+                    <div class="board-container">
+                        <div id="board-square-rule" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-square-rule">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="square-rule">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="square-rule">◀</button>
+                            <button class="control-btn" data-action="next" data-board="square-rule">▶</button>
+                            <button class="control-btn" data-action="last" data-board="square-rule">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>The h-pawn is on h4. Count 4 squares to h8 (the queening square). Form a square: h4-h8-d8-d4. If Black's king on e6 can enter this square (it can!), Black catches the pawn. Watch the race unfold.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 3: Triangulation -->
+            <article class="lesson-card" data-searchable="triangulation king pawn endgame zugzwang tempo losing a move maneuvering">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Triangulation</h3>
+                    <div class="lesson-text">
+                        <p>
+                            Sometimes you need to "lose a move"—to put your opponent in the same position but with them to move instead of you. This is zugzwang (being in a position where any move worsens your situation). Triangulation is the technique to achieve this.
+                        </p>
+                        <p>
+                            The triangulation maneuver involves your king making a triangular path (three moves forming a triangle) to return to the same position, but with the opponent to move. Your opponent's king, unable to copy your triangle, must give ground.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> Triangulation lets you "pass the move" to your opponent. When the same position arises with reversed turns, your opponent is in zugzwang—any move loses. This is a winning technique when direct opposition fails.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="triangulation">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-triangulation">
+                    <div class="board-container">
+                        <div id="board-triangulation" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-triangulation">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="triangulation">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="triangulation">◀</button>
+                            <button class="control-btn" data-action="next" data-board="triangulation">▶</button>
+                            <button class="control-btn" data-action="last" data-board="triangulation">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>White's king makes a triangle: Ke2-Kd2-Kd3-Ke3. Black's king cannot mirror this triangle while maintaining the defensive position. When the same position appears with Black to move, Black is in zugzwang and must allow White's king to penetrate.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 4: Outside Passed Pawn -->
+            <article class="lesson-card" data-searchable="outside passed pawn king endgame decoy distraction race breakthrough">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Outside Passed Pawn</h3>
+                    <div class="lesson-text">
+                        <p>
+                            In king and pawn endgames with pawns on both sides, an outside passed pawn (far from other pawns) is often a decisive advantage. The passed pawn acts as a decoy, pulling the enemy king away from defending other pawns.
+                        </p>
+                        <p>
+                            The winning technique: push the outside passed pawn, forcing the enemy king to capture it. While the enemy king is far away dealing with this pawn, your king captures the opponent's remaining pawns on the other side. You then promote your own pawns unopposed.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The outside passed pawn is a "magnet" that draws the defending king away. This creates a race: can the defender stop the outside pawn and get back in time? Usually not. The attacking king wins the pawns on the other wing and promotes.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="outside-passed">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-outside-passed">
+                    <div class="board-container">
+                        <div id="board-outside-passed" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-outside-passed">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="outside-passed">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="outside-passed">◀</button>
+                            <button class="control-btn" data-action="next" data-board="outside-passed">▶</button>
+                            <button class="control-btn" data-action="last" data-board="outside-passed">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>White's a-pawn is an outside passed pawn. Watch how White pushes it, forcing Black's king to deal with it. While Black's king is on the queenside, White's king captures Black's kingside pawns. Black cannot defend both sides simultaneously.</p>
+                    </div>
+                </div>
+            </article>
+
+    <!-- Section C: Rook Endgames -->
+    <section class="learn-section" id="rook-endgames">
+        <div class="section-header">
+            <h2>C. Rook Endgames</h2>
+            <p class="section-subtitle">Most Common Endings</p>
+        </div>
+        <p class="section-intro">
+            Rook endgames are by far the most common endgame type in practical chess—some estimates suggest they
+            occur in over half of all games that reach an endgame. Master players dedicate enormous study time to
+            these positions because the margin between winning, drawing, and losing is razor-thin. Understanding
+            key theoretical positions like Lucena (the winning setup) and Philidor (the drawing technique) is
+            absolutely essential. Learn these positions cold, and you'll save countless half-points over your career.
+        </p>
+            <!-- Lesson 1: Lucena Position -->
+            <article class="lesson-card" data-searchable="lucena position rook endgame winning technique bridge building shelter promotion R+P">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Lucena Position</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The Lucena position is the single most important winning position in all of rook endgame theory.
+                            The setup: you have a pawn on the 7th rank, your king standing in front of it on the 8th rank,
+                            and your rook ready to help. The defender has a rook but—crucially—cannot prevent promotion
+                            if you know the correct technique.
+                        </p>
+                        <p>
+                            The winning method is elegantly called "building a bridge." Your rook moves to the 4th rank
+                            on the opposite side from the defending king, preparing to interpose against back-rank checks.
+                            When the enemy rook delivers checks, your own rook provides shelter on the 4th rank, allowing
+                            your king to escape the checking distance. Once your king is safe, the pawn promotes unmolested.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The "bridge" forms when your rook interposes on the 4th rank,
+                            blocking enemy checks and allowing your king to walk out. The sequence: Re4 (build the bridge),
+                            wait for checks, Kf7, more checks, Ke6, more checks, Kf6, check, Re5! (blocks the check), and
+                            the pawn promotes. This is a must-know position—practice it until it's automatic.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="lucena">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-lucena">
+                    <div class="board-container">
+                        <div id="board-lucena" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-lucena">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="lucena">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="lucena">◀</button>
+                            <button class="control-btn" data-action="next" data-board="lucena">▶</button>
+                            <button class="control-btn" data-action="last" data-board="lucena">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>White plays Re4! (the bridge). When Black checks from a1, White blocks with Re1. The king escapes via f7, and the e-pawn promotes. This is the fundamental winning technique every chess player must know.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 2: Philidor Position -->
+            <article class="lesson-card" data-searchable="philidor position rook endgame defensive drawing technique passive rook 6th rank R+P">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Philidor Position</h3>
+                    <div class="lesson-text">
+                        <p>
+                            The Philidor position is the defensive counterpart to Lucena—the most important drawing
+                            technique in rook endgames. Despite being down a pawn, the defender can hold a fortress
+                            draw with correct technique. Named after the great 18th-century master François-André
+                            Danican Philidor, this position has saved countless games at all levels.
+                        </p>
+                        <p>
+                            The defensive method involves two key ideas working in sequence: First, keep your rook
+                            on the 6th rank (or 3rd rank when defending as Black), creating a barrier that prevents
+                            the enemy king from advancing to support the pawn. Second, when the pawn advances to
+                            the 6th rank, immediately switch to checking from behind the pawn. The attacker's king
+                            has nowhere to hide from the relentless checks—the pawn itself blocks protection.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> The defending rook must remain active—stationed on the 6th
+                            rank to cut off the king, then switching to checking from behind when the pawn advances.
+                            Never let your rook become passive on the back rank until absolutely forced. This
+                            defensive technique holds the draw even against perfect play from your opponent.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="philidor">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-philidor">
+                    <div class="board-container">
+                        <div id="board-philidor" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-philidor">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="philidor">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="philidor">◀</button>
+                            <button class="control-btn" data-action="next" data-board="philidor">▶</button>
+                            <button class="control-btn" data-action="last" data-board="philidor">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>Black's rook stays on the 6th rank (Ra6), preventing White's king from advancing. When White plays e6, Black switches to Rc1, checking from behind. White cannot escape these checks—it's a draw despite the extra pawn.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 3: Back Rank Defense -->
+            <article class="lesson-card" data-searchable="back rank defense rook endgame drawing technique passive rook checking distance skewer">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Back Rank Defense</h3>
+                    <div class="lesson-text">
+                        <p>
+                            When defending a rook endgame down a pawn, the most passive but often necessary defensive setup is the back rank defense. Your rook sits on the back rank, your king in front of the pawn, hoping to achieve a fortress or catch the attacker in a skewer.
+                        </p>
+                        <p>
+                            This defense often leads to a draw if the attacking pawn is a rook pawn (a-pawn or h-pawn) or if the defender's king can reach certain defensive squares. The idea is that when the pawn advances, checking from behind forces the enemy king to block the pawn, stalemating the defender or allowing the rook to be taken with check.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> With a rook pawn, the back rank defense usually draws—the attacking king has no shelter from checks. With center pawns, this defense is weaker (Philidor's active defense is superior). But when your king is cut off, the back rank may be your only hope.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="back-rank-defense">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-back-rank-defense">
+                    <div class="board-container">
+                        <div id="board-back-rank-defense" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-back-rank-defense">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="back-rank-defense">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="back-rank-defense">◀</button>
+                            <button class="control-btn" data-action="next" data-board="back-rank-defense">▶</button>
+                            <button class="control-btn" data-action="last" data-board="back-rank-defense">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>With the a-pawn (rook pawn), Black holds the draw by checking from a1. When White's king advances to shield the pawn, either stalemate occurs or Black continues checking perpetually. The h1 corner provides no shelter from the checks.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lesson 4: Rook Behind Passed Pawn -->
+            <article class="lesson-card" data-searchable="rook behind passed pawn endgame principle tartakower support promotion activity">
+                <div class="lesson-content">
+                    <h3 class="lesson-title">Rook Behind Passed Pawn</h3>
+                    <div class="lesson-text">
+                        <p>
+                            Savielly Tartakower's famous principle: "Rooks belong behind passed pawns—your own or your opponent's." This maxim applies to both the attacker and defender in rook endgames with passed pawns.
+                        </p>
+                        <p>
+                            When your rook is behind your own passed pawn, it supports the pawn's advance from a distance—the pawn's forward march actually increases the rook's scope. When behind the opponent's passed pawn, your rook can attack it and restricts the enemy king from supporting it.
+                        </p>
+                        <p class="key-insight">
+                            <strong>Key insight:</strong> A rook behind a pawn gains power as the pawn advances. A rook in front of a pawn often becomes passive. In the endgame, activity is everything—place your rook where it has maximum scope and flexibility. Behind the passed pawn is usually best.
+                        </p>
+                    </div>
+                    <button class="view-board-btn" data-board-id="rook-behind-pawn">
+                        <span>View Position</span>
+                        <span class="toggle-arrow">▼</span>
+                    </button>
+                </div>
+                <div class="board-section" id="board-section-rook-behind-pawn">
+                    <div class="board-container">
+                        <div id="board-rook-behind-pawn" class="chess-board"></div>
+                    </div>
+                    <div class="board-info">
+                        <div class="move-info" id="move-counter-rook-behind-pawn">Starting Position</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" data-action="first" data-board="rook-behind-pawn">⏮</button>
+                            <button class="control-btn" data-action="prev" data-board="rook-behind-pawn">◀</button>
+                            <button class="control-btn" data-action="next" data-board="rook-behind-pawn">▶</button>
+                            <button class="control-btn" data-action="last" data-board="rook-behind-pawn">⏭</button>
+                        </div>
+                    </div>
+                    <div class="position-explanation">
+                        <p>White's rook on e1 is behind the passed e-pawn. As the e-pawn advances, the rook gains more squares to control. Compare this to if the rook were in front (say, on e8)—it would become passive and restricted. Activity wins endgames.</p>
+                    </div>
+                </div>
+            </article>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
+{% endblock %}

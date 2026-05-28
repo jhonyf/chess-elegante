@@ -1,0 +1,532 @@
+/* Chess Elegante - Games Page Styles */
+
+/* Main Container */
+#gamesContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (min-width: 769px) {
+    #gamesContainer {
+        padding: 0 40px;
+    }
+}
+
+/* Page Title & Subtitle */
+.page-title {
+    font-size: 48px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.page-subtitle {
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    color: #666;
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 0.5px;
+}
+
+/* Play Now Section */
+.play-now-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.play-now-section .cta-button {
+    display: inline-block;
+    padding: 18px 60px;
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.play-now-section .cta-button:hover {
+    background: white;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Games Grid Layout */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Game Card */
+.game-card {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    padding: 30px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    border-color: #1a1a1a;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Game Card Header */
+.game-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.game-id {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+.game-status {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    padding: 5px 12px;
+    border: 1px solid #1a1a1a;
+    background: white;
+    color: #1a1a1a;
+}
+
+/* Game Info */
+.game-info {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.game-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.game-info-label {
+    font-weight: 300;
+    color: #999;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.game-info-value {
+    font-weight: 300;
+    color: #1a1a1a;
+}
+
+/* Game Actions */
+.game-actions {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e8e8e8;
+    display: flex;
+    gap: 10px;
+}
+
+.resume-btn {
+    flex: 1;
+    padding: 12px;
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.resume-btn:hover {
+    background: white;
+    color: #1a1a1a;
+}
+
+.commentary-btn {
+    flex: 1;
+    padding: 12px;
+    background: white;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.commentary-btn:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+.commentary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.delete-btn {
+    padding: 12px 20px;
+    background: white;
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background: #d32f2f;
+    color: white;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 100px 40px;
+}
+
+.empty-state h2 {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #999;
+}
+
+.empty-state p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #gamesContainer {
+        padding: 0 15px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .page-subtitle {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .play-now-section {
+        margin-bottom: 40px;
+    }
+
+    .play-now-section .cta-button {
+        padding: 15px 40px;
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .game-card {
+        padding: 20px;
+    }
+
+    .game-actions {
+        flex-direction: column;
+    }
+
+    .delete-btn {
+        width: 100%;
+    }
+
+    .empty-state {
+        padding: 60px 20px;
+    }
+
+    .empty-state h2 {
+        font-size: 28px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 12px;
+    }
+
+    .setting-group {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #gamesContainer {
+        padding: 0 10px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .page-subtitle {
+        font-size: 12px;
+    }
+
+    .play-now-section .cta-button {
+        padding: 12px 30px;
+        font-size: 10px;
+    }
+
+    .games-grid {
+        gap: 15px;
+    }
+
+    .game-card {
+        padding: 15px;
+    }
+
+    .empty-state {
+        padding: 40px 15px;
+    }
+
+    .empty-state h2 {
+        font-size: 24px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 15px;
+    }
+}
+
+/* Games Section Styling */
+.games-section {
+    margin-bottom: 60px;
+}
+
+.games-section h2 {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #1a1a1a;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid #e8e8e8;
+    padding-bottom: 15px;
+}
+
+.game-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.view-btn {
+    background: #d4af37;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.view-btn:hover {
+    background: #b8941f;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fafafa;
+}
+
+.modal-header h3 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    margin: 0;
+}
+
+.close-modal {
+    font-size: 28px;
+    font-weight: 300;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: #1a1a1a;
+}
+
+.modal-body {
+    padding: 40px;
+}
+
+.setting-group {
+    margin-bottom: 30px;
+}
+
+.setting-group:last-child {
+    margin-bottom: 0;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #666;
+}
+
+.setting-group select,
+.setting-group input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e8e8e8;
+    background: #fafafa;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.setting-group select:hover,
+.setting-group input[type="text"]:hover {
+    border-color: #1a1a1a;
+    background: white;
+}
+
+.setting-group select:focus,
+.setting-group input[type="text"]:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    background: white;
+}
+
+.modal-footer {
+    padding: 30px 40px;
+    border-top: 1px solid #e8e8e8;
+    background: #fafafa;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-footer .btn {
+    padding: 12px 30px;
+    background: #1a1a1a;
+    color: white;
+    border: 1px solid #1a1a1a;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-footer .btn:hover {
+    background: white;
+    color: #1a1a1a;
+}

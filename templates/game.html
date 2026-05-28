@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if mode == 'analyze' %}Analyze Game{% else %}Play Chess{% endif %} - Chess Elegante
+{% endblock %}
+
+{% set active_page = mode %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Game Section (Both Modes) -->
+<div class="game-section" id="gameSection"
+     data-mode="{{ mode }}"
+     {% if mode == 'analyze' %}
+     data-game-id="{{ game_id or '' }}"
+     {% endif %}>
+
+    <!-- Left Panel - Status & Game Info -->
+    <div class="left-panel">
+        <!-- Unified Status Panel with mode-specific controls -->
+        {% if mode == 'play' %}
+        <div class="status-panel panel-section">
+            <div class="panel-header">
+                <div class="status-info">
+                    <div class="status-dot"></div>
+                    <span id="statusText" class="status-text">
+                        Start game
+                    </span>
+                </div>
+                <div class="game-action-buttons">
+                        <!-- Play Mode Controls -->
+                        <button id="getBestMoveBtn" class="game-ctrl-btn" title="Best Move">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </button>
+                        <button id="resignBtn" class="game-ctrl-btn game-ctrl-btn-danger" style="display: none;" title="Resign Game">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <button id="settingsBtn" class="game-ctrl-btn" title="Board Theme">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if mode == 'play' %}
+            <!-- Play Mode: Best Move Panel -->
+            <div id="bestMovePanel" class="panel-section" style="display: none;">
+                <h3 class="panel-title">Best Move</h3>
+                <div id="bestMoveResult" class="best-move-content"></div>
+            </div>
+            <!-- Hidden status element for JS compatibility -->
+            <div id="status" style="display: none;"></div>
+        {% else %}
+            <!-- Analyze Mode: Game Metadata -->
+            {% include 'components/game_metadata.html' %}
+        {% endif %}
+    </div>
+
+    <!-- Center Panel - Chess Board -->
+    <div class="center-panel">
+        {% include 'components/chess_board.html' %}
+    </div>
+
+    <!-- Right Panel - Move History & Commentary -->
+    <div class="right-panel">
+        <div class="analysis-panel">
+            <h3>Move History</h3>
+            <!-- Navigation Controls Component -->
+            <div class="navigation-controls">
+                <button id="prevMoveBtn" class="nav-btn" title="Previous move">◀</button>
+                <div id="movesList" class="moves-list"></div>
+                <button id="nextMoveBtn" class="nav-btn" title="Next move">▶</button>
+            </div>
+            {% if mode == 'play' %}
+                <!-- Play Mode: Commentary -->
+                <div id="playCommentaryPanel" class="commentary-section" style="display: none;">
+                    <div id="playEvaluationText" class="evaluation-text"></div>
+                    <div id="playCommentaryText" class="commentary-text"></div>
+                </div>
+            {% else %}
+                <!-- Analyze Mode: Commentary -->
+                <div  id="commentaryPanel" class="commentary-section" style="display: none;">
+                    <div id="evaluationText" class="evaluation-text"></div>
+                    <div id="commentaryText" class="commentary-text"></div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Bottom Tabs -->
+<div class="mobile-bottom-tabs" data-always-expanded="true">
+    <div class="bottom-tab-content">
+        <div class="tab-panel active" id="historyTab"></div>
+    </div>
+</div>
+
+
+{% if mode == 'play' %}
+<!-- Settings Modal (Play Mode Only) -->
+<div id="settingsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Board Theme</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="setting-group">
+                <label for="boardTheme">Select Theme</label>
+                <select id="boardTheme">
+                    <option value="minimal" selected>Minimal</option>
+                    <option value="classic">Classic</option>
+                    <option value="gray">Gray</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="purple">Purple</option>
+                    <option value="ice">Ice</option>
+                    <option value="wood">Wood</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="saveSettingsBtn" class="btn">Save Theme</button>
+        </div>
+    </div>
+</div>
+
+<!-- Best Move Modal (Mobile Only) -->
+<div id="bestMoveModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Best Move</h3>
+            <span class="close-best-move-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div id="bestMoveModalContent" class="best-move-modal-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Resume Game Modal (Play Mode Only) -->
+{% if mode == 'play' %}
+<div id="resumeGameModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Resume Game?</h3>
+        </div>
+        <div class="modal-body">
+            <p>You have an active game in progress. Would you like to continue or start a new game?</p>
+            <div id="activeGameInfo" style="margin-top: 15px; padding: 10px; background: #f5f5f5; border-radius: 4px;">
+                <!-- Game info will be inserted here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="resumeGameBtn" class="btn">Continue Game</button>
+            <button id="newGameBtn" class="btn btn-secondary">Start New Game</button>
+        </div>
+    </div>
+</div>
+
+<!-- Game Settings Modal (Play Mode Only) -->
+<div id="gameSettingsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Game Settings</h3>
+            <span class="close-modal" data-modal="gameSettingsModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="setting-group">
+                <label for="engineType">Chess Engine</label>
+                <select id="engineType">
+                    <option value="lichess">Lichess Stockfish (Online)</option>
+                    <option value="stockfish" selected>Local Stockfish</option>
+                </select>
+            </div>
+
+            <div class="setting-group">
+                <label for="aiLevel">AI Difficulty</label>
+                <select id="aiLevel">
+                    <option value="1">Level 1 - ~1320 Elo</option>
+                    <option value="2">Level 2 - ~1400 Elo</option>
+                    <option value="3" selected>Level 3 - ~1500 Elo</option>
+                    <option value="4">Level 4 - ~1700 Elo</option>
+                    <option value="5">Level 5 - ~1900 Elo</option>
+                </select>
+            </div>
+
+            <div class="setting-group">
+                <label for="playerColor">Play As</label>
+                <select id="playerColor">
+                    <option value="white" selected>White</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="startGameBtn" class="btn">Start Game</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chess-utils.js') }}"></script>
+<script>
+    // Set game mode globally
+    window.GAME_MODE = '{{ mode }}';
+</script>
+{% if mode == 'play' %}
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% else %}
+    <script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+{% endif %}
+{% endblock %}

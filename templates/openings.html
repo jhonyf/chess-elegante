@@ -1,0 +1,1570 @@
+{% extends "base.html" %}
+
+{% block title %}Chess Openings - Chess Elegante{% endblock %}
+
+{% set active_page = 'openings' %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/learn.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/learn.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <!-- Header -->
+    <div class="learn-header">
+        <h1>Chess Openings</h1>
+        <p class="subtitle">Starting with a Plan</p>
+        <p class="intro">
+            The opening is not about drilling move sequences—it's about grasping the ideas behind them.
+            Every great player knows that the first moves set the tone for the entire game, establishing
+            the pawn structure and piece placement that will define the middlegame battle.
+            Here you'll learn not just what to play, but why to play it.
+        </p>
+    </div>
+
+    <!-- ==================== SECTION A: OPENING PRINCIPLES ==================== -->
+    <section id="principles" class="learn-section">
+        <div class="section-header">
+            <h2>A. Opening Principles</h2>
+            <p class="section-subtitle">Before Any Theory</p>
+        </div>
+        <p class="section-intro">
+            Before studying specific opening lines, you must internalize the fundamental principles that govern
+            all sound opening play. These timeless guidelines have shaped master games for centuries and will serve you
+            in any position, against any opponent. When you understand why these principles work, you'll find
+            good moves even in unfamiliar territory.
+        </p>
+
+        <!-- Principle 1: Control the Center -->
+        <article class="lesson-card" data-searchable="center control e4 d4 e5 d5 central squares">
+            <div class="lesson-content">
+                <h3 class="lesson-title">1. Control the Center</h3>
+                <div class="lesson-text">
+                    <p>
+                        The center of the board—the squares e4, d4, e5, and d5—is the most valuable real estate
+                        in chess. A piece placed in the center controls more squares than one placed on the edge.
+                        A knight on e4 controls eight squares and can jump to either flank instantly; a knight
+                        on a1 controls only two squares and takes multiple moves to influence the game.
+                    </p>
+                    <p>
+                        Central control gives your pieces maximum mobility and flexibility. From the center,
+                        you can quickly shift your forces to either side of the board, responding to threats
+                        and creating your own. Your opponent, cramped on the edges, must maneuver awkwardly
+                        around your powerful central presence—losing precious time in the process.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> You don't always need pawns occupying the center—pieces
+                        controlling central squares from a distance is equally valid. This insight forms the
+                        foundation of hypermodern openings like the King's Indian and Grünfeld Defense.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="center-control">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-center-control">
+                <div class="board-container">
+                    <div id="board-center-control" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-center-control">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="center-control">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="center-control">◀</button>
+                        <button class="control-btn" data-action="next" data-board="center-control">▶</button>
+                        <button class="control-btn" data-action="last" data-board="center-control">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-center-control">
+                    After 1. e4 e5 2. Nf3 Nc6 3. Bc4, White has established ideal central control.
+                    The pawn on e4 occupies a central square, the knight on f3 attacks e5 and d4,
+                    and the bishop on c4 aims at the weak f7 square. This is classical opening play.
+                </div>
+            </div>
+        </article>
+
+        <!-- Principle 2: Develop Minor Pieces -->
+        <article class="lesson-card" data-searchable="development minor pieces knights bishops develop quickly">
+            <div class="lesson-content">
+                <h3 class="lesson-title">2. Develop Minor Pieces First</h3>
+                <div class="lesson-text">
+                    <p>
+                        Knights and bishops should emerge before the queen and rooks. Why? Because minor
+                        pieces can immediately contribute to the battle for the center without becoming targets.
+                        A knight on f3 is safe, active, and doing useful work; a queen on h5 can be harassed by
+                        pawns and minor pieces, costing you development time with each retreat.
+                    </p>
+                    <p>
+                        The ideal development sequence: center pawns first to stake your claim, then knights
+                        (usually toward the center), then bishops to active diagonals. This creates a harmonious
+                        army ready for action, with each piece supporting the others like a well-coordinated
+                        military unit. Rooks and queen join later, once the position opens up.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> "Knights before bishops" is a common guideline because knights
+                        have natural best squares (f3/c3 for White, f6/c6 for Black), while bishops often benefit
+                        from waiting to see how the pawn structure develops before committing to a diagonal.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="development">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-development">
+                <div class="board-container">
+                    <div id="board-development" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-development">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="development">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="development">◀</button>
+                        <button class="control-btn" data-action="next" data-board="development">▶</button>
+                        <button class="control-btn" data-action="last" data-board="development">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-development">
+                    Watch how White develops harmoniously: e4 controls the center, Nf3 develops with tempo
+                    (attacking e5), Bc4 develops to an active diagonal, and O-O brings the king to safety.
+                    By move 4, White has developed three pieces and castled—textbook opening play.
+                </div>
+            </div>
+        </article>
+
+        <!-- Principle 3: King Safety -->
+        <article class="lesson-card" data-searchable="castle castling king safety O-O O-O-O kingside queenside">
+            <div class="lesson-content">
+                <h3 class="lesson-title">3. King Safety & Castling</h3>
+                <div class="lesson-text">
+                    <p>
+                        The king is the most important piece—lose it and you lose the game. In the opening,
+                        the king sits exposed in the center, vulnerable to checks and attacks along open files
+                        and diagonals. Castling solves this problem elegantly: the king tucks away in the corner
+                        behind a protective wall of pawns, while the rook swings toward the center where it can
+                        enter the battle.
+                    </p>
+                    <p>
+                        Kingside castling (O-O) is generally preferred because it's faster—you only need to
+                        move two pieces (knight and bishop) to clear the path. Queenside castling (O-O-O) takes
+                        longer but positions your rook on a potentially open d-file and can be powerful when
+                        you want to launch a kingside pawn storm without endangering your own monarch.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> Castle early, but not mechanically. Sometimes delaying
+                        castling keeps your opponent guessing about which wing to attack. The threat of castling
+                        to either side can be more powerful than committing prematurely.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="king-safety">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-king-safety">
+                <div class="board-container">
+                    <div id="board-king-safety" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-king-safety">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="king-safety">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="king-safety">◀</button>
+                        <button class="control-btn" data-action="next" data-board="king-safety">▶</button>
+                        <button class="control-btn" data-action="last" data-board="king-safety">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-king-safety">
+                    After castling, White's king is safe behind a wall of pawns, and the rook is ready
+                    to enter the game on the e-file or d-file. Compare this to a king stuck in the center—
+                    it would be a target for every enemy piece.
+                </div>
+            </div>
+        </article>
+
+        <!-- Principle 4: Don't Move Same Piece Twice -->
+        <article class="lesson-card" data-searchable="tempo time waste moves efficiency">
+            <div class="lesson-content">
+                <h3 class="lesson-title">4. Don't Move the Same Piece Twice</h3>
+                <div class="lesson-text">
+                    <p>
+                        Every move in the opening is precious. When you move the same piece twice, you're
+                        essentially giving your opponent a free move. While you're shuffling one piece around,
+                        they're bringing out their entire army.
+                    </p>
+                    <p>
+                        This principle teaches efficiency. Move each piece once to its best square, then
+                        move the next piece. Only return to a piece when there's a compelling reason—
+                        capturing material, delivering checkmate, or avoiding a serious threat.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> This rule has exceptions. If your opponent makes a mistake
+                        that allows you to win material by moving the same piece twice, take it! Principles
+                        guide us, but concrete calculation trumps general rules.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="tempo">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-tempo">
+                <div class="board-container">
+                    <div id="board-tempo" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-tempo">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="tempo">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="tempo">◀</button>
+                        <button class="control-btn" data-action="next" data-board="tempo">▶</button>
+                        <button class="control-btn" data-action="last" data-board="tempo">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-tempo">
+                    In the Scandinavian Defense (1. e4 d5 2. exd5 Qxd5), Black captures with the queen
+                    and then must move it again after 3. Nc3. Black has moved the queen twice while
+                    White developed a piece. This tempo loss is the strategic cost of this opening.
+                </div>
+            </div>
+        </article>
+
+        <!-- Principle 5: Don't Bring Queen Out Early -->
+        <article class="lesson-card" data-searchable="queen early development trap attack beginner mistake">
+            <div class="lesson-content">
+                <h3 class="lesson-title">5. Don't Bring the Queen Out Too Early</h3>
+                <div class="lesson-text">
+                    <p>
+                        The queen is the most powerful piece, so beginners naturally want to bring her out
+                        first. This is usually a mistake. The queen is valuable—so valuable that every
+                        enemy piece wants to attack her. When she ventures out early, she becomes a target.
+                    </p>
+                    <p>
+                        Your opponent can develop pieces while attacking your queen, gaining tempo with
+                        every move. Soon, your queen has been chased all over the board while your opponent
+                        has a fully developed position and you have nothing.
+                    </p>
+                    <p class="key-insight">
+                        <strong>Key insight:</strong> The queen belongs behind your army, not in front of it.
+                        Develop minor pieces first to control the center and protect your king. The queen
+                        enters later, when her power can be decisive.
+                    </p>
+                </div>
+                <button class="view-board-btn" data-board-id="queen-early">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-queen-early">
+                <div class="board-container">
+                    <div id="board-queen-early" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-queen-early">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="queen-early">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="queen-early">◀</button>
+                        <button class="control-btn" data-action="next" data-board="queen-early">▶</button>
+                        <button class="control-btn" data-action="last" data-board="queen-early">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-queen-early">
+                    After 1. e4 e5 2. Qh5?! (threatening mate on f7), Black calmly plays 2...Nc6 3. Bc4 g6!
+                    The queen is attacked and must retreat. White has moved the queen twice while Black
+                    developed two pieces. This is why early queen sorties usually fail against good defense.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION B: OPENING FAMILIES ==================== -->
+    <section id="families" class="learn-section">
+        <div class="section-header">
+            <h2>B. Opening Families</h2>
+            <p class="section-subtitle">By Idea, Not Memorization</p>
+        </div>
+        <p class="section-intro">
+            Rather than studying openings in isolation, understand the families they belong to.
+            Each family shares common pawn structures, typical plans, and strategic themes that
+            recur game after game. When you grasp these underlying ideas, the specific moves
+            become logical consequences rather than arbitrary sequences to recall.
+        </p>
+
+        <!-- Open Games -->
+        <article class="lesson-card family-card" data-searchable="open games e4 e5 tactical attacking classical">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Open Games (1. e4 e5)</h3>
+                <div class="family-tag">Classical / Tactical</div>
+                <div class="lesson-text">
+                    <p>
+                        The oldest and most natural beginning: both sides stake their claim in the center with pawns.
+                        Open games tend to be tactical and dynamic, with early piece contact and sharp complications
+                        arising from the symmetrical pawn structure. The center can become fluid as pawns are exchanged,
+                        creating open files and diagonals that favor active piece play and direct attacks on the king.
+                    </p>
+
+                    <div class="structure-info">
+                        <h4>Typical Pawn Structure</h4>
+                        <p>Symmetrical or near-symmetrical center. Pawns may be exchanged early, creating open positions.</p>
+
+                        <h4>Common Plans for White</h4>
+                        <ul>
+                            <li>Control e5 and d5 with pieces</li>
+                            <li>Attack the f7 square (weakest in Black's camp)</li>
+                            <li>Open the center when ahead in development</li>
+                        </ul>
+
+                        <h4>Common Plans for Black</h4>
+                        <ul>
+                            <li>Maintain the e5 pawn or exchange favorably</li>
+                            <li>Develop rapidly and castle</li>
+                            <li>Counter in the center with ...d5</li>
+                        </ul>
+
+                        <h4>Traps to Avoid</h4>
+                        <ul>
+                            <li>Scholar's Mate (Qh5-Bc4-Qxf7#)</li>
+                            <li>Légal's Mate (sacrificing the queen for checkmate)</li>
+                            <li>Fried Liver Attack (Ng5-Nxf7 sacrifice)</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="open-games">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-open-games">
+                <div class="board-container">
+                    <div id="board-open-games" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-open-games">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="open-games">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="open-games">◀</button>
+                        <button class="control-btn" data-action="next" data-board="open-games">▶</button>
+                        <button class="control-btn" data-action="last" data-board="open-games">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-open-games">
+                    The Italian Game (1. e4 e5 2. Nf3 Nc6 3. Bc4) exemplifies open game principles:
+                    rapid development, pressure on f7, and central control. Both sides develop naturally,
+                    leading to rich tactical possibilities.
+                </div>
+            </div>
+        </article>
+
+        <!-- Semi-Open Games -->
+        <article class="lesson-card family-card" data-searchable="semi-open games sicilian french caro-kann asymmetrical">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Semi-Open Games (1. e4 — not e5)</h3>
+                <div class="family-tag">Asymmetrical / Fighting</div>
+                <div class="lesson-text">
+                    <p>
+                        When Black doesn't mirror 1. e4 with 1...e5, asymmetrical positions arise.
+                        The Sicilian (1...c5), French (1...e6), and Caro-Kann (1...c6) create unbalanced
+                        games where both sides have different plans. These openings offer Black winning chances
+                        rather than just equality.
+                    </p>
+
+                    <div class="structure-info">
+                        <h4>Typical Pawn Structure</h4>
+                        <p>Asymmetrical. Black often gets a queenside majority; White gets central or kingside pawns.</p>
+
+                        <h4>Common Plans for White</h4>
+                        <ul>
+                            <li>Maintain the e4 pawn and space advantage</li>
+                            <li>Attack on the kingside where White has more space</li>
+                            <li>Exploit the open d-file after ...d5 exchanges</li>
+                        </ul>
+
+                        <h4>Common Plans for Black</h4>
+                        <ul>
+                            <li>Challenge the center with ...d5 or ...d6 + ...e5</li>
+                            <li>Create queenside counterplay with ...a6, ...b5</li>
+                            <li>Trade off White's strong e4 pawn</li>
+                        </ul>
+
+                        <h4>Traps to Avoid</h4>
+                        <ul>
+                            <li>Accepting too many pawn weaknesses for activity</li>
+                            <li>Playing ...e5 prematurely (French/Caro-Kann)</li>
+                            <li>Neglecting king safety while pursuing queenside play</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="semi-open">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-semi-open">
+                <div class="board-container">
+                    <div id="board-semi-open" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-semi-open">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="semi-open">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="semi-open">◀</button>
+                        <button class="control-btn" data-action="next" data-board="semi-open">▶</button>
+                        <button class="control-btn" data-action="last" data-board="semi-open">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-semi-open">
+                    The Sicilian Defense (1. e4 c5) immediately creates asymmetry. Black's c-pawn fights
+                    for d4 without blocking the d-pawn. After 2. Nf3 d6 3. d4 cxd4 4. Nxd4, White has
+                    a central majority, Black has a queenside majority—two different games on one board.
+                </div>
+            </div>
+        </article>
+
+        <!-- Closed Games -->
+        <article class="lesson-card family-card" data-searchable="closed games d4 d5 queens gambit positional strategic">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Closed Games (1. d4 d5)</h3>
+                <div class="family-tag">Positional / Strategic</div>
+                <div class="lesson-text">
+                    <p>
+                        When both sides play d-pawns, the game tends to be slower and more strategic.
+                        The center often remains locked or semi-locked, with play focusing on pawn breaks
+                        and piece maneuvering. The Queen's Gambit is the flagship of this family.
+                    </p>
+
+                    <div class="structure-info">
+                        <h4>Typical Pawn Structure</h4>
+                        <p>More closed center. Pawn chains develop, often c4 vs d5 or d4 vs e6.</p>
+
+                        <h4>Common Plans for White</h4>
+                        <ul>
+                            <li>Control c5 and e5 squares</li>
+                            <li>Minority attack (b4-b5) on the queenside</li>
+                            <li>Exploit the isolated queen's pawn if Black captures on c4</li>
+                        </ul>
+
+                        <h4>Common Plans for Black</h4>
+                        <ul>
+                            <li>Challenge c4 with ...c6 or ...e6 supporting ...d5</li>
+                            <li>Free the light-squared bishop (often problematic)</li>
+                            <li>Counterattack with ...c5 or ...e5 breaks</li>
+                        </ul>
+
+                        <h4>Traps to Avoid</h4>
+                        <ul>
+                            <li>Taking the c4 pawn without preparation (gives White the center)</li>
+                            <li>Passive play—Black must create counterplay</li>
+                            <li>Blocking the c8 bishop behind the pawn chain</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="closed-games">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-closed-games">
+                <div class="board-container">
+                    <div id="board-closed-games" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-closed-games">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="closed-games">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="closed-games">◀</button>
+                        <button class="control-btn" data-action="next" data-board="closed-games">▶</button>
+                        <button class="control-btn" data-action="last" data-board="closed-games">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-closed-games">
+                    The Queen's Gambit (1. d4 d5 2. c4) offers a pawn to undermine Black's center.
+                    After 2...e6 3. Nc3 Nf6 4. Bg5, White has a space advantage and pressure on d5.
+                    Black must find active play or risk being slowly squeezed.
+                </div>
+            </div>
+        </article>
+
+        <!-- Indian Defenses -->
+        <article class="lesson-card family-card" data-searchable="indian defenses hypermodern fianchetto kings indian nimzo indian grunfeld">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Indian Defenses (1. d4 Nf6)</h3>
+                <div class="family-tag">Hypermodern / Dynamic</div>
+                <div class="lesson-text">
+                    <p>
+                        The Indian defenses revolutionized opening theory in the 20th century, challenging the
+                        classical dogma that pawns must occupy the center. Instead of immediately claiming central
+                        squares with pawns, Black develops the knight first and often fianchettoes a bishop,
+                        controlling the center from a distance. The provocative idea: invite White to build an
+                        imposing pawn center, then undermine and attack it with pieces and well-timed pawn breaks.
+                    </p>
+
+                    <div class="structure-info">
+                        <h4>Typical Pawn Structure</h4>
+                        <p>Flexible. Black often plays ...g6 (King's Indian) or ...e6 (Nimzo/Queen's Indian) before committing pawns.</p>
+
+                        <h4>Common Plans for White</h4>
+                        <ul>
+                            <li>Establish a broad pawn center (e4-d4)</li>
+                            <li>Use space advantage for piece activity</li>
+                            <li>Prevent Black's typical pawn breaks</li>
+                        </ul>
+
+                        <h4>Common Plans for Black</h4>
+                        <ul>
+                            <li>Strike at the center with ...c5 or ...e5</li>
+                            <li>Create imbalances with ...d6+...e5 (King's Indian)</li>
+                            <li>Target White's center with pieces (Nimzo-Indian Bb4)</li>
+                        </ul>
+
+                        <h4>Traps to Avoid</h4>
+                        <ul>
+                            <li>Allowing White an overwhelming center without counterplay</li>
+                            <li>Playing ...e5 at the wrong moment (King's Indian)</li>
+                            <li>Passive piece placement—pieces must be active</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="indian-defenses">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-indian-defenses">
+                <div class="board-container">
+                    <div id="board-indian-defenses" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-indian-defenses">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="indian-defenses">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="indian-defenses">◀</button>
+                        <button class="control-btn" data-action="next" data-board="indian-defenses">▶</button>
+                        <button class="control-btn" data-action="last" data-board="indian-defenses">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-indian-defenses">
+                    The King's Indian Defense (1. d4 Nf6 2. c4 g6 3. Nc3 Bg7) lets White build a pawn center
+                    with e4. But Black's fianchettoed bishop and ...e5 break create dynamic counterplay.
+                    This opening has been favored by attacking players like Kasparov and Fischer.
+                </div>
+            </div>
+        </article>
+
+        <!-- Flank Openings -->
+        <article class="lesson-card family-card" data-searchable="flank openings english reti c4 nf3 flexible transpositional">
+            <div class="lesson-content">
+                <h3 class="lesson-title">Flank Openings (1. c4 / 1. Nf3)</h3>
+                <div class="family-tag">Flexible / Transpositional</div>
+                <div class="lesson-text">
+                    <p>
+                        Flank openings avoid immediate central pawn tension, instead exerting influence on the center
+                        from the wings. The English (1. c4) and Réti (1. Nf3) offer maximum flexibility—
+                        White can transpose into d4 openings, create reversed Sicilian structures, or navigate
+                        into unique positional waters. These openings reward deep understanding of pawn structures
+                        and piece placement over rote knowledge of forcing variations.
+                    </p>
+
+                    <div class="structure-info">
+                        <h4>Typical Pawn Structure</h4>
+                        <p>Highly variable. Can become symmetrical English, reversed Sicilian, or transpose to d4 systems.</p>
+
+                        <h4>Common Plans for White</h4>
+                        <ul>
+                            <li>Control d5 with c4 and pieces</li>
+                            <li>Fianchetto one or both bishops</li>
+                            <li>Keep options open—transpose based on Black's setup</li>
+                        </ul>
+
+                        <h4>Common Plans for Black</h4>
+                        <ul>
+                            <li>Occupy the center with ...e5 and/or ...d5</li>
+                            <li>Choose a setup and stick with it</li>
+                            <li>Be prepared for various transpositions</li>
+                        </ul>
+
+                        <h4>Traps to Avoid</h4>
+                        <ul>
+                            <li>Overextending in the center without sufficient support</li>
+                            <li>Confusion from transpositions—know where you're headed</li>
+                            <li>Passive play against White's flexible setup</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="flank-openings">
+                    <span>View Position</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-flank-openings">
+                <div class="board-container">
+                    <div id="board-flank-openings" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-flank-openings">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="flank-openings">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="flank-openings">◀</button>
+                        <button class="control-btn" data-action="next" data-board="flank-openings">▶</button>
+                        <button class="control-btn" data-action="last" data-board="flank-openings">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-flank-openings">
+                    The English Opening (1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6) can be thought of as a Sicilian
+                    with colors reversed. White controls d5, develops flexibly, and can later choose
+                    to push d4, g3, or keep a quiet positional approach.
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ==================== SECTION C: POPULAR OPENINGS ==================== -->
+    <section id="popular" class="learn-section">
+        <div class="section-header">
+            <h2>C. Popular Openings</h2>
+            <p class="section-subtitle">Specific Lines to Know</p>
+        </div>
+        <p class="section-intro">
+            Now that you understand the families, here are the most popular specific openings played
+            at every level from club to world championship. Each includes the central idea driving
+            the opening, typical middlegame plans for both sides, and common pitfalls to avoid.
+            Focus on understanding the purpose behind each move rather than memorizing long sequences.
+        </p>
+
+        <!-- Italian Game -->
+        <article class="lesson-card opening-card" data-searchable="italian game giuoco piano e4 e5 Nf3 Nc6 Bc4 classical">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Italian Game</h3>
+                    <div class="opening-moves-display">1. e4 e5 2. Nf3 Nc6 3. Bc4</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Rapid, classical development with natural pressure on Black's weakest point: the f7 pawn,
+                            defended only by the king. The bishop on c4 combines with potential Ng5 to create immediate
+                            tactical threats. White aims for a quick, harmonious setup with c3 preparing d4, then castling
+                            to connect the rooks.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Push d4 to open the center when fully developed</li>
+                            <li>Use the f1-a6 diagonal for bishop activity</li>
+                            <li>Rooks to e1 and d1 controlling central files</li>
+                            <li>Kingside attack if Black castles short</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Playing d4 too early without c3 support</li>
+                            <li>Ignoring the Traxler Counterattack (4. Ng5 Bc5!?)</li>
+                            <li>Moving the bishop multiple times instead of developing</li>
+                        </ul>
+                    </div>
+
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Italian Game in action:</p>
+                        <div class="classical-games-links" data-opening="Italian Game">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000001" class="classical-game-link">
+                                Fischer, Robert J. vs Spassky, Boris V. (1972.08.31)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000002" class="classical-game-link">
+                                Bronstein, David vs Kotov, Alexander (1955.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000003" class="classical-game-link">
+                                Steinitz, William vs Von Bardeleben, Curt (1895.09.02)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="italian-game">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-italian-game">
+                <div class="board-container">
+                    <div id="board-italian-game" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-italian-game">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="italian-game">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="italian-game">◀</button>
+                        <button class="control-btn" data-action="next" data-board="italian-game">▶</button>
+                        <button class="control-btn" data-action="last" data-board="italian-game">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-italian-game">
+                    The Italian Game is perfect for learning classical principles. Each move serves a purpose:
+                    e4 controls the center, Nf3 develops and attacks e5, Bc4 develops and eyes f7.
+                    Black's best response is 3...Bc5 (Giuoco Piano) or 3...Nf6 (Two Knights Defense).
+                </div>
+            </div>
+        </article>
+
+        <!-- Ruy Lopez -->
+        <article class="lesson-card opening-card" data-searchable="ruy lopez spanish opening Bb5 morphy positional">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Ruy Lopez (Spanish Opening)</h3>
+                    <div class="opening-moves-display">1. e4 e5 2. Nf3 Nc6 3. Bb5</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Indirect pressure on Black's center. The bishop pins the knight that defends e5,
+                            creating long-term strategic tension. White doesn't capture immediately—the threat
+                            is often stronger than the execution.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Maintain the bishop on b5 or retreat to a4-b3</li>
+                            <li>Build a pawn center with c3 and d4</li>
+                            <li>Maneuver knights to d2-f1-g3 or e3</li>
+                            <li>Slow, strategic play with long-term pressure</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Capturing on c6 too early (helps Black's development)</li>
+                            <li>Rushing d4 without proper preparation</li>
+                            <li>Forgetting that e5 is actually defended (Bxc6 dxc6, Nxe5?? Qd4!)</li>
+                        </ul>
+                    </div>
+
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Ruy Lopez in action:</p>
+                        <div class="classical-games-links" data-opening="Ruy Lopez">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000004" class="classical-game-link">
+                                Karpov, Anatoly vs Kasparov, Garry (1984.11.03)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000005" class="classical-game-link">
+                                Smyslov, Vassily vs Reshevsky, Samuel (1953.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000006" class="classical-game-link">
+                                Capablanca, Jose Raul vs Chajes, Oscar (1918.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="ruy-lopez">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-ruy-lopez">
+                <div class="board-container">
+                    <div id="board-ruy-lopez" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-ruy-lopez">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="ruy-lopez">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="ruy-lopez">◀</button>
+                        <button class="control-btn" data-action="next" data-board="ruy-lopez">▶</button>
+                        <button class="control-btn" data-action="last" data-board="ruy-lopez">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-ruy-lopez">
+                    Named after a Spanish priest from the 16th century, the Ruy Lopez remains one of chess's
+                    most respected openings. After 3...a6 4. Ba4, the main line continues with strategic
+                    maneuvering. This opening teaches patience and positional understanding.
+                </div>
+            </div>
+        </article>
+
+        <!-- Sicilian Defense -->
+        <article class="lesson-card opening-card" data-searchable="sicilian defense c5 najdorf dragon sveshnikov fighting">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Sicilian Defense</h3>
+                    <div class="opening-moves-display">1. e4 c5</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Fight fire with fire. Black immediately unbalances the position, fighting for d4
+                            without mirroring White. The Sicilian statistically gives Black the best winning
+                            chances against 1. e4—but also requires precise play.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Queenside counterplay with ...a6, ...b5</li>
+                            <li>Black: Central break with ...d5 when possible</li>
+                            <li>White: Kingside attack, often with f4-f5</li>
+                            <li>Both: Fight for control of d5 and d4</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Playing ...d5 too early without preparation</li>
+                            <li>Ignoring White's kingside attack</li>
+                            <li>Castling queenside without understanding the implications</li>
+                        </ul>
+                    </div>
+
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Sicilian Defense in action:</p>
+                        <div class="classical-games-links" data-opening="Sicilian Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000007" class="classical-game-link">
+                                Kasparov, Garry vs Anand, Viswanathan (1991.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000008" class="classical-game-link">
+                                Tal, Mikhail vs Smyslov, Vassily (1959.09.26)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000009" class="classical-game-link">
+                                Fischer, Robert J. vs Larsen, Bent (1958.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="sicilian-defense">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-sicilian-defense">
+                <div class="board-container">
+                    <div id="board-sicilian-defense" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-sicilian-defense">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="sicilian-defense">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="sicilian-defense">◀</button>
+                        <button class="control-btn" data-action="next" data-board="sicilian-defense">▶</button>
+                        <button class="control-btn" data-action="last" data-board="sicilian-defense">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-sicilian-defense">
+                    The Open Sicilian (2. Nf3 d6 3. d4 cxd4 4. Nxd4) is the main battleground. From here,
+                    Black can choose the Dragon (...g6), Najdorf (...a6), or Scheveningen (...e6). Each
+                    has unique character, but all share the Sicilian's fighting spirit.
+                </div>
+            </div>
+        </article>
+
+        <!-- French Defense -->
+        <article class="lesson-card opening-card" data-searchable="french defense e6 d5 solid pawn chain cramped">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">French Defense</h3>
+                    <div class="opening-moves-display">1. e4 e6 2. d4 d5</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Solid foundation with counterattacking potential. Black builds a pawn chain and
+                            fights back with ...c5 and sometimes ...f6. The French teaches how to play in
+                            cramped positions while maintaining winning chances.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Attack the d4 pawn with ...c5</li>
+                            <li>Black: Challenge e5 with ...f6 in certain lines</li>
+                            <li>White: Kingside space advantage and attack</li>
+                            <li>White: Exploit the "bad" light-squared bishop on c8</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Playing ...f6 at the wrong moment (weakening e6)</li>
+                            <li>Leaving the light-squared bishop stuck behind pawns</li>
+                            <li>Underestimating White's kingside attack</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the French Defense in action:</p>
+                        <div class="classical-games-links" data-opening="French Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000a" class="classical-game-link">
+                                Botvinnik, Mikhail vs Capablanca, Jose Raul (1938.11.22)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000b" class="classical-game-link">
+                                Tal, Mikhail vs Botvinnik, Mikhail (1960.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000c" class="classical-game-link">
+                                Keres, Paul vs Petrosian, Tigran (1962.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="french-defense">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-french-defense">
+                <div class="board-container">
+                    <div id="board-french-defense" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-french-defense">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="french-defense">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="french-defense">◀</button>
+                        <button class="control-btn" data-action="next" data-board="french-defense">▶</button>
+                        <button class="control-btn" data-action="last" data-board="french-defense">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-french-defense">
+                    After 1. e4 e6 2. d4 d5 3. Nc3 (or 3. Nd2), Black faces a critical choice: 3...Nf6
+                    (Classical), 3...Bb4 (Winawer), or 3...dxe4 (Rubinstein). Each leads to very different
+                    types of positions—study one that matches your style.
+                </div>
+            </div>
+        </article>
+
+        <!-- Queen's Gambit -->
+        <article class="lesson-card opening-card" data-searchable="queens gambit d4 d5 c4 accepted declined positional">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Queen's Gambit</h3>
+                    <div class="opening-moves-display">1. d4 d5 2. c4</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Challenge Black's central d5 pawn. Despite the name, this isn't a true gambit—
+                            White can always regain the pawn. The goal is to open lines for pieces and
+                            create a mobile pawn majority in the center.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>White: Control e4 and c5 squares</li>
+                            <li>White: Minority attack (b4-b5) on queenside</li>
+                            <li>Black: Maintain or counterattack the center</li>
+                            <li>Black: Free the light-squared bishop</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Black: Taking on c4 without a plan to defend it</li>
+                            <li>Black: Blocking the c8 bishop with ...e6 too early</li>
+                            <li>White: Rushing to recapture on c4 instead of developing</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Queen's Gambit in action:</p>
+                        <div class="classical-games-links" data-opening="Queen's Gambit">
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000d" class="classical-game-link">
+                                Alekhine, Alexander vs Euwe, Max (1937.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000e" class="classical-game-link">
+                                Capablanca, Jose Raul vs Tartakower, Savielly (1924.03.23)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000000f" class="classical-game-link">
+                                Pillsbury, Harry Nelson vs Tarrasch, Siegbert (1895.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="queens-gambit">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-queens-gambit">
+                <div class="board-container">
+                    <div id="board-queens-gambit" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-queens-gambit">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="queens-gambit">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="queens-gambit">◀</button>
+                        <button class="control-btn" data-action="next" data-board="queens-gambit">▶</button>
+                        <button class="control-btn" data-action="last" data-board="queens-gambit">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-queens-gambit">
+                    Black has three main responses: Accepted (2...dxc4), Declined (2...e6), or Slav (2...c6).
+                    The Declined is most popular at all levels, leading to classical positions where both
+                    sides have clear plans. This opening shaped 20th-century chess.
+                </div>
+            </div>
+        </article>
+
+        <!-- King's Indian Defense -->
+        <article class="lesson-card opening-card" data-searchable="kings indian defense Nf6 g6 Bg7 fianchetto attacking kasparov">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">King's Indian Defense</h3>
+                    <div class="opening-moves-display">1. d4 Nf6 2. c4 g6 3. Nc3 Bg7</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Allow White a big center, then blow it up. Black fianchettoes the bishop and
+                            prepares ...e5 or ...c5 to challenge White's pawns. This is a fighting defense
+                            favored by dynamic players who like imbalanced positions.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Kingside attack with ...f5, ...g5, ...Nf6-h5</li>
+                            <li>Black: Central break with ...e5 (or ...c5)</li>
+                            <li>White: Queenside expansion with b4, c5</li>
+                            <li>White: Control the center and prevent ...e5</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Playing ...e5 when White can advantageously capture</li>
+                            <li>Forgetting about White's queenside attack</li>
+                            <li>Passive play—the King's Indian requires activity</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the King's Indian Defense in action:</p>
+                        <div class="classical-games-links" data-opening="King's Indian Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000010" class="classical-game-link">
+                                Kasparov, Garry vs Topalov, Veselin (1999.01.20)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000011" class="classical-game-link">
+                                Fischer, Robert J. vs Panno, Oscar (1970.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000012" class="classical-game-link">
+                                Bronstein, David vs Geller, Efim (1953.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="kings-indian">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-kings-indian">
+                <div class="board-container">
+                    <div id="board-kings-indian" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-kings-indian">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="kings-indian">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="kings-indian">◀</button>
+                        <button class="control-btn" data-action="next" data-board="kings-indian">▶</button>
+                        <button class="control-btn" data-action="last" data-board="kings-indian">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-kings-indian">
+                    After 4. e4 d6 5. Nf3 O-O, a typical King's Indian position emerges. Black will play
+                    ...e5, and after d5, both sides attack on opposite wings. This leads to some of chess's
+                    most exciting games—but requires precise timing and tactical awareness.
+                </div>
+            </div>
+        </article>
+
+        <!-- London System -->
+        <article class="lesson-card opening-card" data-searchable="london system d4 Bf4 solid systematic beginner friendly">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">London System</h3>
+                    <div class="opening-moves-display">1. d4 d5 2. Bf4</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            A system-based opening where White develops according to a fixed blueprint regardless
+                            of Black's specific response. The bishop goes to f4 before e3, avoiding the trap of
+                            getting it locked behind pawns. Simple to learn, difficult to refute, and built on
+                            solid positional foundations—perfect for players who want to understand ideas rather
+                            than navigate sharp theoretical battles.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Set up pawns on d4, e3, c3</li>
+                            <li>Develop knights to d2 and f3</li>
+                            <li>Play for a kingside attack with Ne5, h4-h5</li>
+                            <li>Keep position solid while probing for weaknesses</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Playing e3 before Bf4 (traps the bishop)</li>
+                            <li>Being too passive—the London can attack too</li>
+                            <li>Ignoring Black's ...c5 break</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the London System in action:</p>
+                        <div class="classical-games-links" data-opening="London System">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000013" class="classical-game-link">
+                                Kamsky, Gata vs Short, Nigel (1991.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000014" class="classical-game-link">
+                                Carlsen, Magnus vs Jobava, Baadur (2014.06.19)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000015" class="classical-game-link">
+                                Petrosian, Tigran vs Spassky, Boris V. (1969.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="london-system">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-london-system">
+                <div class="board-container">
+                    <div id="board-london-system" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-london-system">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="london-system">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="london-system">◀</button>
+                        <button class="control-btn" data-action="next" data-board="london-system">▶</button>
+                        <button class="control-btn" data-action="last" data-board="london-system">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-london-system">
+                    The London's appeal is its simplicity. After 2...Nf6 3. e3 e6 4. Nf3 c5 5. c3, White
+                    has a rock-solid position that can be played against almost anything. It's been used
+                    by world champions when they want a safe, playable position without much theory.
+                </div>
+            </div>
+        </article>
+
+        <!-- Caro-Kann Defense -->
+        <article class="lesson-card opening-card" data-searchable="caro-kann defense c6 d5 solid reliable">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Caro-Kann Defense</h3>
+                    <div class="opening-moves-display">1. e4 c6 2. d4 d5</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Like the French, but keeping the light-squared bishop free. The c6 pawn supports
+                            d5 without blocking the bishop's diagonal. This solid defense has been the choice
+                            of world champions Karpov and Anand.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Develop the light-squared bishop actively</li>
+                            <li>Black: Play ...c5 to challenge the center</li>
+                            <li>White: Exploit space advantage</li>
+                            <li>White: Attack in the center or kingside</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Being too passive—Black must create counterplay</li>
+                            <li>Missing tactical shots in the Advance Variation</li>
+                            <li>Neglecting development for pawn structure</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Caro-Kann Defense in action:</p>
+                        <div class="classical-games-links" data-opening="Caro-Kann Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000016" class="classical-game-link">
+                                Karpov, Anatoly vs Andersson, Ulf (1981.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000017" class="classical-game-link">
+                                Anand, Viswanathan vs Karpov, Anatoly (1991.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000018" class="classical-game-link">
+                                Botvinnik, Mikhail vs Flohr, Salo (1936.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="caro-kann">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-caro-kann">
+                <div class="board-container">
+                    <div id="board-caro-kann" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-caro-kann">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="caro-kann">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="caro-kann">◀</button>
+                        <button class="control-btn" data-action="next" data-board="caro-kann">▶</button>
+                        <button class="control-btn" data-action="last" data-board="caro-kann">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-caro-kann">
+                    The main line continues 3. Nc3 dxe4 4. Nxe4, and Black plays 4...Bf5 to develop the
+                    bishop before ...e6. This is the key difference from the French—the bishop is active,
+                    not trapped. The resulting positions are solid but offer winning chances for Black.
+                </div>
+            </div>
+        </article>
+
+        <!-- English Opening -->
+        <article class="lesson-card opening-card" data-searchable="english opening c4 flexible transpositional flank">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">English Opening</h3>
+                    <div class="opening-moves-display">1. c4</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Control the center from the flank. The English can transpose into Queen's Gambit
+                            positions, become a Reversed Sicilian, or stay in unique English territory.
+                            It's a thinking player's opening—flexible and rich in possibilities.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Fianchetto one or both bishops (g3, b3)</li>
+                            <li>Control d5 with c4 and pieces</li>
+                            <li>Keep the position flexible, transpose when advantageous</li>
+                            <li>Create pressure on the long diagonal</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Getting confused by transpositions</li>
+                            <li>Playing without a concrete plan</li>
+                            <li>Allowing Black to seize the center with ...d5 and ...e5</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the English Opening in action:</p>
+                        <div class="classical-games-links" data-opening="English Opening">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000019" class="classical-game-link">
+                                Botvinnik, Mikhail vs Vidmar, Milan Sr. (1936.08.22)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001a" class="classical-game-link">
+                                Karpov, Anatoly vs Kasparov, Garry (1984.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001b" class="classical-game-link">
+                                Petrosian, Tigran vs Botvinnik, Mikhail (1963.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="english-opening">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-english-opening">
+                <div class="board-container">
+                    <div id="board-english-opening" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-english-opening">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="english-opening">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="english-opening">◀</button>
+                        <button class="control-btn" data-action="next" data-board="english-opening">▶</button>
+                        <button class="control-btn" data-action="last" data-board="english-opening">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-english-opening">
+                    After 1. c4 e5 2. Nc3 Nf6 3. Nf3 Nc6 4. g3, we have a Reversed Sicilian—White plays
+                    Black's most successful opening with an extra tempo. This psychological advantage,
+                    plus the flexibility to transpose, makes the English a favorite of strategic players.
+                </div>
+            </div>
+        </article>
+
+        <!-- Scandinavian Defense -->
+        <article class="lesson-card opening-card" data-searchable="scandinavian defense d5 center counter queen early">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Scandinavian Defense</h3>
+                    <div class="opening-moves-display">1. e4 d5</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Immediately challenge White's center. After 2. exd5 Qxd5, Black accepts early
+                            queen development in exchange for disrupting White's plans. It's direct,
+                            concrete, and avoids heavy theory.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Quick development (Nf6, Bf5, e6, c6)</li>
+                            <li>Black: Solid pawn structure, play for breaks</li>
+                            <li>White: Exploit Black's early queen moves</li>
+                            <li>White: Quick development and central control</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Black: Moving the queen too many times</li>
+                            <li>Black: Allowing White to gain tempo</li>
+                            <li>White: Overextending trying to "punish" the defense</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Scandinavian Defense in action:</p>
+                        <div class="classical-games-links" data-opening="Scandinavian Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001c" class="classical-game-link">
+                                Short, Nigel vs Timman, Jan (1991.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001d" class="classical-game-link">
+                                Tiviakov, Sergei vs Morozevich, Alexander (1995.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001e" class="classical-game-link">
+                                Carlsen, Magnus vs Ernst, Sipke (2004.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="scandinavian">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-scandinavian">
+                <div class="board-container">
+                    <div id="board-scandinavian" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-scandinavian">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="scandinavian">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="scandinavian">◀</button>
+                        <button class="control-btn" data-action="next" data-board="scandinavian">▶</button>
+                        <button class="control-btn" data-action="last" data-board="scandinavian">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-scandinavian">
+                    After 2. exd5 Qxd5 3. Nc3, the queen retreats to a5 (main line) or d6 (modern).
+                    Black develops quickly: ...Nf6, ...Bf5, ...e6, ...c6. The resulting positions are
+                    solid and easier to play than many other defenses against 1. e4.
+                </div>
+            </div>
+        </article>
+
+        <!-- Nimzo-Indian Defense -->
+        <article class="lesson-card opening-card" data-searchable="nimzo-indian defense Bb4 pin knight hypermodern nimzowitsch">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Nimzo-Indian Defense</h3>
+                    <div class="opening-moves-display">1. d4 Nf6 2. c4 e6 3. Nc3 Bb4</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Pin the knight and fight for e4. Black is willing to give up the bishop pair
+                            to double White's pawns on c3. This creates lasting structural weaknesses that
+                            can be exploited. Named after Aron Nimzowitsch, pioneer of hypermodern chess.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Black: Control e4, target doubled c-pawns</li>
+                            <li>Black: Play ...c5 to challenge the center</li>
+                            <li>White: Use the bishop pair in open positions</li>
+                            <li>White: Push e4 to gain space</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Black: Trading bishop on c3 without compensation</li>
+                            <li>Black: Passive play—must create activity</li>
+                            <li>White: Overvaluing the bishop pair</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Nimzo-Indian Defense in action:</p>
+                        <div class="classical-games-links" data-opening="Nimzo-Indian Defense">
+                            <a href="/analyze/a0000000-0000-4000-8000-00000000001f" class="classical-game-link">
+                                Fischer, Robert J. vs Spassky, Boris V. (1972.07.23)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000020" class="classical-game-link">
+                                Karpov, Anatoly vs Kasparov, Garry (1985.??.??)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000021" class="classical-game-link">
+                                Botvinnik, Mikhail vs Capablanca, Jose Raul (1938.11.27)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="nimzo-indian">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-nimzo-indian">
+                <div class="board-container">
+                    <div id="board-nimzo-indian" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-nimzo-indian">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="nimzo-indian">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="nimzo-indian">◀</button>
+                        <button class="control-btn" data-action="next" data-board="nimzo-indian">▶</button>
+                        <button class="control-btn" data-action="last" data-board="nimzo-indian">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-nimzo-indian">
+                    White has several responses: 4. Qc2 (Classical), 4. e3 (Rubinstein), 4. f3 (aggressive).
+                    Each leads to different types of positions. The Nimzo-Indian remains one of Black's
+                    most respected defenses, offering rich strategic and tactical possibilities.
+                </div>
+            </div>
+        </article>
+
+        <!-- Catalan Opening -->
+        <article class="lesson-card opening-card" data-searchable="catalan opening g3 fianchetto positional grinding pressure">
+            <div class="lesson-content">
+                <div class="opening-header">
+                    <h3 class="lesson-title">Catalan Opening</h3>
+                    <div class="opening-moves-display">1. d4 Nf6 2. c4 e6 3. g3</div>
+                </div>
+                <div class="lesson-text">
+                    <div class="opening-idea">
+                        <h4>Main Idea</h4>
+                        <p>
+                            Combine Queen's Gambit central control with a fianchettoed bishop. The bishop
+                            on g2 creates lasting pressure along the long diagonal, often targeting b7 and
+                            the queenside. White plays for a small but lasting advantage.
+                        </p>
+                    </div>
+
+                    <div class="middlegame-plans">
+                        <h4>Typical Middlegame Plans</h4>
+                        <ul>
+                            <li>Pressure the long diagonal (a8-h1)</li>
+                            <li>Control c5 and e5 squares</li>
+                            <li>Exploit weak dark squares on queenside</li>
+                            <li>Slow squeeze—convert small advantages</li>
+                        </ul>
+                    </div>
+
+                    <div class="beginner-mistakes">
+                        <h4>Common Beginner Mistakes</h4>
+                        <ul>
+                            <li>Black: Playing ...dxc4 without preparation</li>
+                            <li>Black: Weakening the b7 square</li>
+                            <li>White: Exchanging the g2 bishop unnecessarily</li>
+                        </ul>
+                    </div>
+                    <div class="classical-games">
+                        <h4>Classical Games</h4>
+                        <p class="classical-games-intro">Study these master games to see the Catalan Opening in action:</p>
+                        <div class="classical-games-links" data-opening="Catalan Opening">
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000022" class="classical-game-link">
+                                Kramnik, Vladimir vs Kasparov, Garry (2000.11.02)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000023" class="classical-game-link">
+                                Ding, Liren vs Nepomniachtchi, Ian (2023.04.09)
+                            </a>
+                            <a href="/analyze/a0000000-0000-4000-8000-000000000024" class="classical-game-link">
+                                Karpov, Anatoly vs Kortchnoi, Viktor (1981.??.??)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="view-board-btn" data-board-id="catalan">
+                    <span>View Opening</span>
+                    <span class="toggle-arrow">▼</span>
+                </button>
+            </div>
+            <div class="board-section" id="board-section-catalan">
+                <div class="board-container">
+                    <div id="board-catalan" class="chess-board"></div>
+                </div>
+                <div class="board-info">
+                    <div class="move-info" id="move-counter-catalan">Starting Position</div>
+                    <div class="control-buttons">
+                        <button class="control-btn" data-action="first" data-board="catalan">⏮</button>
+                        <button class="control-btn" data-action="prev" data-board="catalan">◀</button>
+                        <button class="control-btn" data-action="next" data-board="catalan">▶</button>
+                        <button class="control-btn" data-action="last" data-board="catalan">⏭</button>
+                    </div>
+                </div>
+                <div class="position-explanation" id="explanation-catalan">
+                    After 3...d5 4. Bg2, Black can play 4...dxc4 (Open Catalan) or 4...Be7 (Closed Catalan).
+                    The Open Catalan leads to sharper play as White regains the pawn with pressure.
+                    World champions Kramnik and Ding Liren have used this opening extensively.
+                </div>
+            </div>
+        </article>
+    </section>
+
+</div>
+{% endblock %}

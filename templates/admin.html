@@ -1,0 +1,498 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Curated Games Management{% endblock %}
+
+{% block extra_css %}
+<style>
+    .admin-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .admin-header {
+        margin-bottom: 2rem;
+        border-bottom: 2px solid var(--border-color, #ddd);
+        padding-bottom: 1rem;
+    }
+
+    .admin-header h1 {
+        color: var(--primary-color, #333);
+        margin: 0 0 0.5rem 0;
+    }
+
+    .admin-header p {
+        color: var(--text-muted, #666);
+        margin: 0;
+    }
+
+    .upload-section {
+        background: var(--card-bg, #f9f9f9);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color, #ddd);
+    }
+
+    .upload-section h2 {
+        margin-top: 0;
+        color: var(--primary-color, #333);
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--text-color, #333);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color, #ddd);
+        border-radius: 4px;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    .form-group textarea {
+        min-height: 200px;
+        font-family: 'Courier New', monospace;
+        resize: vertical;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+        background: var(--primary-color, #4a90e2);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-hover, #357abd);
+    }
+
+    .btn-danger {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #c0392b;
+    }
+
+    .btn-secondary {
+        background: #95a5a6;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background: #7f8c8d;
+    }
+
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .games-list {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .games-list h2 {
+        padding: 1.5rem;
+        margin: 0;
+        background: var(--card-bg, #f9f9f9);
+        border-bottom: 1px solid var(--border-color, #ddd);
+    }
+
+    .game-item {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color, #ddd);
+    }
+
+    .game-item:last-child {
+        border-bottom: none;
+    }
+
+    .game-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 1rem;
+    }
+
+    .game-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color, #333);
+        margin: 0 0 0.5rem 0;
+    }
+
+    .game-meta {
+        color: var(--text-muted, #666);
+        font-size: 0.9rem;
+    }
+
+    .game-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .status-pending {
+        background: #f39c12;
+        color: white;
+    }
+
+    .status-processing {
+        background: #3498db;
+        color: white;
+    }
+
+    .status-completed {
+        background: #27ae60;
+        color: white;
+    }
+
+    .status-failed {
+        background: #e74c3c;
+        color: white;
+    }
+
+    .game-description {
+        color: var(--text-color, #333);
+        margin: 1rem 0;
+        line-height: 1.6;
+    }
+
+    .game-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .game-actions .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .alert {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        color: var(--text-muted, #666);
+    }
+
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted, #666);
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(0,0,0,0.1);
+        border-radius: 50%;
+        border-top-color: var(--primary-color, #4a90e2);
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Curated Games Management</h1>
+        <p>Upload and manage famous chess games with AI commentary</p>
+    </div>
+
+    <!-- Alert Messages -->
+    <div id="alertContainer"></div>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+        <h2>Upload New Curated Game</h2>
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="pgn">PGN</label>
+                <textarea id="pgn" name="pgn" placeholder="Paste PGN here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="uploadBtn">
+                Upload Game
+            </button>
+        </form>
+    </div>
+
+    <!-- Games List -->
+    <div class="games-list">
+        <h2>Curated Games</h2>
+        <div id="gamesList">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading games...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// State
+let games = [];
+let statusCheckIntervals = {};
+
+// Load games on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadGames();
+});
+
+// Upload form handler
+document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const btn = document.getElementById('uploadBtn');
+    btn.disabled = true;
+    btn.textContent = 'Uploading...';
+
+    const formData = {
+        pgn: document.getElementById('pgn').value
+    };
+
+    try {
+        const response = await fetch('/admin/api/upload-curated-game', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showAlert('Game uploaded successfully!', 'success');
+            document.getElementById('uploadForm').reset();
+            loadGames();
+        } else {
+            showAlert('Upload failed: ' + data.error, 'error');
+        }
+    } catch (error) {
+        showAlert('Upload failed: ' + error.message, 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Upload Game';
+    }
+});
+
+// Load games
+async function loadGames() {
+    try {
+        const response = await fetch('/admin/api/curated-games');
+        const data = await response.json();
+
+        if (data.success) {
+            games = data.games;
+            renderGames();
+        } else {
+            showAlert('Failed to load games: ' + data.error, 'error');
+        }
+    } catch (error) {
+        showAlert('Failed to load games: ' + error.message, 'error');
+    }
+}
+
+// Render games list
+function renderGames() {
+    const container = document.getElementById('gamesList');
+
+    if (games.length === 0) {
+        container.innerHTML = '<div class="empty-state">No curated games yet. Upload your first game above!</div>';
+        return;
+    }
+
+    container.innerHTML = games.map(game => `
+        <div class="game-item" data-game-id="${game.id}">
+            <div class="game-header">
+                <div>
+                    <h3 class="game-title">${game.name || 'Untitled Game'}</h3>
+                    <div class="game-meta">
+                        <strong>Players:</strong> ${game.white_player || 'Unknown'} vs ${game.black_player || 'Unknown'}
+                        ${game.event ? ` | <strong>Event:</strong> ${game.event}` : ''}
+                        ${game.game_date ? ` | <strong>Date:</strong> ${game.game_date}` : ''}
+                        | <strong>Moves:</strong> ${game.move_count || 0}
+                        | <strong>Result:</strong> ${game.result || '*'}
+                    </div>
+                </div>
+                <div>
+                    <span class="game-status status-${game.commentary_status || 'pending'}">
+                        ${game.commentary_status || 'pending'}
+                    </span>
+                </div>
+            </div>
+
+            <div class="game-actions" style="margin-top: 1rem;">
+                <button class="btn btn-primary" onclick="generateCommentary('${game.id}')" ${game.commentary_status === 'processing' ? 'disabled' : ''}>
+                    ${game.commentary_status === 'processing' ? 'Generating...' : 'Generate Commentary'}
+                </button>
+                <button class="btn btn-secondary" onclick="viewGame('${game.id}')">
+                    View Game
+                </button>
+                <button class="btn btn-danger" onclick="deleteGame('${game.id}')">
+                    Delete
+                </button>
+            </div>
+        </div>
+    `).join('');
+
+    // Start status checks for processing games
+    games.forEach(game => {
+        if (game.commentary_status === 'processing') {
+            startStatusCheck(game.id);
+        }
+    });
+}
+
+// Generate commentary
+async function generateCommentary(gameId) {
+    try {
+        const response = await fetch(`/admin/api/generate-commentary/${gameId}`, {
+            method: 'POST'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showAlert('Commentary generation started!', 'success');
+            startStatusCheck(gameId);
+            loadGames();
+        } else {
+            showAlert('Failed to start commentary generation: ' + data.error, 'error');
+        }
+    } catch (error) {
+        showAlert('Failed to start commentary generation: ' + error.message, 'error');
+    }
+}
+
+// Check commentary status
+function startStatusCheck(gameId) {
+    // Clear existing interval if any
+    if (statusCheckIntervals[gameId]) {
+        clearInterval(statusCheckIntervals[gameId]);
+    }
+
+    // Check every 5 seconds
+    statusCheckIntervals[gameId] = setInterval(async () => {
+        try {
+            const response = await fetch(`/admin/api/commentary-status/${gameId}`);
+            const data = await response.json();
+
+            if (data.success) {
+                // If completed or failed, stop checking and reload
+                if (data.db_status === 'completed' || data.db_status === 'failed') {
+                    clearInterval(statusCheckIntervals[gameId]);
+                    delete statusCheckIntervals[gameId];
+                    loadGames();
+
+                    if (data.db_status === 'completed') {
+                        showAlert('Commentary generation completed!', 'success');
+                    } else {
+                        showAlert('Commentary generation failed', 'error');
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Status check failed:', error);
+        }
+    }, 5000);
+}
+
+// View game
+function viewGame(gameId) {
+    window.open(`/analyze/${gameId}`, '_blank');
+}
+
+// Delete game
+async function deleteGame(gameId) {
+    if (!confirm('Are you sure you want to delete this curated game?')) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/admin/api/curated-game/${gameId}`, {
+            method: 'DELETE'
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showAlert('Game deleted successfully', 'success');
+            loadGames();
+        } else {
+            showAlert('Failed to delete game: ' + data.error, 'error');
+        }
+    } catch (error) {
+        showAlert('Failed to delete game: ' + error.message, 'error');
+    }
+}
+
+// Show alert
+function showAlert(message, type) {
+    const container = document.getElementById('alertContainer');
+    const alert = document.createElement('div');
+    alert.className = `alert alert-${type}`;
+    alert.textContent = message;
+
+    container.appendChild(alert);
+
+    setTimeout(() => {
+        alert.remove();
+    }, 5000);
+}
+
+// Clean up intervals on page unload
+window.addEventListener('beforeunload', () => {
+    Object.values(statusCheckIntervals).forEach(interval => clearInterval(interval));
+});
+</script>
+{% endblock %}

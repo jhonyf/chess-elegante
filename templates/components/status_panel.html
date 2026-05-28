@@ -1,0 +1,17 @@
+<!-- Unified Status Panel Component -->
+<div class="status-panel panel-section">
+    <div class="panel-header">
+        <div class="status-info">
+            <div class="status-dot"></div>
+            <span id="statusText" class="status-text">
+                {% if status_text %}{{ status_text }}{% else %}Ready{% endif %}
+            </span>
+        </div>
+        <div class="game-action-buttons">
+            <!-- Custom controls slot - passed via blocks or parameters -->
+            {% block status_controls %}
+            <!-- Default controls if none provided -->
+            {% endblock %}
+        </div>
+    </div>
+</div>

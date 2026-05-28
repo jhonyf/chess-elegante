@@ -1,0 +1,89 @@
+/* Chess Board Color Themes */
+
+/* Default - Classic Brown/Beige (original) */
+.board-theme-classic .white-1e1d7,
+.board-theme-classic .white-3c85d {
+    background-color: #f0d9b5 !important;
+}
+
+.board-theme-classic .black-3c85d,
+.board-theme-classic .black-1e1d7 {
+    background-color: #b58863 !important;
+}
+
+/* Minimal - Black & White */
+.board-theme-minimal .white-1e1d7,
+.board-theme-minimal .white-3c85d {
+    background-color: #ffffff !important;
+}
+
+.board-theme-minimal .black-3c85d,
+.board-theme-minimal .black-1e1d7 {
+    background-color: #666666 !important;
+}
+
+/* Gray - Elegant Gray Scale */
+.board-theme-gray .white-1e1d7,
+.board-theme-gray .white-3c85d {
+    background-color: #f5f5f5 !important;
+}
+
+.board-theme-gray .black-3c85d,
+.board-theme-gray .black-1e1d7 {
+    background-color: #999999 !important;
+}
+
+/* Blue - Modern Blue */
+.board-theme-blue .white-1e1d7,
+.board-theme-blue .white-3c85d {
+    background-color: #e8f4f8 !important;
+}
+
+.board-theme-blue .black-3c85d,
+.board-theme-blue .black-1e1d7 {
+    background-color: #4a90a4 !important;
+}
+
+/* Green - Classic Green */
+.board-theme-green .white-1e1d7,
+.board-theme-green .white-3c85d {
+    background-color: #eeeed2 !important;
+}
+
+.board-theme-green .black-3c85d,
+.board-theme-green .black-1e1d7 {
+    background-color: #769656 !important;
+}
+
+/* Purple - Elegant Purple */
+.board-theme-purple .white-1e1d7,
+.board-theme-purple .white-3c85d {
+    background-color: #f5f3f7 !important;
+}
+
+.board-theme-purple .black-3c85d,
+.board-theme-purple .black-1e1d7 {
+    background-color: #8b7fa8 !important;
+}
+
+/* Ice - Cool Ice Blue */
+.board-theme-ice .white-1e1d7,
+.board-theme-ice .white-3c85d {
+    background-color: #f0f8ff !important;
+}
+
+.board-theme-ice .black-3c85d,
+.board-theme-ice .black-1e1d7 {
+    background-color: #b8d4e8 !important;
+}
+
+/* Wood - Warm Wood Tones */
+.board-theme-wood .white-1e1d7,
+.board-theme-wood .white-3c85d {
+    background-color: #eaddca !important;
+}
+
+.board-theme-wood .black-3c85d,
+.board-theme-wood .black-1e1d7 {
+    background-color: #a67c52 !important;
+}

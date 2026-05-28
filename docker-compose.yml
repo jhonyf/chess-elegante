@@ -1,0 +1,67 @@
+# Full Stack Testing - Use this to test the complete Docker setup
+# For local development, use: docker-compose -f docker-compose.local.yml up
+# This file is for testing the production Docker image before deploying to AWS
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database (mimics RDS for testing)
+  postgres:
+    image: postgres:15-alpine
+    container_name: chess_elegante_db_test
+    environment:
+      POSTGRES_USER: chess
+      POSTGRES_PASSWORD: chess
+      POSTGRES_DB: chess_elegante
+    ports:
+      - "5433:5432"  # Use 5433 to avoid conflict with local dev DB
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chess -d chess_elegante"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - chess-network
+
+  # Flask Application (production image)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chess_elegante_app_test
+    ports:
+      - "5001:5000"  # Use 5001 to avoid conflict with local dev
+    environment:
+      - DATABASE_URL=postgresql://chess:chess@postgres:5432/chess_elegante
+      - FLASK_ENV=production
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - APPLE_CLIENT_ID=${APPLE_CLIENT_ID}
+      - APPLE_CLIENT_SECRET=${APPLE_CLIENT_SECRET}
+      - LICHESS_API_TOKEN=${LICHESS_API_TOKEN}
+      - SECRET_KEY=${SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - chess-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  postgres_test_data:
+    driver: local
+
+networks:
+  chess-network:
+    driver: bridge

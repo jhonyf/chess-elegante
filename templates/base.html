@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="version" content="{{ version }}">
+    <title>{% block title %}Chess Elegante{% endblock %}</title>
+
+    <!-- Chessboard.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/board-themes.css') }}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo"><a href="/">CHESS <span>ELEGANTE</span></a></div>
+
+            <!-- Desktop Nav Links -->
+            <ul class="nav-links desktop-nav">
+                <li><a href="/play" {% if active_page == 'play' %}class="active"{% endif %}>PLAY</a></li>
+                <li><a href="/games" {% if active_page == 'games' %}class="active"{% endif %}>GAMES</a></li>
+                <li><a href="/learn" {% if active_page == 'learn' %}class="active"{% endif %}>LEARN</a></li>
+                <li><a href="/about" {% if active_page == 'about' %}class="active"{% endif %}>ABOUT</a></li>
+                <li>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="text-muted">LOGOUT</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="text-muted">LOGIN</a>
+                {% endif %}
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path class="hamburger" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                    <path class="close" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" style="display: none;" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div class="mobile-nav-dropdown" id="mobileNavDropdown">
+            <div class="mobile-nav-content">
+                <a href="/play" {% if active_page == 'play' %}class="active"{% endif %}>PLAY</a>
+                <a href="/games" {% if active_page == 'games' %}class="active"{% endif %}>GAMES</a>
+                <a href="/learn" {% if active_page == 'learn' %}class="active"{% endif %}>LEARN</a>
+                <a href="/about" {% if active_page == 'about' %}class="active"{% endif %}>ABOUT</a>
+                <div class="mobile-nav-divider"></div>
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="text-muted">LOGOUT</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="text-muted">LOGIN</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+     <footer>
+        <div class="footer-container">
+            <div class="copyright">© 2026 Chess Elegante. All rights reserved.</div>
+            <ul class="footer-links">
+                <li><a href="/about">About</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- jQuery (required for chessboard.js) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Chess.js for move validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+    <!-- Chessboard.js -->
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+    <!-- Global Mobile Menu Script -->
+    <script>
+        // Mobile menu toggle (global for all pages)
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const dropdown = document.getElementById('mobileNavDropdown');
+
+            if (menuBtn && dropdown) {
+                menuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    menuBtn.classList.toggle('active');
+                    dropdown.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (dropdown.classList.contains('active') &&
+                        !menuBtn.contains(e.target) &&
+                        !dropdown.contains(e.target)) {
+                        menuBtn.classList.remove('active');
+                        dropdown.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking a link
+                const navLinks = dropdown.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuBtn.classList.remove('active');
+                        dropdown.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
