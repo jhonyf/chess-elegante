@@ -3,12 +3,12 @@ import os
 import chess
 import chess.pgn
 import io
-from lichess_client import LichessClient
-from game_storage_db import GameStorage  # Database-backed storage
-from stockfish_engine import StockfishEngine
-from ai_commentator import AICommentator
-from auth import init_auth
-from move_utils import MoveFormat, create_move_analysis_entry
+from services.lichess_client import LichessClient
+from services.game_storage_db import GameStorage  # Database-backed storage
+from services.stockfish_engine import StockfishEngine
+from services.ai_commentator import AICommentator
+from core.auth import init_auth
+from core.move_utils import MoveFormat, create_move_analysis_entry
 import secrets
 import logging
 from logging.handlers import RotatingFileHandler
@@ -19,10 +19,10 @@ import json
 import time
 import uuid
 from werkzeug.middleware.proxy_fix import ProxyFix
-from admin_utils import admin_required, job_manager
-from curated_game_service import CuratedGameService
-from models import ChessGame, db
-from game_analysis_service import GameAnalysisService
+from core.admin_utils import admin_required, job_manager
+from services.curated_game_service import CuratedGameService
+from database.models import ChessGame, db
+from services.game_analysis_service import GameAnalysisService
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -86,10 +86,13 @@ def setup_logging():
 
     # Set DEBUG level for application loggers only (not third-party libraries)
     app_loggers = [
-        'ai_commentator',
-        'game_storage',
+        'services.ai_commentator',
+        'services.game_storage',
+        'services.game_storage_db',
+        'services.curated_game_service',
+        'services.game_analysis_service',
         'StockfishEngine',
-        'lichess_client',
+        'services.lichess_client',
         '__main__',  # For app.py when run directly
         'app'        # For app.py when imported
     ]
@@ -1455,7 +1458,7 @@ def generate_commentary(game_id):
     # Delegate to service (handles all business logic and database updates)
     db_session = get_db_session()
     try:
-        from curated_game_service import CuratedGameService
+        from services.curated_game_service import CuratedGameService
         service = CuratedGameService(db_session, engine, ai_commentator)
 
         # Generate commentary (service handles status updates, validation, etc.)
