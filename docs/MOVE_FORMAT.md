@@ -32,7 +32,7 @@ The `move_utils` module provides utilities to work with moves consistently:
 Convert any format to the standard format:
 
 ```python
-from move_utils import normalize_moves
+from core.move_utils import normalize_moves
 
 # From UCI strings (live games from Lichess)
 moves = ["e2e4", "d7d5", "e4d5"]
@@ -48,7 +48,7 @@ normalized = normalize_moves(moves)
 ### Extracting UCI/SAN
 
 ```python
-from move_utils import to_uci_list, to_san_list
+from core.move_utils import to_uci_list, to_san_list
 
 moves = [{"san": "e4", "uci": "e2e4"}, {"san": "d5", "uci": "d7d5"}]
 
@@ -64,7 +64,7 @@ san_moves = to_san_list(moves)
 ### Parsing from Different Sources
 
 ```python
-from move_utils import MoveFormat
+from core.move_utils import MoveFormat
 import chess.pgn
 import io
 
@@ -81,7 +81,7 @@ moves = MoveFormat.parse_pgn_moves(pgn)
 ### Replaying Moves
 
 ```python
-from move_utils import MoveFormat
+from core.move_utils import MoveFormat
 
 moves = [{"san": "e4", "uci": "e2e4"}, {"san": "d5", "uci": "d7d5"}]
 
@@ -156,4 +156,4 @@ Old data with inconsistent formats is automatically normalized when accessed:
 - UCI string arrays → converted to standard format
 - Already in standard format → no change needed
 
-The `move_utils.normalize_moves()` function handles all legacy formats transparently.
+The `core.move_utils.normalize_moves()` function handles all legacy formats transparently.

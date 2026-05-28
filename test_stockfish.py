@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Test Stockfish engine integration"""
 
-from stockfish_engine import StockfishEngine
+from services.stockfish_engine import StockfishEngine
 
 def test_analysis():
     """Test position analysis"""

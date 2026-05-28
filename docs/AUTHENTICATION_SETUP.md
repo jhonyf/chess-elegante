@@ -394,7 +394,7 @@ server {
 
 **User table doesn't exist**
 ```bash
-python -c "from models import Base; from sqlalchemy import create_engine; import os; from dotenv import load_dotenv; load_dotenv(); engine = create_engine(os.getenv('DATABASE_URL')); Base.metadata.create_all(engine)"
+python -c "from database.models import Base; from sqlalchemy import create_engine; import os; from dotenv import load_dotenv; load_dotenv(); engine = create_engine(os.getenv('DATABASE_URL')); Base.metadata.create_all(engine)"
 ```
 
 **Foreign key constraint error**
