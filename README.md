@@ -2,6 +2,8 @@
 
 A beautifully designed Flask-based web application for playing chess against AI opponents and analyzing games.
 
+https://chesselegante.com/
+
 ![Python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![Flask](https://img.shields.io/badge/flask-3.0+-green.svg)
 ![PostgreSQL](https://img.shields.io/badge/postgresql-16+-blue.svg)
