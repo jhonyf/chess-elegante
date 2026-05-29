@@ -140,26 +140,19 @@ Chess Elegante uses a **dual-engine architecture**:
 
 ```
 chess-elegante/
-├── app.py                    # Main Flask application
-├── models.py                 # Database models (User, Game, PGN)
-├── lichess_client.py         # Lichess API integration
-├── stockfish_engine.py       # Local Stockfish for analysis
-├── ai_commentator.py         # AI-powered move commentary
-├── auth.py                   # OAuth authentication
-├── game_storage.py           # Database operations
-├── templates/                # HTML templates
-│   ├── home.html            # Landing page
-│   ├── play.html            # Play mode
-│   ├── analyze.html         # PGN analysis mode
-│   └── games.html           # Game history
-└── static/
-    ├── js/
-    │   ├── game.js          # Play mode logic
-    │   └── analyze.js       # Analysis mode logic
-    └── css/
-        ├── main.css         # Shared styles
-        ├── play.css         # Play mode styles
-        └── board-themes.css # Chess board themes
+├── app.py                         # Main Flask application and route wiring
+├── core/                          # Shared app utilities
+│   └── auth, admin, and move-format helpers
+├── database/                      # SQLAlchemy database models and setup
+├── services/                      # Domain integrations and persistence services
+│   └── Lichess, Stockfish, AI commentary, analysis, and storage
+├── templates/                     # HTML templates
+│   └── pages plus reusable component partials
+├── static/                        # Frontend JavaScript and CSS assets
+├── seed_data/                     # Curated game data and import helpers
+├── scripts/                       # Maintenance and seeding scripts
+├── migrations/                    # Alembic/Flask-Migrate migration files
+└── docs/                          # Setup, deployment, and architecture docs
 ```
 
 ---
@@ -221,39 +214,44 @@ See [Setup Guide](docs/SETUP.md) for how to obtain these values.
 
 ## API Endpoints
 
+### System
+- `GET /health` - Health check
+- `GET /api/version` - Current deployed version metadata
+
 ### Game Management
+- `GET /api/games` - List the current user's games
+- `GET /api/game/<game_id>` - Load a specific game
+- `POST /api/resume-game/<game_id>` - Resume a saved live game
+- `DELETE /api/delete-game/<game_id>` - Delete a saved game
 - `POST /api/new-game` - Start a new game against AI
 - `POST /api/make-move` - Make a move
 - `GET /api/game-state` - Get current game state
+- `GET /api/game-stream` - Stream live game updates via Server-Sent Events
 - `POST /api/resign` - Resign current game
 
 ### Analysis
 - `POST /api/analyze-position` - Analyze a chess position
+- `POST /api/analyze-best-move` - Get the best move with AI commentary
 - `POST /api/evaluate-move` - Evaluate move quality
+- `POST /api/evaluate-move-ai` - Generate AI commentary for a move
 
-### PGN
+### PGN & Saved Analysis
 - `POST /api/parse-pgn` - Parse PGN file
 - `POST /api/save-pgn` - Save PGN to database
 - `GET /api/pgns` - List saved PGNs
-- `GET /api/pgn/<id>` - Load specific PGN
+- `GET /api/game/<game_id>/data` - Load saved or curated game data for analysis
+- `POST /api/generate-commentary/<game_id>` - Generate commentary for a saved game
 
----
+### Curated Games
+- `GET /api/curated-games` - List public curated games, optionally filtered by opening
 
-## Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Admin
+- `GET /admin/api/curated-games` - List curated games with commentary status
+- `POST /admin/api/upload-curated-game` - Upload a curated game from PGN
+- `POST /admin/api/generate-commentary/<game_id>` - Start curated-game commentary generation
+- `GET /admin/api/commentary-status/<game_id>` - Check commentary generation status
+- `PATCH /admin/api/curated-game/<game_id>` - Update curated game metadata
+- `DELETE /admin/api/curated-game/<game_id>` - Delete a curated game
 
 ---
 
@@ -263,14 +261,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **chessboard.js** & **chess.js** - For the chess UI components
 - **Stockfish** - For the powerful chess engine
 - **OpenAI/Anthropic** - For AI commentary capabilities
-
----
-
-## Support
-
-- 📖 **Documentation:** See `docs/` folder
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/chess-elegante/issues)
-- 💬 **Discussions:** [GitHub Discussions](https://github.com/yourusername/chess-elegante/discussions)
 
 ---
 
